@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Make_topicController extends Controller
+class Category_searchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class Make_topicController extends Controller
      */
     public function index()
     {
-        return view('make_topic');
+        return view('category_search');
     }
 
     /**
@@ -23,7 +23,7 @@ class Make_topicController extends Controller
      */
     public function create()
     {
-       
+        //
     }
 
     /**

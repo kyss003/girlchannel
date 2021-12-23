@@ -1,4 +1,9 @@
 @extends('layouts.layout')
+
+@section('title')
+    Weekly
+@endsection()
+
 @section('body')
 <section>
         <div class="container">
@@ -9,7 +14,7 @@
                             <div class="topic-list-header mb20">
                                 <ul class="breadcrumbs">
                                     <li class="breadcrumb">
-                                        <a href="index.html">
+                                        <a href="/index">
                                             <span class="icon-home">
                                                 <img src="https://img.icons8.com/material-rounded/15/000000/home.png"/>
                                             </span>
@@ -19,7 +24,7 @@
                                         </span>
                                     </li>
                                     <li class="breadcrumb current">
-                                        <a href="category.html">
+                                        <a href="/category">
                                             <span>Popular topics of the week</span>
                                         </a>
                                     </li>
@@ -30,7 +35,7 @@
                             </div>
                             <ul class="topic-list">
                                 <li>
-                                    <a href="topics.html">
+                                    <a href="/topics">
                                         <img src="https://up.gc-img.net/post_img_web/2021/12/Wyc2SH27qWydrqZ_21723_s.jpeg" class="img">
                                         <div class="info">
                                             <div class="tag-wrap rank3">
@@ -62,7 +67,7 @@
                         </div>
                     </div>
                     <div class="sub">
-                        <a href="make_topic.html" class="btn btn-entry-topic mb20">
+                        <a href="/make_topic" class="btn btn-entry-topic mb20">
                             <span class="icon-plus">
                                 <img src="https://img.icons8.com/ios-glyphs/20/000000/plus-math.png"/>
                             </span>
@@ -72,7 +77,7 @@
                             <p class="head">
                                 <a href="#">search trends</a>
                             </p>
-                            <a class="show-more" href="key_word.html">
+                            <a class="show-more" href="/key_word">
                                 <font>list of keywords</font>
                                 <span class="icon-arrow_r">
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
@@ -81,7 +86,7 @@
                         </div>
                         <div class="sub-part sub-categories mb20">
                             <p class="head">
-                                <a href="category.html">category</a>
+                                <a href="/category">category</a>
                             </p>
                             <ul>
                                 <li>

@@ -1,4 +1,9 @@
 @extends('layouts.layout')
+
+@section('title')
+    Girls Channel
+@endsection()
+
 @section('body')
 <section>
         <div class="container">

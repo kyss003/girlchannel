@@ -1,4 +1,9 @@
 @extends('layouts.layout')
+
+@section('title')
+    Search
+@endsection()
+
 @section('body')
 <section>
         <div class="container">
@@ -46,7 +51,7 @@
                             </form>
                             <ul class="topic-list">
                                 <li>
-                                    <a href="topics.html">
+                                    <a href="/topics">
                                         <img src="https://up.gc-img.net/post_img_web/2021/12/Wyc2SH27qWydrqZ_21723_s.jpeg" class="img">
                                         <div class="info">
                                             <p class="comment">
@@ -67,7 +72,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="topics.html">
+                                    <a href="/topics">
                                         <img src="https://up.gc-img.net/post_img_web/2021/12/Wyc2SH27qWydrqZ_21723_s.jpeg" class="img">
                                         <div class="info">
                                             <p class="comment">
@@ -117,7 +122,7 @@
                         </div>
                     </div>
                     <div class="sub">
-                        <a href="make_topic.html" class="btn btn-entry-topic mb20">
+                        <a href="/make_topic" class="btn btn-entry-topic mb20">
                             <span class="icon-plus">
                                 <img src="https://img.icons8.com/ios-glyphs/20/000000/plus-math.png"/>
                             </span>
@@ -125,7 +130,7 @@
                         </a>
                         <div class="sub-part sub-topics mb20">
                             <p class="head">
-                                <a href="weekly.html">Popular topics of the week</a>
+                                <a href="/weekly">Popular topics of the week</a>
                             </p>
                             <ul>
                                 <li>
@@ -161,7 +166,7 @@
                                     </a>
                                 </li>
                             </ul>
-                            <a href="weekly.html" class="show-more">
+                            <a href="/weekly" class="show-more">
                                 <font>See more</font>
                                 <span class="icon-arrow_r">
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
@@ -215,7 +220,7 @@
                         </div>
                         <div class="sub-part sub-trends mb20" >
                             <p class="head">
-                                <a href="key_word.html">Search trends</a>
+                                <a href="/key_word">Search trends</a>
                             </p>
                             <ul>
                                 <li>
@@ -259,7 +264,7 @@
                                     <a href="#">SixTONES</a>
                                 </li>
                             </ul>
-                            <a class="show-more" href="key_word.html">
+                            <a class="show-more" href="/key_word">
                                 <font>List of keywords</font>
                                 <span class="icon-arrow_r">
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
@@ -268,7 +273,7 @@
                         </div>
                         <div class="sub-part sub-categories mb20">
                             <p class="head">
-                                <a href="category.html">Category</a>
+                                <a href="/category">Category</a>
                             </p>
                             <ul>
                                 <li>

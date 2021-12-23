@@ -1,4 +1,5 @@
 @extends('layouts.layout')
+    Topic image
 @section('body')
 <section>
         <div class="container">

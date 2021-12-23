@@ -1,4 +1,9 @@
 @extends('layouts.layout')
+
+@section('title')
+    Make topic
+@endsection()
+
 @section('body')
 <div class="wrap">
     <div class="container">

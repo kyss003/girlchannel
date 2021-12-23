@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\category;
 use Illuminate\Http\Request;
 
-class Make_topicController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,10 @@ class Make_topicController extends Controller
      */
     public function index()
     {
-        return view('make_topic');
+        $categories = Category::all();
+        return view('category', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -23,7 +27,7 @@ class Make_topicController extends Controller
      */
     public function create()
     {
-       
+        
     }
 
     /**

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Make_topicController extends Controller
+class HomeController extends Controller
 {
+    public function __construct() {
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +16,7 @@ class Make_topicController extends Controller
      */
     public function index()
     {
-        return view('make_topic');
+        
     }
 
     /**
@@ -23,7 +26,7 @@ class Make_topicController extends Controller
      */
     public function create()
     {
-       
+        //
     }
 
     /**

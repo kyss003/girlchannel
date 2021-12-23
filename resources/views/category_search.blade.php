@@ -1,4 +1,9 @@
 @extends('layouts.layout')
+
+@section('title')
+    Category search
+@endsection()
+
 @section('body')
 <section>
         <div class="container">
@@ -8,7 +13,7 @@
                         <div class="topic-list-wrap">
                             <ul class="breadcrumbs">
                                 <li class="breadcrumb">
-                                    <a href="index.html">
+                                    <a href="/index">
                                         <span class="icon-home">
                                             <img src="https://img.icons8.com/material-rounded/15/000000/home.png"/>
                                         </span>
@@ -28,7 +33,7 @@
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
                                 </span>
                                 <li class="breadcrumb current">
-                                    <a href="category.html">
+                                    <a href="/category">
                                         <span>love and marriage</span>
                                     </a>
                                 </li>
@@ -76,7 +81,7 @@
                             </form>
                             <ul class="topic-list">
                                 <li>
-                                    <a href="topics.html">
+                                    <a href="/topics">
                                         <img src="https://up.gc-img.net/post_img_web/2021/12/Wyc2SH27qWydrqZ_21723_s.jpeg" class="img">
                                         <div class="info">
                                             <p class="comment">
@@ -97,7 +102,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="topics.html">
+                                    <a href="/topics">
                                         <img src="https://up.gc-img.net/post_img_web/2021/12/oxSAkiyGPMUA8Cb_s.jpeg" class="img">
                                         <div class="info">
                                             <p class="comment">
@@ -179,11 +184,11 @@
                         </div>
                         <div class="sub-part sub-categories mb20">
                             <p class="head">
-                                <a href="category.html">Category</a>
+                                <a href="/category">Category</a>
                             </p>
                             <ul>
                                 <li>
-                                    <a href="category_search.html">Love and marriage</a>
+                                    <a href="/category_search">Love and marriage</a>
                                 </li>
                                 <li>
                                     <a href="#">Beauty & cosmetics</a>

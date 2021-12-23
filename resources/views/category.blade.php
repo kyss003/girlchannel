@@ -1,4 +1,9 @@
 @extends('layouts.layout')
+
+@section('title')
+    Category
+@endsection()
+
 @section('body')
 <div class="wrap">
         <div class="container">
@@ -6,7 +11,7 @@
                 <div class="main column-1">
                     <ul class="breadcrumbs">
                         <li class="breadcrumb">
-                            <a href="index.html">
+                            <a href="/index">
                                 <span class="icon-home">
                                     <img src="https://img.icons8.com/material-rounded/15/000000/home.png"/>
                                 </span>
@@ -16,7 +21,7 @@
                             </span>
                         </li>
                         <li class="breadcrumb current">
-                            <a href="category.html">
+                            <a href="/category">
                                 <span>Category list</span>
                             </a>
                         </li>
@@ -25,8 +30,15 @@
                         <h2 class="category-heading">Category list</h2>
                     </header>
                     <ul class="wordList">
+
+                        @foreach($categories as $category)
+                            <li class="wordList-items">
+                                <a href="/category_search" class="wordList-link">{{ $category->name }}</a>
+                            </li>
+                        @endforeach
+
                         <li class="wordList-items">
-                            <a href="category_search.html" class="wordList-link">love and marriage</a>
+                            <a href="/category_search" class="wordList-link">love and marriage</a>
                         </li>
                         <li class="wordList-items">
                             <a href="#" class="wordList-link">beauty & cosmetics</a>

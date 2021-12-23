@@ -1,4 +1,9 @@
 @extends('layouts.layout')
+
+@section('title')
+    Topics
+@endsection()
+
 @section('body')
 <section>
         <div class="container">

@@ -1,4 +1,9 @@
 @extends('layouts.layout')
+
+@section('title')
+    Key word
+@endsection()
+
 @section('body')
 <div class="wrap">
         <div class="container">
@@ -6,7 +11,7 @@
                 <div class="main column-1">
                     <ul class="breadcrumbs">
                         <li class="breadcrumb">
-                            <a href="index.html">
+                            <a href="/index">
                                 <span class="icon-home">
                                     <img src="https://img.icons8.com/material-rounded/15/000000/home.png"/>
                                 </span>
@@ -16,7 +21,7 @@
                             </span>
                         </li>
                         <li class="breadcrumb current">
-                            <a href="category.html" class="current">
+                            <a href="/category" class="current">
                                 <span>List of keywords</span>
                             </a>
                         </li>
