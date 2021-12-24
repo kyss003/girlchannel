@@ -699,6 +699,106 @@ ul.pager {
     border: none;
     padding-left: 8px;
 }
+.add-link {
+    font-size: 12px;
+    line-height: 14px;
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    box-sizing: border-box;
+    padding: 6px 14px;
+    margin: 0;
+    cursor: pointer;
+    color: #39a9bf;
+    border-radius: 4px;
+    background: rgba(255,255,255,.9);
+}
+.add-link span {
+    font-size: 8px;
+    line-height: 14px;
+    margin-right: 8px;
+}
+
+.modal-bk {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,.2);
+}
+.modal-bk .modal-wrap {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    padding: 20px;
+    border-radius: 3px;
+    background: #fff;
+}
+.modal-bk .modal-wrap .title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    text-align: left;
+}
+.modal-bk .modal-wrap .desc {
+    font-size: 13px;
+    line-height: 22px;
+    margin-bottom: 13px;
+}
+.modal-bk .modal-wrap .input-urls {
+    margin-top: 13px;
+}
+.modal-bk .modal-wrap.modal-url {
+    width: 400px;
+    margin-left: -200px;
+}
+.modal-bk .modal-wrap .input-urls input {
+    font-size: 13px;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 12px;
+}
+.modal-bk .modal-wrap .add-url {
+    font-size: 13px;
+    line-height: 15px;
+    cursor: pointer;
+    color: #39a9bf;
+}
+.modal-bk .modal-wrap .add-url span.icon-plus {
+    font-size: 9px;
+    margin-right: 7px;
+}
+.modal-bk .modal-wrap .btn-positive {
+    line-height: 33px;
+    width: 100%;
+    height: 48px;
+    margin-top: 30px;
+}
+.modal-bk .modal-wrap .close {
+    font-size: 16px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.modal-bk .modal-wrap .close span {
+    display: block;
+    margin: 8px auto;
+    text-align: center;
+}
+.modal-bk[show=off] {
+    display: none;
+}
+.modal-bk[show=on] {
+    display: block;
+}
+
 .checkbox {
     font-size: 12px;
     line-height: 24px;
@@ -725,11 +825,13 @@ ul.pager {
 }
 .form-topic input[type=submit] {
     display: block;
-    width: 75%;
+    width: 50%;
     height: 48px;
-    margin: 40px 50px 61px 0;
-    border: none;
-    border-radius: 0;
+    margin: 40px auto 0;
+    background-color: #ffccd1;
+}
+.form-topic input[type=submit]:hover {
+    background-color: #ff8d99;
 }
 
 .sub-text .head {

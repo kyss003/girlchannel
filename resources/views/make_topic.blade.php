@@ -34,6 +34,14 @@
                                     <input id="title" type="text" placeholder="write a title" class="input-title" style="width: 100%">
                                     <div class="textarea">
                                         <textarea id="textarea" placeholder="write the text"></textarea>
+                                        <p id="btnUrl" class="add-link">
+                                            <span class="icon-link">
+                                            <img src="https://img.icons8.com/material-outlined/20/000000/link--v1.png"/>
+                                            </span>
+                                            <font>
+                                                quote articles and images
+                                            </font>
+                                        </p>
                                     </div>
                                     <div class="form-checks">
                                         <input id="anonymous" type="checkbox">
@@ -45,7 +53,37 @@
                                             View ID to prevent spoofing
                                         </label>
                                     </div>
-                                    <input id="submit" type="submit" value="Post a topic" class="btn btn-positive">
+                                </div>
+                            </div>
+                            <input id="submit" type="submit" value="Post a topic" class="btn btn-positive">
+                            <div id="modalUrl" class="modal-bk" show="off" style="height: 1480px">
+                                <div class="modal-wrap modal-url">
+                                    <p class="title">
+                                        Quote an article or image
+                                    </p>
+                                    <p class="desc">
+                                    WHEN YOU INSERT A URL, IT WILL LOOK LIKE THIS IN THE ACTUAL BODY.
+                                    </p>
+                                    <img src="https://static.gc-img.net/img/parts_pc/image_sample.png" width="100%">
+                                    <div id="inputUrls" class="input-urls">
+                                        <input type="url" placeholder="ENTER URL">
+                                    </div>
+                                    <div id="addUrl" class="add-url" style="display: block">
+                                        <span class="icon-plus">
+                                            <img src="https://img.icons8.com/android/15/000000/plus.png"/>
+                                        </span>
+                                        <span>
+                                            ADD URL
+                                        </span>
+                                    </div>
+                                    <div id="insertUrl" class="btn btn-positive">
+                                        INSERT URL
+                                    </div>
+                                    <p class="close">
+                                        <span>
+                                            <img src="https://img.icons8.com/material-outlined/15/000000/delete-sign.png"/>
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
                         </form>
