@@ -13,6 +13,7 @@
                         <h1>Post a topic</h1>
                         <img src="https://static.gc-img.net/img/parts_pc/step1.png" class="step">
                         <form id="form" class="form form-topic">
+                            @csrf
                             <div class="image">
                                 <div class="form-image">
                                     <div id="topicThum">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\topic;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -16,7 +17,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+        $topics = Topic::all();
+        return view('home', [
+            'topics' => $topics
+        ]);
     }
 
     /**

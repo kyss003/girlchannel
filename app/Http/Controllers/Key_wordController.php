@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\keyword;
 use Illuminate\Http\Request;
 
 class Key_wordController extends Controller
@@ -13,7 +14,10 @@ class Key_wordController extends Controller
      */
     public function index()
     {
-        return view('key_word');
+        $key_words = Keyword::all ();
+        return view('key_word', [
+            'key_words' => $key_words
+        ]);
     }
 
     /**

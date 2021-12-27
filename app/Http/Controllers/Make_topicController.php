@@ -81,4 +81,13 @@ class Make_topicController extends Controller
     {
         //
     }
+    public function upload(Request $request) 
+    {
+        $file = $request->file('file');
+        $fileName = $file('file');
+        // $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        // $fileExtension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+        // $encryptedFilename = md5($fileName);
+        $file->storeAs('user-1', $fileName, 'image');
+    }
 }

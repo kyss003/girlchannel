@@ -39,9 +39,12 @@
                                 </span>
                             </div>
                             <ul class="topic-list">
+                                @foreach( $topics as $topic )
                                 <li>
-                                    <a href="/topics">
-                                        <img src="https://up.gc-img.net/post_img_web/2021/12/Wyc2SH27qWydrqZ_21723_s.jpeg" class="img">
+                                    <a href="/topics/{{$topic->id}}">
+                                            <img src="
+                                                {{ $topic->image }}
+                                            " class="img">
                                         <div class="info">
                                             <div class="tag-wrap rank3">
                                                 <span class="icon-tag">
@@ -64,11 +67,11 @@
                                             </p>
                                         </div>
                                         <p class="title">
-                                            insurance coverage for infertility treatment, women under 43 years old ministry of health, labour and welfare, fact marriage also to be targeted
+                                            {{ $topic->title }}
                                         </p>
                                     </a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="/topics">
                                         <img src="https://up.gc-img.net/post_img_web/2021/12/oxSAkiyGPMUA8Cb_s.jpeg" class="img">
                                         <div class="info">
@@ -96,7 +99,8 @@
                                             【実況・感想】真犯人フラグ #10
                                         </p>
                                     </a>
-                                </li>
+                                </li> -->
+                                @endforeach
                             </ul>
                             <ul class="pager">
                                 <li class="prev">

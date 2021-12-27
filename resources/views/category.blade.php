@@ -36,8 +36,13 @@
                                 <a href="/category_search" class="wordList-link">{{ $category->name }}</a>
                             </li>
                         @endforeach
-
-                        <li class="wordList-items">
+                        
+                        <!-- @foreach($categories as $category)
+                            <li class="wordList-items">
+                                <a href="{{ URL::to('/category_search/'.$category->id) }}" class="wordList-link">{{ $category->name }}</a>
+                            </li>
+                        @endforeach -->
+                        <!-- <li class="wordList-items">
                             <a href="/category_search" class="wordList-link">love and marriage</a>
                         </li>
                         <li class="wordList-items">
@@ -108,7 +113,7 @@
                         </li>                        
                         <li class="wordList-items">
                             <a href="#" class="wordList-link">questions and chats</a>
-                        </li>
+                        </li> -->
                                                                                      
                     </ul>
                 </div>

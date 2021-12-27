@@ -9,6 +9,7 @@ class keyword extends Model
 {
     use HasFactory;
 
+    protected $table = "keywords";
     protected $fillable = [
         'name',
     ];

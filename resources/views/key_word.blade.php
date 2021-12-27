@@ -30,7 +30,12 @@
                         <h2 class="category-heading">List of keywords</h2>
                     </header>
                     <ul class="wordList">
-                        <li class="wordList-items">
+                        @foreach($key_words as $key_word)
+                            <li class="wordList-items">
+                                <a class="wordList-link">{{ $key_word->name }}</a>
+                            </li>
+                        @endforeach
+                        <!-- <li class="wordList-items">
                             <a class="wordList-link">plastic surgery</a>
                         </li>
                         <li class="wordList-items">
@@ -248,7 +253,7 @@
                         </li>
                         <li class="wordList-items">
                             <a class="wordList-link">nogizaka 46</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 

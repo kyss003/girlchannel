@@ -9,6 +9,7 @@ use App\Http\Controllers\WeeklyController;
 use App\Http\Controllers\Topic_imageController;
 use App\Http\Controllers\Category_searchController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,9 @@ use App\Http\Controllers\SearchController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 // Route::get('/make_topic', function () {
 //     return view('make_topic');
@@ -51,12 +52,13 @@ Route::get('/', function () {
 // });
 
 //home
+Route::get('/', [HomeController::class, 'index']);
 
 //make_topic
 Route::get('/make_topic', [Make_topicController::class, 'index']);
 
 //topics
-Route::get('/topics', [TopicsController::class, 'index']);
+Route::get('/topics/{id}', [TopicsController::class, 'index']);
 
 //search
 Route::get('/search', [SearchController::class, 'index']);
