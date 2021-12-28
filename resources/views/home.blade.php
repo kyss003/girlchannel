@@ -281,82 +281,16 @@
                             </a>
                         </div>
                         <div class="sub-part sub-categories mb20">
+                            
                             <p class="head">
                                 <a href="/category">Category</a>
                             </p>
                             <ul>
+                                @foreach( $categories as $category )
                                 <li>
-                                    <a href="/category_search">Love and marriage</a>
+                                    <a href="topics/category/{{ $category->id }}">{{ $category->name }}</a>
                                 </li>
-                                <li>
-                                    <a href="#">Beauty & cosmetics</a>
-                                </li>
-                                <li>
-                                    <a href="#">Fashion</a>
-                                </li>
-                                <li>
-                                    <a href="#">hairdo</a>
-                                </li>
-                                <li>
-                                    <a href="#">adult</a>
-                                </li>
-                                <li>
-                                    <a href="#">performer</a>
-                                </li>
-                                <li>
-                                    <a href="#">food and food</a>
-                                </li>
-                                <li>
-                                    <a href="#">diet</a>
-                                </li>
-                                <li>
-                                    <a href="#">family and child rearing</a>
-                                </li>
-                                <li>
-                                    <a href="#">medical care and health</a>
-                                </li>
-                                <li>
-                                    <a href="#">life</a>
-                                </li>
-                                <li>
-                                    <a href="#">work</a>
-                                </li>
-                                <li>
-                                    <a href="#">real condition</a>
-                                </li>
-                                <li>
-                                    <a href="#">TV AND COMMERCIALS</a>
-                                </li>
-                                <li>
-                                    <a href="#">dramas &/ movies</a>
-                                </li>
-                                <li>
-                                    <a href="#">manga, anime and books</a>
-                                </li>
-                                <li>
-                                    <a href="#">music</a>
-                                </li>
-                                <li>
-                                    <a href="#">image</a>
-                                </li>
-                                <li>
-                                    <a href="#">news</a>
-                                </li>
-                                <li>
-                                    <a href="#">politics and economics</a>
-                                </li>
-                                <li>
-                                    <a href="#">sport</a>
-                                </li>
-                                <li>
-                                    <a href="#">IT AND THE INTERNET</a>
-                                </li>
-                                <li>
-                                    <a href="#">dogs, cats, animals</a>
-                                </li>
-                                <li>
-                                    <a href="#">questions and chats</a>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                         <a class="sub-part sub-service-intro mb20" href="#">

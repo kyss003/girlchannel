@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\topic;
+use App\Models\category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,9 +19,13 @@ class HomeController extends Controller
     public function index()
     {
         $topics = Topic::all();
+        $categories = Category::all();
         return view('home', [
-            'topics' => $topics
+            'topics' => $topics,
+            'categories' => $categories,
         ]);
+        
+
     }
 
     /**
@@ -30,7 +35,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        return view('make_topic');
     }
 
     /**
@@ -41,7 +46,10 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $make_topic = Topic::create($request->input());
+        if ($make_topic) {
+            return redirect('/');
+        } 
     }
 
     /**
@@ -52,7 +60,10 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+        $topics = Topic::where('id', $id)->get();
+        return view('topics', [
+            'topics' => $topics
+        ]);
     }
 
     /**

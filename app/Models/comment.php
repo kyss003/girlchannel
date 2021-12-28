@@ -9,10 +9,6 @@ class comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'image',
-        'content',
-        'like_count',
-        'dislike_count',
-    ];
+    protected $table = "comments";
+    protected $guarded = [];
 }

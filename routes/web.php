@@ -53,12 +53,9 @@ use App\Http\Controllers\HomeController;
 
 //home
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/topics/{id}', [HomeController::class, 'show']);
+Route::get('/make_topic', [HomeController::class, 'create']);
 
-//make_topic
-Route::get('/make_topic', [Make_topicController::class, 'index']);
-
-//topics
-Route::get('/topics/{id}', [TopicsController::class, 'index']);
 
 //search
 Route::get('/search', [SearchController::class, 'index']);
@@ -75,6 +72,7 @@ Route::get('/key_word', [Key_wordController::class, 'index']);
 
 // Category
 Route::get('/category', [CategoryController::class, 'index']);
+Route::get('topics/category/{id}', [CategoryController::class, 'show']);
 // Route::get('/category', [CategoryController::class, 'create']);
 // Route::post('/categories', [CategoryController::class, 'store']);
 // Route::get('/categories/{id}', [CategoryController::class, 'edit']);
@@ -82,4 +80,5 @@ Route::get('/category', [CategoryController::class, 'index']);
 // Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
 
 //category_search
-Route::get('/category_search', [Category_searchController::class, 'index']);
+
+Route::get('topics/category/{id}', [Category_searchController::class, 'index']);

@@ -33,7 +33,7 @@
 
                         @foreach($categories as $category)
                             <li class="wordList-items">
-                                <a href="/category_search" class="wordList-link">{{ $category->name }}</a>
+                                <a href="topics/category/{{ $category->id }}" class="wordList-link">{{ $category->name }}</a>
                             </li>
                         @endforeach
                         

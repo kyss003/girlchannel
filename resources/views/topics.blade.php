@@ -11,6 +11,7 @@
                 <div class="wrap">
                     <div class="main">
                         <div class="topic-wrap">
+                            @foreach( $topics as $topic )
                             <ul class="breadcrumbs">
                                 <li class="breadcrumb">
                                     <a href="/">
@@ -34,16 +35,16 @@
                                 </span>
                                 <li class="breadcrumb current">
                                     <a href="/category">
-                                        <span>Performer</span>
+                                        <span>{{ $topic->title }}</span>
                                     </a>
                                 </li>
                             </ul>
-                            @foreach( $topics as $topic )
                             <div class="head-area">
                                 <img src="https://up.gc-img.net/post_img_web/2021/12/Wyc2SH27qWydrqZ_21723_s.jpeg" class="img">
                                 <h1>
                                     <font> 
-                                        いしだ壱成、“純一超え”3度目離婚「ぼくと父は何か欠落している」    </font>
+                                        {{ $topic->title }}
+                                    </font>
                                 </h1>
                                 <p class="comment">
                                     <span class="icon-comment">

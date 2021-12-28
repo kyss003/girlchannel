@@ -12,7 +12,7 @@
                     <div class="entry-wrap">
                         <h1>Post a topic</h1>
                         <img src="https://static.gc-img.net/img/parts_pc/step1.png" class="step">
-                        <form id="form" class="form form-topic">
+                        <form id="form" class="form form-topic" anctype="multipart/form-data">
                             @csrf
                             <div class="image">
                                 <div class="form-image">
@@ -32,9 +32,9 @@
                             </div>
                             <div class="other">
                                 <div class="form-head">
-                                    <input id="title" type="text" placeholder="write a title" class="input-title" style="width: 100%">
+                                    <input id="title" type="text" name="title" placeholder="write a title" class="input-title" style="width: 100%">
                                     <div class="textarea">
-                                        <textarea id="textarea" placeholder="write the text"></textarea>
+                                        <textarea id="textarea" name="text" placeholder="write the text"></textarea>
                                         <p id="btnUrl" class="add-link">
                                             <span class="icon-link">
                                             <img src="https://img.icons8.com/material-outlined/20/000000/link--v1.png"/>

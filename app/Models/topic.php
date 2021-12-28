@@ -8,12 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class topic extends Model
 {
     use HasFactory;
+    
     protected $table = "topics";
-    protected $fillable = [
-        'image',
-        'title',
-        'content',
-        'like_count',
-        'dislike_count',
-    ];
+    protected $guarded = [];
 }

@@ -12,6 +12,7 @@
                     <div class="main">
                         <div class="topic-list-wrap">
                             <ul class="breadcrumbs">
+                                @foreach( $categories as $category )
                                 <li class="breadcrumb">
                                     <a href="/index">
                                         <span class="icon-home">
@@ -37,6 +38,7 @@
                                         <span>love and marriage</span>
                                     </a>
                                 </li>
+                                @endforeach
                             </ul>
                             <div class="category-header">
                                 <h2 class="category-heading">love and marriage topics</h2>
@@ -80,10 +82,21 @@
                                 </ul>
                             </form>
                             <ul class="topic-list">
+                                @foreach( $topics as $topic )
                                 <li>
-                                    <a href="/topics">
-                                        <img src="https://up.gc-img.net/post_img_web/2021/12/Wyc2SH27qWydrqZ_21723_s.jpeg" class="img">
+                                    <a href="/topics/{{$topic->id}}">
+                                            <img src="
+                                                {{ $topic->image }}
+                                            " class="img">
                                         <div class="info">
+                                            <div class="tag-wrap rank3">
+                                                <span class="icon-tag">
+
+                                                </span>
+                                                <p class="rank">
+                                                    <span>1st</span>
+                                                </p>
+                                            </div>
                                             <p class="comment">
                                                 <span class="icon-comment">
                                                     <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
@@ -97,11 +110,12 @@
                                             </p>
                                         </div>
                                         <p class="title">
-                                            insurance coverage for infertility treatment, women under 43 years old ministry of health, labour and welfare, fact marriage also to be targeted
+                                            {{ $topic->title }}
                                         </p>
                                     </a>
                                 </li>
-                                <li>
+                                @endforeach
+                                <!-- <li>
                                     <a href="/topics">
                                         <img src="https://up.gc-img.net/post_img_web/2021/12/oxSAkiyGPMUA8Cb_s.jpeg" class="img">
                                         <div class="info">
@@ -121,7 +135,7 @@
                                             【実況・感想】真犯人フラグ #10
                                         </p>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                             <ul class="pager">
                                 <li class="prev">
@@ -187,78 +201,11 @@
                                 <a href="/category">Category</a>
                             </p>
                             <ul>
+                                @foreach( $categories as $category )
                                 <li>
-                                    <a href="/category_search">Love and marriage</a>
+                                    <a href="{{ $category->id }}">{{ $category->name }}</a>
                                 </li>
-                                <li>
-                                    <a href="#">Beauty & cosmetics</a>
-                                </li>
-                                <li>
-                                    <a href="#">Fashion</a>
-                                </li>
-                                <li>
-                                    <a href="#">hairdo</a>
-                                </li>
-                                <li>
-                                    <a href="#">adult</a>
-                                </li>
-                                <li>
-                                    <a href="#">performer</a>
-                                </li>
-                                <li>
-                                    <a href="#">food and food</a>
-                                </li>
-                                <li>
-                                    <a href="#">diet</a>
-                                </li>
-                                <li>
-                                    <a href="#">family and child rearing</a>
-                                </li>
-                                <li>
-                                    <a href="#">medical care and health</a>
-                                </li>
-                                <li>
-                                    <a href="#">life</a>
-                                </li>
-                                <li>
-                                    <a href="#">work</a>
-                                </li>
-                                <li>
-                                    <a href="#">real condition</a>
-                                </li>
-                                <li>
-                                    <a href="#">TV AND COMMERCIALS</a>
-                                </li>
-                                <li>
-                                    <a href="#">dramas &/ movies</a>
-                                </li>
-                                <li>
-                                    <a href="#">manga, anime and books</a>
-                                </li>
-                                <li>
-                                    <a href="#">music</a>
-                                </li>
-                                <li>
-                                    <a href="#">image</a>
-                                </li>
-                                <li>
-                                    <a href="#">news</a>
-                                </li>
-                                <li>
-                                    <a href="#">politics and economics</a>
-                                </li>
-                                <li>
-                                    <a href="#">sport</a>
-                                </li>
-                                <li>
-                                    <a href="#">IT AND THE INTERNET</a>
-                                </li>
-                                <li>
-                                    <a href="#">dogs, cats, animals</a>
-                                </li>
-                                <li>
-                                    <a href="#">questions and chats</a>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

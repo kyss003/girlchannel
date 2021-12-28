@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\category;
+use App\Models\topic;
 use Illuminate\Http\Request;
 
 class Category_searchController extends Controller
@@ -13,7 +15,12 @@ class Category_searchController extends Controller
      */
     public function index()
     {
-        return view('category_search');
+        $topics = Topic::all();
+        $categories = Category::all();
+        return view('category_search', [
+            'categories' => $categories,
+            'topics' => $topics,
+        ]);
     }
 
     /**

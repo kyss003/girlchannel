@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
+use App\Models\topic;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -16,7 +17,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         return view('category', [
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
 
@@ -38,7 +39,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -49,7 +50,12 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $categories = Category::where('id', $id)->get();
+        return view('category_search', [
+            'categories' => $categories,
+            
+        ]);
     }
 
     /**
