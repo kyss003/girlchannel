@@ -15,8 +15,9 @@ class CreateTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('image', 255);
-            $table->string('title', 255);
+            $table->string('image');
+            $table->string('title');
+            $table->string('link');
             $table->string('content', 3000);
             $table->timestamps();
             $table->Integer('like_count');

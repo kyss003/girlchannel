@@ -15,7 +15,8 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('image', 255);
+            $table->string('image');
+            $table->string('link');
             $table->string('content', 3000);
             $table->Integer('like_count');
             $table->Integer('dislike_count');

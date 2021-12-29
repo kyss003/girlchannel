@@ -1091,6 +1091,13 @@ ul.pager {
 .comment-item .body .comment-img {
     margin: 13px 0;
 }
+.comment-item .body .comment-img img{
+    display: block;
+    max-width: 600px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
 .comment .body .comment-url {
     font-size: 12px;
     position: relative;

@@ -40,7 +40,7 @@
                                 </li>
                             </ul>
                             <div class="head-area">
-                                <img src="https://up.gc-img.net/post_img_web/2021/12/Wyc2SH27qWydrqZ_21723_s.jpeg" class="img">
+                                <img src="{{ $topic->image }}" width="100" height="100" class="img">
                                 <h1>
                                     <font> 
                                         {{ $topic->title }}
@@ -104,7 +104,7 @@
                                         </p>
                                         <div class="body">
                                             <div class="comment-img">
-                                                <img src="https://up.gc-img.net/post_img_web/2021/12/2553b13b609ad8979eded0defd52b759_16146.jpeg" width="400">
+                                                <img src="{{ $topic->image }}" width="400">
                                             </div><br>
                                             <div class="comment-url">
                                                 <div class="comment-url-head">

@@ -51,11 +51,12 @@ class CategoryController extends Controller
     public function show($id)
     {
         
-        $categories = Category::where('id', $id)->get();
+        $categories = Category::where('name', $id)->get();
         return view('category_search', [
             'categories' => $categories,
             
         ]);
+        
     }
 
     /**

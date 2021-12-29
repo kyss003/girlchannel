@@ -12,7 +12,7 @@
                     <div class="main">
                         <div class="topic-list-wrap">
                             <ul class="breadcrumbs">
-                                @foreach( $categories as $category )
+                                
                                 <li class="breadcrumb">
                                     <a href="/index">
                                         <span class="icon-home">
@@ -33,9 +33,10 @@
                                 <span class="icon-arror_r">
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
                                 </span>
+                                @foreach( $categories_name as $category_name )
                                 <li class="breadcrumb current">
                                     <a href="/category">
-                                        <span>love and marriage</span>
+                                        <span>{{ $category_name->name }}</span>
                                     </a>
                                 </li>
                                 @endforeach
@@ -82,7 +83,7 @@
                                 </ul>
                             </form>
                             <ul class="topic-list">
-                                @foreach( $topics as $topic )
+                                @foreach( $topics_categories as $topic )
                                 <li>
                                     <a href="/topics/{{$topic->id}}">
                                             <img src="

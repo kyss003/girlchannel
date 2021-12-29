@@ -55,6 +55,8 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/topics/{id}', [HomeController::class, 'show']);
 Route::get('/make_topic', [HomeController::class, 'create']);
+Route::post('/make_topic', [HomeController::class, 'store']);
+Route::post('/make_topic_upload_image', [HomeController::class, 'upload']);
 
 
 //search
@@ -82,3 +84,4 @@ Route::get('topics/category/{id}', [CategoryController::class, 'show']);
 //category_search
 
 Route::get('topics/category/{id}', [Category_searchController::class, 'index']);
+Route::get('topics/category/{id}', [Category_searchController::class, 'show']);

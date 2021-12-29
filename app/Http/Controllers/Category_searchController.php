@@ -15,12 +15,12 @@ class Category_searchController extends Controller
      */
     public function index()
     {
-        $topics = Topic::all();
-        $categories = Category::all();
-        return view('category_search', [
-            'categories' => $categories,
-            'topics' => $topics,
-        ]);
+        // $topics = Topic::all();
+        // $categories = Category::all();
+        // return view('category_search', [
+        //     'categories' => $categories,
+        //     'topics' => $topics,
+        // ]);
     }
 
     /**
@@ -52,7 +52,14 @@ class Category_searchController extends Controller
      */
     public function show($id)
     {
-        //
+        $topics_categories = Topic::where('category_id', $id)->get();
+        $categories = Category::all();
+        $categories_name = Category::where('id', $id)->get();
+        return view('category_search', [
+            'categories' => $categories,
+            'categories_name' => $categories_name,
+            'topics_categories' => $topics_categories,
+        ]);
     }
 
     /**
