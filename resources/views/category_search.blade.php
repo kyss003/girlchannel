@@ -42,8 +42,8 @@
                                 @endforeach
                             </ul>
                             <div class="category-header">
-                                <h2 class="category-heading">love and marriage topics</h2>
-                                <p>it is a page that collected topics related to girls channel love. there are a lot of real love circumstances and love banatopi of everyone who is worried. let's get excited together with women.</p>
+                                <h2 class="category-heading">{{ $category_name->name }}</h2>
+                                <p>{{ $category_name->title }}</p>
                             </div>
                             <form id="seachform">
                                 <ul class="search-options">

@@ -47,22 +47,61 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
+
+        $topic = new topic;
+        if($request->hasfile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->store('public/image/');
+            $topic->image = $filename;
+        }
+        
+        $topic->title = $request->input('title');
+        $topic->content = $request->input('text');
+        
+        $topic->save();
+        dd($topic);
+        return redirect()->back();
+
+
+
         // $make_topic = Topic::create($request->input());
         // if ($make_topic) {
         //     return redirect('/');
         // } 
-        $request->validate([
-            'title' => 'required',
-            'text' => 'required'
-        ]);
 
-        $query = DB::table('topics')->insert([
-            'title'=>$request->input('title'),
-            'content'=>$request->input('text')
-        ]);
-        if($query) {
-            return redirect('add');
-        }
+
+        // $request->validate([
+        //     'title' => 'required',
+        //     'text' => 'required'
+        // ]);
+
+        // $query = DB::table('topics')->insert([
+        //     'title'=>$request->input('title'),
+        //     'content'=>$request->input('text')
+        // ]);
+        // if($query) {
+        //     return redirect('add');
+        // }
+
+        //image
+
+        // $validatedData = $request->validate([
+
+        //     'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+
+        // ]);
+
+        // $name = $request->file('image')->getClientOriginalName();
+    //     $path = $request->file('image')->store('public/image', 'public');
+        
+
+    //     $save = new topic;
+    //     $save->image = $part;
+
+    //     $save->save();
+    //     return redirevt('make_topic');
     }
 
     /**
@@ -127,15 +166,25 @@ class HomeController extends Controller
         // $encryptedFilename = md5($fileName);
         // $file->storeAs('topic-1', $fileName, 'image');
 
-        $name = $request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->store('public/image');
 
-        $save = new Photo;
-        $save->name = $name;
-        $save->path = $part;
 
-        $save->save();
-        return redirevt('make_topic_upload_image');
+
+        // $validatedData = $request->validate([
+
+        //     'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+
+        // ]);
+
+        // $name = $request->file('image')->getClientOriginalName();
+        // $path = $request->file('image')->store('public/image');
+        
+
+        // $save = new Photo;
+        // $save->name = $name;
+        // $save->path = $part;
+
+        // $save->save();
+        // return redirevt('make_topic');
 
 
 

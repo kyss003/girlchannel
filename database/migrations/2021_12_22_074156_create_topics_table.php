@@ -15,15 +15,15 @@ class CreateTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('image');
-            $table->string('title');
-            $table->string('link');
-            $table->string('content', 3000);
+            $table->string('image')->nullable();
+            $table->string('title')->nullable();
+            $table->string('link')->nullable();
+            $table->string('content', 3000)->nullable();
             $table->timestamps();
-            $table->Integer('like_count');
-            $table->Integer('dislike_count');
-            $table->bigInteger('keyword_id')->unsigned();
-            $table->bigInteger('category_id')->unsigned();
+            $table->Integer('like_count')->nullable();
+            $table->Integer('dislike_count')->nullable();
+            $table->bigInteger('keyword_id')->unsigned()->nullable();
+            $table->bigInteger('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('keyword_id')->references('id')->on('keywords');
         });

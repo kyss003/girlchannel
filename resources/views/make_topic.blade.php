@@ -12,7 +12,7 @@
                     <div class="entry-wrap">
                         <h1>Post a topic</h1>
                         <img src="https://static.gc-img.net/img/parts_pc/step1.png" class="step">
-                        <form id="form" action="make_topic_upload_image" method="POST" class="form form-topic" anctype="multipart/form-data">
+                        <form id="form" action="{{ url('make_topic') }}" method="POST" class="form form-topic" anctype="multipart/form-data">
                             @csrf
                             <div class="image">
                                 <div class="form-image">
@@ -25,7 +25,7 @@
                                                 <img src="https://img.icons8.com/material-outlined/15/000000/camera--v2.png"/>
                                             </span>
                                             <p>Select image</p>
-                                            <input id="addImage" type="file" name="add" id="add">
+                                            <input type="file" name="image" id="image">
                                         </div>
                                     </div>
                                 </div>
