@@ -10,6 +10,8 @@ use App\Http\Controllers\Topic_imageController;
 use App\Http\Controllers\Category_searchController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CommentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -85,3 +87,6 @@ Route::get('topics/category/{id}', [CategoryController::class, 'show']);
 
 Route::get('topics/category/{id}', [Category_searchController::class, 'index']);
 Route::get('topics/category/{id}', [Category_searchController::class, 'show']);
+
+//comment
+Route::post('topics/{id}', [HomeController::class, 'store']);

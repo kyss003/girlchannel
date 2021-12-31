@@ -30,7 +30,7 @@
                                     <span class="icon-arrow_1"></span>
                                     <font>next day</font>
                                 </span>
-                                    <h2>monday, december 13, 2021</h2>
+                                    <h2>{{ $dt }}</h2>
                                 <span class="next">
                                     <a href="#" rel="next">
                                         day
@@ -283,7 +283,7 @@
                         <div class="sub-part sub-categories mb20">
                             
                             <p class="head">
-                                <a href="/category">Category</a>
+                                <a href="{{ url('category') }}">Category</a>
                             </p>
                             <ul>
                                 @foreach( $categories as $category )

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\topic;
 use App\Models\category;
+use App\Models\keyword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
 
 class HomeController extends Controller
 {
@@ -21,9 +24,11 @@ class HomeController extends Controller
     {
         $topics = Topic::all();
         $categories = Category::all();
+        $dt = Carbon::now('Asia/Ho_Chi_Minh');
         return view('home', [
             'topics' => $topics,
             'categories' => $categories,
+            'dt' => $dt->toDateString(),
         ]);
         
 
@@ -36,7 +41,14 @@ class HomeController extends Controller
      */
     public function create()
     {
-        return view('make_topic');
+        $topics = Topic::all();
+        $categories = Category::all();
+        $keywords = Keyword::all();
+        return view('make_topic', [
+            'topics' => $topics,
+            'categories' => $categories,
+            'keywords' => $keywords,
+        ]);
     }
 
     /**
@@ -49,20 +61,22 @@ class HomeController extends Controller
     {
 
         $topic = new topic;
-        if($request->hasfile('image')) {
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->store('public/image/');
-            $topic->image = $filename;
-        }
+        // if($request->hasfile('image')) {
+        //     $file = $request->file('image');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $filename = time().'.'.$extension;
+        //     $file->store('public/image/');
+        //     $topic->image = $filename;
+        // }
         
         $topic->title = $request->input('title');
         $topic->content = $request->input('text');
+        $topic->category_id = $request->input('category');
+        $topic->keyword_id = $request->input('keyword');
+
         
         $topic->save();
-        dd($topic);
-        return redirect()->back();
+        return redirect('make_topic');
 
 
 
@@ -91,17 +105,17 @@ class HomeController extends Controller
 
         //     'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
 
-        // ]);
+        //    ]);
 
-        // $name = $request->file('image')->getClientOriginalName();
-    //     $path = $request->file('image')->store('public/image', 'public');
-        
+        //    $name = $request->file('image')->getClientOriginalName();
+        //    $path = $request->file('image')->store('public/image');
+   
+        //    $save = new topic;
+        //    $save->image = $path;
+        //    dd($save);
+        //    $save->save();
 
-    //     $save = new topic;
-    //     $save->image = $part;
-
-    //     $save->save();
-    //     return redirevt('make_topic');
+        //    return redirect('make_topic')->with('status', 'Image Has been uploaded');
     }
 
     /**

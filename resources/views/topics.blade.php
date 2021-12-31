@@ -52,7 +52,7 @@
                                     </span>
                                     <font>
                                         <span>3000 comment</span>
-                                        <span class="datetime">2021/12/16 15:35</span>
+                                        <span class="datetime">{{ $topic->updated_at }}</span>
                                     </font>
                                 </p>
                                 <div class="head-area-btns">
@@ -98,7 +98,7 @@
                                             <font>
                                                 1.anonymous
                                                 <a href="#">
-                                                    2021/12/15
+                                                    {{ $topic->created_at }}
                                                 </a>
                                             </font>
                                         </p>
@@ -106,7 +106,7 @@
                                             <div class="comment-img">
                                                 <img src="{{ $topic->image }}" width="400">
                                             </div><br>
-                                            <div class="comment-url">
+                                            <!-- <div class="comment-url">
                                                 <div class="comment-url-head">
                                                     <img src="https://up.gc-img.net/post_img_web/2021/12/2553b13b609ad8979eded0defd52b759_356.jpeg" width="80">
                                                     <div class="comment-url-title">
@@ -119,9 +119,67 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <br>
+                                            <br> -->
                                             <font>
                                                 {{ $topic->content }}
+                                            </font>
+                                        </div>
+                                        <div class="res-count">
+                                            <a href="#" class="res-count-btn">
+                                                <span class="icon-comment_fill">
+                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
+                                                </span>
+                                                <font>179 replies</font>
+                                            </a>
+                                        </div>
+                                        <div class="topic-rate">
+                                            <div class="icon-rate-wrap icon-rate-wrap-plus">
+                                                <div class="counter">
+                                                    <p>{{ $topic->like_count }}</p>
+                                                </div>
+                                                <div class="icon-rate icon-plus-btn">
+                                                    <div class="btn-rate">
+                                                        <div></div>
+                                                        <div></div>
+                                                        <div></div>
+                                                        <div></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="width: 321px;" class="gage">
+                                                <div style="width: 98.5%;" class="plus">
+
+                                                </div>
+                                                <div style="width: 1.5%;" class="minus">
+
+                                                </div>
+                                            </div>
+                                            <div class="icon-rate-wrap icon-rate-wrap-minus">
+                                                <div class="counter">
+                                                    <p>{{ $topic->dislike_count }}</p>
+                                                </div>
+                                                <div class="icon-rate icon-minus-btn" state>
+                                                    <div class="btn-rate">
+                                                        <div></div>
+                                                        <div></div>
+                                                        <div></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="comment-item" id="comment1">
+                                        <p class="info">
+                                            <font>
+                                                2.anonymous
+                                                <a href="#">
+                                                    2021/12/15
+                                                </a>
+                                            </font>
+                                        </p>
+                                        <div class="body">
+                                            <font>
+                                                やっぱりな
                                             </font>
                                         </div>
                                         <div class="res-count">

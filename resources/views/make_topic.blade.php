@@ -10,6 +10,11 @@
         <div class="row">
                 <div class="main">
                     <div class="entry-wrap">
+                        @if(session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
                         <h1>Post a topic</h1>
                         <img src="https://static.gc-img.net/img/parts_pc/step1.png" class="step">
                         <form id="form" action="{{ url('make_topic') }}" method="POST" class="form form-topic" anctype="multipart/form-data">
@@ -44,6 +49,18 @@
                                             </font>
                                         </p>
                                     </div>
+                                    <select class="custom-select mb10" name="category">
+                                        <option selected>---Category---</option>
+                                        @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <select class="custom-select mb10" name="keyword">
+                                        <option selected>---Keyword---</option>
+                                        @foreach( $keywords as $keyword )
+                                        <option value="{{ $keyword->id }}">{{ $keyword->name }}</option>
+                                        @endforeach
+                                    </select>
                                     <div class="form-checks">
                                         <input id="anonymous" type="checkbox">
                                         <label for="anonymous" class="checkbox">
