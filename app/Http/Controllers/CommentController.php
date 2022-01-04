@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\comment;
+use App\Models\topic;
 
 class CommentController extends Controller
 {
@@ -14,7 +15,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -69,7 +70,13 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $topic_id = $id;
+        $topic = topic::find($id);
+        $comment = new Comment;
+        $comment->topic_id = $topic_id;
+        $comment->content = $request->input('text');
+        $comment->save();
+        return redirect("topics/$id");
     }
 
     /**

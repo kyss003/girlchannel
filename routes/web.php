@@ -89,4 +89,4 @@ Route::get('topics/category/{id}', [Category_searchController::class, 'index']);
 Route::get('topics/category/{id}', [Category_searchController::class, 'show']);
 
 //comment
-Route::post('topics/{id}', [HomeController::class, 'store']);
+Route::post('topics/{id}', [CommentController::class, 'update']);

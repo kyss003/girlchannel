@@ -160,8 +160,6 @@ input {
 
 .topic-list-header {
     position: relative;
-    padding-bottom: 10px;
-    border-bottom: 1px dashed #ccc;
 }
 .topic-list-header h2 {
     font-size: 14px;
@@ -185,6 +183,8 @@ input {
 .topic-list {
     position: relative;
     padding: 0;
+}
+.dp_ib {
     display: inline-block;
 }
 .topic-list li {
@@ -1413,7 +1413,7 @@ ul.pager {
     background: #ffccd1;
 }
 
-.topic-wrap .topic-list-wrap h2 {
+.topic-list-wrap h2 {
     font-size: 15px;
     font-weight: 600;
     line-height: 18px;
@@ -1421,7 +1421,7 @@ ul.pager {
     padding-bottom: 10px;
     border-bottom: 1px dashed #ccc;
 }
-.topic-wrap .topic-list-wrap h2.related {
+.topic-list-wrap h2.related {
     margin-top: 60px;
     color: #b8a3f8;
 }

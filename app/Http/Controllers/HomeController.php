@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\topic;
 use App\Models\category;
 use App\Models\keyword;
+use App\Models\comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -22,8 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $topics = Topic::all();
+        $topics = Topic::orderBy('created_at','DESC')->paginate(2);
         $categories = Category::all();
+        
         $dt = Carbon::now('Asia/Ho_Chi_Minh');
         return view('home', [
             'topics' => $topics,
@@ -48,6 +50,7 @@ class HomeController extends Controller
             'topics' => $topics,
             'categories' => $categories,
             'keywords' => $keywords,
+            
         ]);
     }
 
@@ -61,13 +64,13 @@ class HomeController extends Controller
     {
 
         $topic = new topic;
-        // if($request->hasfile('image')) {
-        //     $file = $request->file('image');
-        //     $extension = $file->getClientOriginalExtension();
-        //     $filename = time().'.'.$extension;
-        //     $file->store('public/image/');
-        //     $topic->image = $filename;
-        // }
+        if($request->hasfile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('public/image/', $filename);
+            $topic->image = $filename;
+        }
         
         $topic->title = $request->input('title');
         $topic->content = $request->input('text');
@@ -126,9 +129,11 @@ class HomeController extends Controller
      */
     public function show($id)
     {
+        $comments = Comment::all();
         $topics = Topic::where('id', $id)->get();
         return view('topics', [
-            'topics' => $topics
+            'topics' => $topics,
+            'comments' => $comments,
         ]);
     }
 

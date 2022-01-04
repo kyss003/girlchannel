@@ -82,22 +82,12 @@
                                     </li>
                                 </ul>
                             </form>
-                            <ul class="topic-list">
+                            <ul class="topic-list db_ib">
                                 @foreach( $topics_categories as $topic )
                                 <li>
                                     <a href="/topics/{{$topic->id}}">
-                                            <img src="
-                                                {{ $topic->image }}
-                                            " class="img">
+                                        <img src="{{ asset('public/image/'.$topic->image) }}" class="img">
                                         <div class="info">
-                                            <div class="tag-wrap rank3">
-                                                <span class="icon-tag">
-
-                                                </span>
-                                                <p class="rank">
-                                                    <span>1st</span>
-                                                </p>
-                                            </div>
                                             <p class="comment">
                                                 <span class="icon-comment">
                                                     <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
@@ -116,6 +106,7 @@
                                     </a>
                                 </li>
                                 @endforeach
+                                
                                 <!-- <li>
                                     <a href="/topics">
                                         <img src="https://up.gc-img.net/post_img_web/2021/12/oxSAkiyGPMUA8Cb_s.jpeg" class="img">

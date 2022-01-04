@@ -40,7 +40,7 @@
                                 </li>
                             </ul>
                             <div class="head-area">
-                                <img src="{{ $topic->image }}" width="100" height="100" class="img">
+                                <img src="{{ asset('public/image/'.$topic->image) }}" width="100" height="100" class="img">
                                 <h1>
                                     <font> 
                                         {{ $topic->title }}
@@ -103,9 +103,6 @@
                                             </font>
                                         </p>
                                         <div class="body">
-                                            <div class="comment-img">
-                                                <img src="{{ $topic->image }}" width="400">
-                                            </div><br>
                                             <!-- <div class="comment-url">
                                                 <div class="comment-url-head">
                                                     <img src="https://up.gc-img.net/post_img_web/2021/12/2553b13b609ad8979eded0defd52b759_356.jpeg" width="80">
@@ -123,6 +120,9 @@
                                             <font>
                                                 {{ $topic->content }}
                                             </font>
+                                            <div class="comment-img">
+                                                <img src=" {{ asset('public/image/'.$topic->image) }} " width="400">
+                                            </div><br>
                                         </div>
                                         <div class="res-count">
                                             <a href="#" class="res-count-btn">
@@ -168,18 +168,20 @@
                                             </div>
                                         </div>
                                     </li>
+                                    @endforeach
+                                    @foreach( $comments as $comment )
                                     <li class="comment-item" id="comment1">
                                         <p class="info">
                                             <font>
                                                 2.anonymous
                                                 <a href="#">
-                                                    2021/12/15
+                                                    {{ $comment->created_at }}
                                                 </a>
                                             </font>
                                         </p>
                                         <div class="body">
                                             <font>
-                                                やっぱりな
+                                                {{ $comment->content }}
                                             </font>
                                         </div>
                                         <div class="res-count">
@@ -193,10 +195,10 @@
                                         <div class="topic-rate">
                                             <div class="icon-rate-wrap icon-rate-wrap-plus">
                                                 <div class="counter">
-                                                    <p>+2000</p>
+                                                    <p>{{ $comment->like_count }}</p>
                                                 </div>
                                                 <div class="icon-rate icon-plus-btn">
-                                                    <div class="btn-rate">
+                                                    <div class="btn-rate" title="Like" data-type="like" data-post="{{ $comment->like_count }}">
                                                         <div></div>
                                                         <div></div>
                                                         <div></div>
@@ -213,8 +215,8 @@
                                                 </div>
                                             </div>
                                             <div class="icon-rate-wrap icon-rate-wrap-minus">
-                                                <div class="counter">
-                                                    <p>-31</p>
+                                                <div class="counter" title="Like" data-type="like" data-post="{{ $comment->dislike_count }}">
+                                                    <p>{{ $comment->dislike_count }}</p>
                                                 </div>
                                                 <div class="icon-rate icon-minus-btn" state>
                                                     <div class="btn-rate">
@@ -258,7 +260,9 @@
                                 </ul>
                             </div>
                             <div class="form-area">
-                                <form class="form-comment">
+                                @foreach($topics as $topic)
+                                <form action="{{ $topic->id }}" method="POST" class="form-comment">
+                                    @csrf
                                     <p class="title">Post a comment</p>
                                     <div class="textarea mb10">
                                         <textarea id="textarea" name="text" placeholder="write a comment"></textarea>
@@ -324,6 +328,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                @endforeach
                             </div>
                             <div class="topic-list-wrap">
                                 <h2 class="related">
@@ -381,7 +386,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="sub">
+                </div>
+                <div class="sub">
                         <div class="ob-widget ob-one-column-layout SB_1">
                             <div class="ob-widget-section ob-first">
                                 <div class="ob-widget-header">
@@ -433,7 +439,6 @@
                             </ul>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </section>

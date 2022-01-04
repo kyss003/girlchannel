@@ -25,7 +25,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="topic-list-header mb20">
+                            <div class="topic-list-header">
                                 <span class="prev">
                                     <span class="icon-arrow_1"></span>
                                     <font>next day</font>
@@ -42,9 +42,7 @@
                                 @foreach( $topics as $topic )
                                 <li>
                                     <a href="/topics/{{$topic->id}}">
-                                            <img src="
-                                                {{ $topic->image }}
-                                            " class="img">
+                                        <img src=" {{ asset('public/image/'.$topic->image) }} " class="img">
                                         <div class="info">
                                             <div class="tag-wrap rank3">
                                                 <span class="icon-tag">
@@ -102,7 +100,7 @@
                                 </li> -->
                                 @endforeach
                             </ul>
-                            <ul class="pager">
+                            <!-- <ul class="pager">
                                 <li class="prev">
                                     <span class="icon-arrow_l">
                                         <img src="https://img.icons8.com/ios-glyphs/15/000000/back.png"/>
@@ -127,7 +125,10 @@
                                         </span>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul> -->
+                            <div>
+                                {{$topics->appends(request()->all)->links()}}
+                            </div>
                         </div>
                     </div>
                     <div class="sub">

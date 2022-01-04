@@ -17,7 +17,7 @@
                         @endif
                         <h1>Post a topic</h1>
                         <img src="https://static.gc-img.net/img/parts_pc/step1.png" class="step">
-                        <form id="form" action="{{ url('make_topic') }}" method="POST" class="form form-topic" anctype="multipart/form-data">
+                        <form id="form" action="{{ url('make_topic') }}" method="POST" class="form form-topic" enctype="multipart/form-data">
                             @csrf
                             <div class="image">
                                 <div class="form-image">
