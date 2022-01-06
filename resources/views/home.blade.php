@@ -126,7 +126,7 @@
                                     </a>
                                 </li>
                             </ul> -->
-                            <div>
+                            <div class="d-flex justify-content-center">
                                 {{$topics->appends(request()->all)->links()}}
                             </div>
                         </div>

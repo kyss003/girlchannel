@@ -89,4 +89,10 @@ class CommentController extends Controller
     {
         //
     }
+
+    public function testAjax()
+    {
+        dd(1);
+        return "I am in";
+    }
 }

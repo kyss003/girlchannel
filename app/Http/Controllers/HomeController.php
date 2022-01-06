@@ -222,4 +222,17 @@ class HomeController extends Controller
         //     ->with('success','You have successfully upload image.')
         //     ->with('image',$imageName); 
     }
+    function save_likedislike(Request $request) {
+        $data=new topics;
+        $data->i=$request->topics;
+        if($request->type=='like'){
+            $data->like=1;
+        } else {
+            $data->dislike=1;
+        }
+        $data->save();
+        return response()->json([
+            'bool'=>true
+        ]);
+    }
 }

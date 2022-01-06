@@ -59,7 +59,7 @@ Route::get('/topics/{id}', [HomeController::class, 'show']);
 Route::get('make_topic', [HomeController::class, 'create']);
 Route::post('make_topic', [HomeController::class, 'store']);
 // Route::post('/make_topic', [HomeController::class, 'upload']);
-
+Route::post('save-likedislike', [HomeController::class, 'save_likedislike']);
 
 //search
 Route::get('/search', [SearchController::class, 'index']);
@@ -90,3 +90,5 @@ Route::get('topics/category/{id}', [Category_searchController::class, 'show']);
 
 //comment
 Route::post('topics/{id}', [CommentController::class, 'update']);
+
+Route::post('/testAjax', [CommentController::class, 'testAjax']);

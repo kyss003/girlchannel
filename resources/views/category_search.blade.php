@@ -82,7 +82,7 @@
                                     </li>
                                 </ul>
                             </form>
-                            <ul class="topic-list db_ib">
+                            <ul class="topic-list dp_ib">
                                 @foreach( $topics_categories as $topic )
                                 <li>
                                     <a href="/topics/{{$topic->id}}">

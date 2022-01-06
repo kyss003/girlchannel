@@ -139,10 +139,12 @@
                                                 </div>
                                                 <div class="icon-rate icon-plus-btn">
                                                     <div class="btn-rate">
-                                                        <div></div>
-                                                        <div></div>
-                                                        <div></div>
-                                                        <div></div>
+                                                        <span class="btn" title="like" id="saveLikeDislike" data-type="like" data-post="{{ $topic->like_count }}" >
+                                                            <div></div>
+                                                            <div></div>
+                                                            <div></div>
+                                                            <div></div>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -160,9 +162,11 @@
                                                 </div>
                                                 <div class="icon-rate icon-minus-btn" state>
                                                     <div class="btn-rate">
-                                                        <div></div>
-                                                        <div></div>
-                                                        <div></div>
+                                                        <span class="btn" title="Dislike" id="saveLikeDislike" data-type="like" data-post="{{ $topic->dislike_count }}" >
+                                                            <div></div>
+                                                            <div></div>
+                                                            <div></div>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,11 +202,13 @@
                                                     <p>{{ $comment->like_count }}</p>
                                                 </div>
                                                 <div class="icon-rate icon-plus-btn">
-                                                    <div class="btn-rate" title="Like" data-type="like" data-post="{{ $comment->like_count }}">
-                                                        <div></div>
-                                                        <div></div>
-                                                        <div></div>
-                                                        <div></div>
+                                                    <div class="btn-rate" >
+                                                        <span class="btn" title="like" id="saveLikeDislike" data-type="like" data-post="{{ $comment->like_count }}" >
+                                                            <div></div>
+                                                            <div></div>
+                                                            <div></div>
+                                                            <div></div>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -215,14 +221,16 @@
                                                 </div>
                                             </div>
                                             <div class="icon-rate-wrap icon-rate-wrap-minus">
-                                                <div class="counter" title="Like" data-type="like" data-post="{{ $comment->dislike_count }}">
+                                                <div class="counter" >
                                                     <p>{{ $comment->dislike_count }}</p>
                                                 </div>
                                                 <div class="icon-rate icon-minus-btn" state>
                                                     <div class="btn-rate">
-                                                        <div></div>
-                                                        <div></div>
-                                                        <div></div>
+                                                        <span class="btn" title="Dislike" id="saveLikeDislike" data-type="like" data-post="{{ $comment->dislike_count }}" >
+                                                            <div></div>
+                                                            <div></div>
+                                                            <div></div>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -386,8 +394,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="sub">
+                    <div class="sub">
                         <div class="ob-widget ob-one-column-layout SB_1">
                             <div class="ob-widget-section ob-first">
                                 <div class="ob-widget-header">
@@ -439,7 +446,154 @@
                             </ul>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
+        <!-- <div>
+            <p>Test Click Js</p>
+            <button id="clickTestAjax">Click</button>
+        </div> -->
+
+
+
+        <!-- <div id="main">
+            This is the original text when the page first loads.
+        </div>
+        <button id="ajax-button" type="button" class="btn btn-primary">Update content with Ajax</button> -->
+
+
+        <div id="result">
+            Nội dung ajax sẽ được load ở đây
+        </div>
+        <input type="button" name="clickme" id="clickme" onclick="load_ajax()" value="Click Me"/>
+
+
     </section>
-@stop()
+@endsection()
+@section('scripts')
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script> -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js">
+    
+    <script type="text/javascript">
+    
+    
+
+        $( document ).ready(function() {
+            // $( "#clickTestAjax" ).click(function() {
+            //     $.ajax({
+            //         type: "POST",
+            //         url: '/testAjax', // This is what I have updated
+            //         data: { id: 7 }
+            //     }).done(function( msg ) {
+            //         alert( msg );
+            //     });
+
+                // $.ajax({
+                //     url: '/testAjax',
+                //     type: 'POST',
+                //     data: {
+                //         id:1
+                //     },
+                //     dataType: 'JSON',
+                //     success: function (data) { 
+                //         alert(data);
+                //     }
+                // }); 
+                // $.ajax({
+                //     type:'POST',
+                //     url:'http://127.0.0.1:8000/testAjax',
+                //     datatype:'json',
+                //     data: {id: 1},
+                //     success:function(data){
+                //         alert("Success");
+                //     }
+                // }).fail(function(jqXHR, textStatus, error){
+                //     alert("Error");
+                // });   
+                
+                
+                
+            });
+            // $(document).on('click','#saveLikeDislike', function(){
+            //     // var _topic=$(this).data('topic');
+            //     // var _type=$(this).data('type');
+            //     // var vm=$(this);
+            //     //run ajax
+            //     $.ajax({
+            //         url:"{{ url('save-likedislike') }}",
+            //         method: 'POST',
+            //         dataType:'json',
+            //         data:{
+            //             like: like,
+            //             dis_like: dislike,
+            //             _token:"{{ csrf_token() }}"
+            //         },
+            //         // beforeSend:function(){
+            //         //     vm.addClass('disabled');
+            //         // },
+            //         success:function(res){
+            //             if(res.bool==true){
+            //                 vm.removeClass('disabled').addClass('active');
+            //                 vm.removeAttr('id');
+            //                 var _prevCount=$("."+_type+"-count").text();
+            //                 _prevCount++;
+            //                 $("."+_type+"-count").text(_prevCount);
+            //             }
+            //         }
+            //     });
+            // });
+            // $(function() {
+            //     $("button").click(function() {
+            //         $.ajax({
+            //             url: '{{ url('topics') }}',
+            //             method: 'GET',
+            //             success: function(res) {
+            //                 $("#main").text(res)
+            //             },
+            //             error: function(err) {
+            //                 console.error(err)
+            //             }
+            //         })
+            //     })  
+            // })
+        });
+        // $(document).on('click','#saveLikeDislike', function(){
+        //     // var _topic=$(this).data('topic');
+        //     // var _type=$(this).data('type');
+        //     // var vm=$(this);
+        //     //run ajax
+        //     $.ajax({
+        //         url:"{{ url('save-likedislike') }}",
+        //         method: 'POST',
+        //         dataType:'json',
+        //         data:{
+        //             like: like,
+        //             dis_like: dislike,
+        //             _token:"{{ csrf_token() }}"
+        //         },
+        //         // beforeSend:function(){
+        //         //     vm.addClass('disabled');
+        //         // },
+        //         success:function(res){
+        //             if(res.bool==true){
+        //                 vm.removeClass('disabled').addClass('active');
+        //                 vm.removeAttr('id');
+        //                 var _prevCount=$("."+_type+"-count").text();
+        //                 _prevCount++;
+        //                 $("."+_type+"-count").text(_prevCount);
+        //             }
+        //         }
+        //     });
+        // });
+        // $( "#clickTestAjax" ).click(function() {
+        //     alert(1);
+        //     // $.ajax({
+        //     //     type: "POST",
+        //     //     url: '/testAjax', // This is what I have updated
+        //     //     data: { id: 7 }
+        //     // }).done(function( msg ) {
+        //     //     alert( msg );
+        //     // });
+        // });
+    </script>
+@endsectionx
