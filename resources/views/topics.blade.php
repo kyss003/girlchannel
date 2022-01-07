@@ -139,7 +139,7 @@
                                                 </div>
                                                 <div class="icon-rate icon-plus-btn">
                                                     <div class="btn-rate">
-                                                        <span class="btn" title="like" id="saveLikeDislike" data-type="like" data-post="{{ $topic->like_count }}" >
+                                                        <span class="btn" title="like" id="saveLike_topic" data-type="like" data-post="{{ $topic->like_count }}" >
                                                             <div></div>
                                                             <div></div>
                                                             <div></div>
@@ -162,7 +162,7 @@
                                                 </div>
                                                 <div class="icon-rate icon-minus-btn" state>
                                                     <div class="btn-rate">
-                                                        <span class="btn" title="Dislike" id="saveLikeDislike" data-type="like" data-post="{{ $topic->dislike_count }}" >
+                                                        <span class="btn" title="Dislike" id="saveDislike_topic" data-type="like" data-post="{{ $topic->dislike_count }}" >
                                                             <div></div>
                                                             <div></div>
                                                             <div></div>
@@ -203,7 +203,7 @@
                                                 </div>
                                                 <div class="icon-rate icon-plus-btn">
                                                     <div class="btn-rate" >
-                                                        <span class="btn" title="like" id="saveLikeDislike" data-type="like" data-post="{{ $comment->like_count }}" >
+                                                        <span class="btn" title="like" id="saveLike_comment" data-type="like" data-post="{{ $comment->like_count }}" >
                                                             <div></div>
                                                             <div></div>
                                                             <div></div>
@@ -226,7 +226,7 @@
                                                 </div>
                                                 <div class="icon-rate icon-minus-btn" state>
                                                     <div class="btn-rate">
-                                                        <span class="btn" title="Dislike" id="saveLikeDislike" data-type="like" data-post="{{ $comment->dislike_count }}" >
+                                                        <span class="btn" title="Dislike" id="saveDislike_comment" data-type="like" data-post="{{ $comment->dislike_count }}" >
                                                             <div></div>
                                                             <div></div>
                                                             <div></div>
@@ -462,138 +462,49 @@
         <button id="ajax-button" type="button" class="btn btn-primary">Update content with Ajax</button> -->
 
 
-        <div id="result">
+        <!-- <div id="result">
             Nội dung ajax sẽ được load ở đây
         </div>
-        <input type="button" name="clickme" id="clickme" onclick="load_ajax()" value="Click Me"/>
+        <input type="button" name="clickme" id="clickme" value="Click Me"/> -->
 
 
     </section>
 @endsection()
 @section('scripts')
-    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script> -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <script type="text/javascript">
-    
-    
+        $(document).ready(function() {
+            $( "#saveLike_topic" ).click(function() {
+                var like_topic = $(this).attr('data-')
+                $.ajax({
+                    url:"{{ route('ajax.request.like') }}",
+                    method:"POST",
+                    dataType:'json',
+                    data:{
+                        _token:"{{ csrf_token() }}",
+                        like_count: $('#saveLike_topic')
+                        value: 1,
+                    },
+                    success:function(res){
+                        
+                        if(res.bool==true){
 
-        $( document ).ready(function() {
-            // $( "#clickTestAjax" ).click(function() {
-            //     $.ajax({
-            //         type: "POST",
-            //         url: '/testAjax', // This is what I have updated
-            //         data: { id: 7 }
-            //     }).done(function( msg ) {
-            //         alert( msg );
-            //     });
+                        }
 
-                // $.ajax({
-                //     url: '/testAjax',
-                //     type: 'POST',
-                //     data: {
-                //         id:1
-                //     },
-                //     dataType: 'JSON',
-                //     success: function (data) { 
-                //         alert(data);
-                //     }
-                // }); 
-                // $.ajax({
-                //     type:'POST',
-                //     url:'http://127.0.0.1:8000/testAjax',
-                //     datatype:'json',
-                //     data: {id: 1},
-                //     success:function(data){
-                //         alert("Success");
-                //     }
-                // }).fail(function(jqXHR, textStatus, error){
-                //     alert("Error");
-                // });   
-                
-                
-                
+                        // console.log(12);
+                        
+                        
+                        // if(res.bool==true){
+                        //     vm.removeClass('disabled').addClass('active');
+                        //     vm.removeAttr('id');
+                        //     var _preCount=$("."+_type+"-count".text());
+                        //     _prevCount++;
+                        //     $("."+_type+"-count").text(_prevCount);
+                        // }
+                    }
+                });
             });
-            // $(document).on('click','#saveLikeDislike', function(){
-            //     // var _topic=$(this).data('topic');
-            //     // var _type=$(this).data('type');
-            //     // var vm=$(this);
-            //     //run ajax
-            //     $.ajax({
-            //         url:"{{ url('save-likedislike') }}",
-            //         method: 'POST',
-            //         dataType:'json',
-            //         data:{
-            //             like: like,
-            //             dis_like: dislike,
-            //             _token:"{{ csrf_token() }}"
-            //         },
-            //         // beforeSend:function(){
-            //         //     vm.addClass('disabled');
-            //         // },
-            //         success:function(res){
-            //             if(res.bool==true){
-            //                 vm.removeClass('disabled').addClass('active');
-            //                 vm.removeAttr('id');
-            //                 var _prevCount=$("."+_type+"-count").text();
-            //                 _prevCount++;
-            //                 $("."+_type+"-count").text(_prevCount);
-            //             }
-            //         }
-            //     });
-            // });
-            // $(function() {
-            //     $("button").click(function() {
-            //         $.ajax({
-            //             url: '{{ url('topics') }}',
-            //             method: 'GET',
-            //             success: function(res) {
-            //                 $("#main").text(res)
-            //             },
-            //             error: function(err) {
-            //                 console.error(err)
-            //             }
-            //         })
-            //     })  
-            // })
-        });
-        // $(document).on('click','#saveLikeDislike', function(){
-        //     // var _topic=$(this).data('topic');
-        //     // var _type=$(this).data('type');
-        //     // var vm=$(this);
-        //     //run ajax
-        //     $.ajax({
-        //         url:"{{ url('save-likedislike') }}",
-        //         method: 'POST',
-        //         dataType:'json',
-        //         data:{
-        //             like: like,
-        //             dis_like: dislike,
-        //             _token:"{{ csrf_token() }}"
-        //         },
-        //         // beforeSend:function(){
-        //         //     vm.addClass('disabled');
-        //         // },
-        //         success:function(res){
-        //             if(res.bool==true){
-        //                 vm.removeClass('disabled').addClass('active');
-        //                 vm.removeAttr('id');
-        //                 var _prevCount=$("."+_type+"-count").text();
-        //                 _prevCount++;
-        //                 $("."+_type+"-count").text(_prevCount);
-        //             }
-        //         }
-        //     });
-        // });
-        // $( "#clickTestAjax" ).click(function() {
-        //     alert(1);
-        //     // $.ajax({
-        //     //     type: "POST",
-        //     //     url: '/testAjax', // This is what I have updated
-        //     //     data: { id: 7 }
-        //     // }).done(function( msg ) {
-        //     //     alert( msg );
-        //     // });
-        // });
+        })
     </script>
-@endsectionx
+@endsection

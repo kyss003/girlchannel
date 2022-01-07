@@ -222,15 +222,31 @@ class HomeController extends Controller
         //     ->with('success','You have successfully upload image.')
         //     ->with('image',$imageName); 
     }
-    function save_likedislike(Request $request) {
-        $data=new topics;
-        $data->i=$request->topics;
+    public function save_like(Request $request) {
+        // return "test ajax";
+        $topic=new topics;
+        $topic->id=$request->like_count;
         if($request->type=='like'){
-            $data->like=1;
-        } else {
-            $data->dislike=1;
+            $topic->like=1;
+        } 
+        // else {
+        //     $topic->dislike=1;
+        // }
+        $topic->save();
+        return response()->json([
+            'bool'=>true
+        ]);
+        // return 1;
+        
+    }
+
+    public function save_dislike(Request $request) {
+        $topic=new topics;
+        $topic->id=$request->dislike_count;
+        if($request->type=='dislike'){
+            $topic->dislike=1;
         }
-        $data->save();
+        $topic->save();
         return response()->json([
             'bool'=>true
         ]);
