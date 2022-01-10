@@ -199,16 +199,16 @@
                                         <div class="topic-rate">
                                             <div class="icon-rate-wrap icon-rate-wrap-plus">
                                                 <div class="counter">
-                                                    <p>{{ $comment->like_count }}</p>
+                                                    <p>{{ $comment->likes() }}</p>
                                                 </div>
                                                 <div class="icon-rate icon-plus-btn">
                                                     <div class="btn-rate" >
-                                                        <!-- <span class="btn" title="Likes" id="saveLikeDislike" data-type="like" data-post="{{ $comment->id}}" >
+                                                        <span class="btn" title="Likes" id="saveLikeDislikeComment" data-type="like" data-post="{{ $comment->id}}" >
                                                             <div></div>
                                                             <div></div>
                                                             <div></div>
                                                             <div></div>
-                                                        </span> -->
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -222,15 +222,15 @@
                                             </div>
                                             <div class="icon-rate-wrap icon-rate-wrap-minus">
                                                 <div class="counter" >
-                                                    <p>{{ $comment->dislike_count }}</p>
+                                                    <p>{{ $comment->dislikes() }}</p>
                                                 </div>
                                                 <div class="icon-rate icon-minus-btn" state>
                                                     <div class="btn-rate">
-                                                        <!-- <span class="btn" title="Dislikes" id="saveLikeDislike" data-type="dislike" data-type="dislike" data-post="{{ $topic->id}}" >
+                                                        <span class="btn" title="Dislikes" id="saveLikeDislikeComment" data-type="dislike" data-post="{{ $comment->id}}" >
                                                             <div></div>
                                                             <div></div>
                                                             <div></div>
-                                                        </span> -->
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -449,45 +449,15 @@
                 </div>
             </div>
         </div>
-        <!-- <div>
-            <p>Test Click Js</p>
-            <button id="clickTestAjax">Click</button>
-        </div> -->
-
-
-
-        <!-- <div id="main">
-            This is the original text when the page first loads.
-        </div>
-        <button id="ajax-button" type="button" class="btn btn-primary">Update content with Ajax</button> -->
-
-
-        <!-- <div id="result">
-            Nội dung ajax sẽ được load ở đây
-        </div>
-        <input type="button" name="clickme" id="clickme" value="Click Me"/> -->
-
-
-        <!-- <h5 class="card-header">Comments 
-            <span class="comment-count btn btn-sm btn-outline-info">{{ $topic->comments }}</span>
-            <small class="float-right">
-                <span title="Likes" id="saveLikeDislike" data-type="like" data-post="{{ $topic->id}}" class="mr-2 btn btn-sm btn-outline-primary d-inline font-weight-bold">
-                    Like
-                    <span class="like-count">{{ $topic->likes() }}</span>
-                </span>
-                <span title="Dislikes" id="saveLikeDislike" data-type="dislike" data-type="dislike" data-post="{{ $topic->id}}" class="mr-2 btn btn-sm btn-outline-danger d-inline font-weight-bold">
-                    Dislike
-                    <span class="dislike-count">{{ $topic->dislikes() }}</span>
-                </span>
-            </small>
-            </h5> -->
+        
 
     </section>
 @endsection()
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <script type="text/javascript">
+        //topic
         $(document).on('click','#saveLikeDislike',function(){
             var _post=$(this).data('post');
             var _type=$(this).data('type');
@@ -495,6 +465,35 @@
             // Run Ajax
             $.ajax({
                 url:"{{ url('save-likedislike') }}",
+                type:"post",
+                dataType:'json',
+                data:{
+                    post:_post,
+                    type:_type,
+                    _token:"{{ csrf_token() }}"
+                },
+                beforeSend:function(){
+                    vm.addClass('disabled');
+                },
+                success:function(res){
+                    if(res.bool==true){
+                        vm.removeClass('disabled').addClass('active');
+                        vm.removeAttr('id');
+                        var _prevCount=$("."+_type+"-count").text();
+                        _prevCount++;
+                        $("."+_type+"-count").text(_prevCount);
+                    }
+                }   
+            });
+        });
+        //comment
+        $(document).on('click','#saveLikeDislikeComment',function(){
+            var _post=$(this).data('post');
+            var _type=$(this).data('type');
+            var vm=$(this);
+            // Run Ajax
+            $.ajax({
+                url:"{{ url('save-likedislike-comment') }}",
                 type:"post",
                 dataType:'json',
                 data:{

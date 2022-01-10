@@ -129,32 +129,7 @@
                                     </a>
                                 </li> -->
                             </ul>
-                            <ul class="pager">
-                                <li class="prev">
-                                    <span class="icon-arrow_l">
-                                        <img src="https://img.icons8.com/ios-glyphs/15/000000/back.png"/>
-                                    </span>
-                                </li>
-                                <li class="current">
-                                    1
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">4</a>
-                                </li>
-                                <li class="next">
-                                    <a href="#">
-                                        <span class="icon-arrow_r">
-                                            <img src="https://img.icons8.com/external-becris-lineal-becris/15/000000/external-next-mintab-for-ios-becris-lineal-becris.png"/>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
+                            
                         </div>
                     </div>
                     <div class="sub">

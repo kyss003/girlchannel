@@ -1011,7 +1011,7 @@ ul.pager {
 .head-area-btns .btn-moderate .icon-image_mode {
     font-size: 12px;
     position: absolute;
-    top: 9.5px;
+    top: -3px;
     left: 6px;
 }
 .head-area-btns .btn-moderate p {

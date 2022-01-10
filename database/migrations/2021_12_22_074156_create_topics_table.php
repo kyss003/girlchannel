@@ -20,6 +20,8 @@ class CreateTopicsTable extends Migration
             $table->string('link')->nullable();
             $table->string('content', 3000)->nullable();
             $table->timestamps();
+            $table->smallInteger('like_count')->nullable()->default(0);
+            $table->smallInteger('dislike_count')->nullable()->default(0);
             $table->bigInteger('keyword_id')->unsigned()->nullable();
             $table->bigInteger('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories');

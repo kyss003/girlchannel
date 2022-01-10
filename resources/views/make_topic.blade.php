@@ -40,14 +40,14 @@
                                     <input id="title" type="text" name="title" placeholder="write a title" class="input-title" style="width: 100%" value="{{ old('name') }}">
                                     <div class="textarea">
                                         <textarea id="textarea" name="text" placeholder="write the text" value="{{ old('name') }}"></textarea>
-                                        <p id="btnUrl" class="add-link">
+                                        <!-- <p id="btnUrl" class="add-link">
                                             <span class="icon-link">
                                             <img src="https://img.icons8.com/material-outlined/20/000000/link--v1.png"/>
                                             </span>
                                             <font>
                                                 quote articles and images
                                             </font>
-                                        </p>
+                                        </p> -->
                                     </div>
                                     <select class="custom-select mb10" name="category">
                                         <option selected>---Category---</option>

@@ -24,9 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $topics = Topic::orderBy('created_at','DESC')->paginate(2);
+        $topics = Topic::orderByRaw('updated_at - created_at DESC')->paginate(2);
         $categories = Category::all();
-        
         $dt = Carbon::now('Asia/Ho_Chi_Minh');
         return view('home', [
             'topics' => $topics,
@@ -130,7 +129,7 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        $comments = Comment::all();
+        $comments = Comment::where('topic_id', $id)->get();
         $topics = Topic::where('id', $id)->get();
         return view('topics', [
             'topics' => $topics,
@@ -174,54 +173,7 @@ class HomeController extends Controller
 
     public function upload(Request $request) 
     {
-        // $file = $request->file('add');
-        // dd($file);
         
-        // $fileName = $file->getClientOriginalName();
-
-        
-        // $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        // $fileExtension = pathinfo($file->getClientOriginalName(), PATHINFO_FILeExtension);
-
-        // $encryptedFilename = md5($fileName);
-        // $file->storeAs('topic-1', $fileName, 'image');
-
-
-
-
-        // $validatedData = $request->validate([
-
-        //     'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-
-        // ]);
-
-        // $name = $request->file('image')->getClientOriginalName();
-        // $path = $request->file('image')->store('public/image');
-        
-
-        // $save = new Photo;
-        // $save->name = $name;
-        // $save->path = $part;
-
-        // $save->save();
-        // return redirevt('make_topic');
-
-
-
-
-
-
-
-
-        // $imageName = time().'.'.$request->image->extension();  
-     
-        // $request->image->move(public_path('images'), $imageName);
-  
-        // /* Store $imageName name in DATABASE from HERE */
-    
-        // return back()
-        //     ->with('success','You have successfully upload image.')
-        //     ->with('image',$imageName); 
     }
     public function save_likedislike(Request $request){
         $data=new LikeDislike;

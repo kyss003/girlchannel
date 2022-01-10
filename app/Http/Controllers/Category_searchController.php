@@ -21,6 +21,10 @@ class Category_searchController extends Controller
         //     'categories' => $categories,
         //     'topics' => $topics,
         // ]);
+        // $topics_categories = Topic::orderByRaw('updated_at - created_at DESC')->paginate(2);
+        // return view('category_search', [
+        //     'topics_categories' => $topics_categories,
+        // ]);
     }
 
     /**

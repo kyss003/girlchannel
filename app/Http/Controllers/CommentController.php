@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\comment;
 use App\Models\topic;
+use App\Models\LikeDislike;
 
 class CommentController extends Controller
 {
@@ -47,7 +48,10 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        //
+        // $comments = Comment::where('');
+        // return view('topics', [
+        //     'comments' => $comments,
+        // ]);
     }
 
     /**
@@ -71,12 +75,12 @@ class CommentController extends Controller
     public function update(Request $request, $id)
     {
         $topic_id = $id;
-        $topic = topic::find($id);
+        $topic = topic::where('id', $id)->get();
         $comment = new Comment;
         $comment->topic_id = $topic_id;
         $comment->content = $request->input('text');
         $comment->save();
-        return redirect("topics/$id");
+        return redirect("topics/{{$id}}");
     }
 
     /**
@@ -90,23 +94,17 @@ class CommentController extends Controller
         //
     }
 
-    public function testAjax()
-    {
-        // dd(1);
-        // return "I am in";
+    public function save_likedislike_comment(Request $request){
+        $data=new LikeDislike;
+        $data->comment_id=$request->post;
+        if($request->type=='like'){
+            $data->like=1;
+        }else{
+            $data->dislike=1;
+        }
+        $data->save();
+        return response()->json([
+            'bool'=>true
+        ]);
     }
-
-    // public function save_likedislike(Request $request){
-    //     $data=new LikeDislike;
-    //     $data->comment_id=$request->post;
-    //     if($request->type=='like'){
-    //         $data->like=1;
-    //     }else{
-    //         $data->dislike=1;
-    //     }
-    //     $data->save();
-    //     return response()->json([
-    //         'bool'=>true
-    //     ]);
-    // }
 }

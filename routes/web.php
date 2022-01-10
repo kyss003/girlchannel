@@ -90,4 +90,4 @@ Route::get('topics/category/{id}', [Category_searchController::class, 'show']);
 
 //comment
 Route::post('topics/{id}', [CommentController::class, 'update']);
-// Route::post('save-likedislike',[CommentController::class, 'save_likedislike']);
+Route::post('save-likedislike-comment',[CommentController::class, 'save_likedislike_comment']);

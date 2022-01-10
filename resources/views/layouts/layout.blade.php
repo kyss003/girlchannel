@@ -50,7 +50,6 @@
                 
             </span>
         </div>
-        <p id="layoutTestClick">Layout test click</p>
     </div>
 </body>
 @yield('scripts')

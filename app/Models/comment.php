@@ -11,4 +11,12 @@ class comment extends Model
 
     protected $table = "comments";
     protected $guarded = [];
+    
+    public function likes(){
+        return $this->hasMany('App\Models\LikeDislike','comment_id')->sum('like');
+    }
+    // Dislikes
+    public function dislikes(){
+        return $this->hasMany('App\Models\LikeDislike','comment_id')->sum('dislike');
+    }
 }
