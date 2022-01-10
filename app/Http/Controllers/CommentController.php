@@ -92,7 +92,21 @@ class CommentController extends Controller
 
     public function testAjax()
     {
-        dd(1);
-        return "I am in";
+        // dd(1);
+        // return "I am in";
     }
+
+    // public function save_likedislike(Request $request){
+    //     $data=new LikeDislike;
+    //     $data->comment_id=$request->post;
+    //     if($request->type=='like'){
+    //         $data->like=1;
+    //     }else{
+    //         $data->dislike=1;
+    //     }
+    //     $data->save();
+    //     return response()->json([
+    //         'bool'=>true
+    //     ]);
+    // }
 }

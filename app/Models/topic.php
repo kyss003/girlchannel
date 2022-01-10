@@ -11,4 +11,12 @@ class topic extends Model
     
     protected $table = "topics";
     protected $guarded = [];
+
+    public function likes(){
+        return $this->hasMany('App\Models\LikeDislike','topic_id')->sum('like');
+    }
+    // Dislikes
+    public function dislikes(){
+        return $this->hasMany('App\Models\LikeDislike','topic_id')->sum('dislike');
+    }
 }

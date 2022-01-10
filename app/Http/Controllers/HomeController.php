@@ -6,6 +6,7 @@ use App\Models\topic;
 use App\Models\category;
 use App\Models\keyword;
 use App\Models\comment;
+use App\Models\LikeDislike;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -222,31 +223,15 @@ class HomeController extends Controller
         //     ->with('success','You have successfully upload image.')
         //     ->with('image',$imageName); 
     }
-    public function save_like(Request $request) {
-        // return "test ajax";
-        $topic=new topics;
-        $topic->id=$request->like_count;
+    public function save_likedislike(Request $request){
+        $data=new LikeDislike;
+        $data->topic_id=$request->post;
         if($request->type=='like'){
-            $topic->like=1;
-        } 
-        // else {
-        //     $topic->dislike=1;
-        // }
-        $topic->save();
-        return response()->json([
-            'bool'=>true
-        ]);
-        // return 1;
-        
-    }
-
-    public function save_dislike(Request $request) {
-        $topic=new topics;
-        $topic->id=$request->dislike_count;
-        if($request->type=='dislike'){
-            $topic->dislike=1;
+            $data->like=1;
+        }else{
+            $data->dislike=1;
         }
-        $topic->save();
+        $data->save();
         return response()->json([
             'bool'=>true
         ]);
