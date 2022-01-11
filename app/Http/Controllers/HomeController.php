@@ -8,7 +8,7 @@ use App\Models\keyword;
 use App\Models\comment;
 use App\Models\LikeDislike;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use DB;
 use Carbon\Carbon;
 
 
@@ -24,13 +24,50 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //,DB::raw('count(id) as comment_count')
         $topics = Topic::orderByRaw('updated_at - created_at DESC')->paginate(2);
+        // $topics = Comment::selectRaw('count(id) as comment_count, topic_id')
+        //                     ->groupBy('topic_id')
+        //                     ->get();
+        // dd($topics);
+        
+        $popular_topic_w = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.id', 'topics.image', 'topics.title', 'topics.content', 'comments.topic_id')
+                                // ->withCount('comments.topic_id')
+                                ->join('comments', 'topics.id','=','comments.topic_id')
+                                ->groupBy('topics.id')
+                                ->orderByRaw('comment_count DESC')
+                                ->limit(5)
+                                // ->withCount('id')
+                                ->get();
+                                
+                                // ->groupBy(function($date) {
+                                //     return Carbon::parse($date->check_in)->format('W');
+                                // })->get();
+                                // ->oderBy(DB::raw('COUNT(comment.topic_id)'))->get();
+                                // dd($popular_topic_w);
+        $popular_topic_d = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.id', 'topics.image', 'topics.title', 'topics.content', 'comments.topic_id')
+                                // ->withCount('comments.topic_id')
+                                ->join('comments', 'topics.id','=','comments.topic_id')
+                                ->groupBy('topics.id')
+                                ->orderByRaw('comment_count DESC')
+                                ->limit(5)
+                                // ->withCount('id')
+                                ->get();
+                                
+                                // ->groupBy(function($date) {
+                                //     return Carbon::parse($date->check_in)->format('W');
+                                // })->get();
+                                // ->oderBy(DB::raw('COUNT(comment.topic_id)'))->get();
+                                // dd($popular_topic_w);
         $categories = Category::all();
         $dt = Carbon::now('Asia/Ho_Chi_Minh');
         return view('home', [
             'topics' => $topics,
             'categories' => $categories,
             'dt' => $dt->toDateString(),
+            'popular_topic_w' => $popular_topic_w,
+            'popular_topic_d' => $popular_topic_d,
+            
         ]);
         
 
@@ -136,6 +173,16 @@ class HomeController extends Controller
             'comments' => $comments,
         ]);
     }
+    // public function Homeshow($id)
+    // {
+        // $comment_count = Comment::selectRaw('count(id) as comment_count, topic_id')
+        //                     ->groupBy('topic_id')
+        //                     ->where()
+        //                     ->get();
+    //     return view('home', [
+    //         'comment_count' => $comment_count,
+    //     ]);
+    // }
 
     /**
      * Show the form for editing the specified resource.

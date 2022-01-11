@@ -80,7 +80,7 @@ class CommentController extends Controller
         $comment->topic_id = $topic_id;
         $comment->content = $request->input('text');
         $comment->save();
-        return redirect("topics/{{$id}}");
+        return redirect("topics/{$id}");
     }
 
     /**

@@ -57,7 +57,7 @@
                                                     <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                 </span>
                                                 <span>
-                                                    1000 comment
+                                                    <!-- {{ $topic->comment_count }} -->
                                                 </span>
                                                 <span class="datetime">
                                                     46 seconds ago
@@ -69,63 +69,8 @@
                                         </p>
                                     </a>
                                 </li>
-                                <!-- <li>
-                                    <a href="/topics">
-                                        <img src="https://up.gc-img.net/post_img_web/2021/12/oxSAkiyGPMUA8Cb_s.jpeg" class="img">
-                                        <div class="info">
-                                            <div class="tag-wrap rank3">
-                                                <span class="icon-tag">
-
-                                                </span>
-                                                <p class="rank">
-                                                    <span>2st</span>
-                                                </p>
-                                            </div>
-                                            <p class="comment">
-                                                <span class="icon-comment">
-                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
-                                                </span>
-                                                <span>
-                                                    1000 comment
-                                                </span>
-                                                <span class="datetime">
-                                                    46 seconds ago
-                                                </span>
-                                            </p>
-                                        </div>
-                                        <p class="title">
-                                            【実況・感想】真犯人フラグ #10
-                                        </p>
-                                    </a>
-                                </li> -->
                                 @endforeach
                             </ul>
-                            <!-- <ul class="pager">
-                                <li class="prev">
-                                    <span class="icon-arrow_l">
-                                        <img src="https://img.icons8.com/ios-glyphs/15/000000/back.png"/>
-                                    </span>
-                                </li>
-                                <li class="current">
-                                    1
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">4</a>
-                                </li>
-                                <li class="next">
-                                    <a href="#">
-                                        <span class="icon-arrow_r">
-                                            <img src="https://img.icons8.com/external-becris-lineal-becris/15/000000/external-next-mintab-for-ios-becris-lineal-becris.png"/>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul> -->
                             <div class="d-flex justify-content-center">
                                 {{$topics->appends(request()->all)->links()}}
                             </div>
@@ -143,7 +88,25 @@
                                 <a href="/weekly">Popular topics of the week</a>
                             </p>
                             <ul>
+                                @foreach( $popular_topic_w as $topic_w )
                                 <li>
+                                    <a href="/topics/{{$topic_w->id}}">
+                                        <div class="img_w">
+                                            <img src=" {{ asset('public/image/'.$topic_w->image) }}" width="60" height="60">
+                                        </div>
+                                        <div class="info">
+                                            <p class="title">{{ $topic_w->title }}</p>
+                                            <p class="comment">
+                                                <span class="icon-comment">
+                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
+                                                </span>
+                                                <font>{{$topic_w->comment_count}}</font>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                @endforeach
+                                <!-- <li>
                                     <a href="/topics">
                                         <div class="img_w">
                                             <img src="https://up.gc-img.net/post_img_web/2021/12/5cmqyJUFhQ16X1A_s.png" width="60" height="60">
@@ -158,23 +121,7 @@
                                             </p>
                                         </div>
                                     </a>
-                                </li>
-                                <li>
-                                    <a href="/topics">
-                                        <div class="img_w">
-                                            <img src="https://up.gc-img.net/post_img_web/2021/12/5cmqyJUFhQ16X1A_s.png" width="60" height="60">
-                                        </div>
-                                        <div class="info">
-                                            <p class="title">【Chat】Topi Part 8 to talk casually like a friend</p>
-                                            <p class="comment">
-                                                <span class="icon-comment">
-                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
-                                                </span>
-                                                <font>17067 comment</font>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li>
+                                </li> -->
                             </ul>
                             <a href="/weekly" class="show-more">
                                 <font>See more</font>
@@ -188,7 +135,25 @@
                                 <a href="#">Popular topics of the previous day</a>
                             </p>
                             <ul>
+                                @foreach( $popular_topic_d as $topic_d )
                                 <li>
+                                    <a href="/topics">
+                                        <div class="img_w">
+                                            <img src="{{ asset('public/image/'.$topic_d->image) }}" width="60" height="60">
+                                        </div>
+                                        <div class="info">
+                                            <p class="title">{{ $topic_d->title }}</p>
+                                            <p class="comment">
+                                                <span class="icon-comment">
+                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
+                                                </span>
+                                                <font>{{$topic_d->comment_count}}</font>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                @endforeach
+                                <!-- <li>
                                     <a href="/topics">
                                         <div class="img_w">
                                             <img src="https://up.gc-img.net/post_img_web/2021/12/5cmqyJUFhQ16X1A_s.png" width="60" height="60">
@@ -203,23 +168,7 @@
                                             </p>
                                         </div>
                                     </a>
-                                </li>
-                                <li>
-                                    <a href="/topics">
-                                        <div class="img_w">
-                                            <img src="https://up.gc-img.net/post_img_web/2021/12/5cmqyJUFhQ16X1A_s.png" width="60" height="60">
-                                        </div>
-                                        <div class="info">
-                                            <p class="title">【Chat】Topi Part 8 to talk casually like a friend</p>
-                                            <p class="comment">
-                                                <span class="icon-comment">
-                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
-                                                </span>
-                                                <font>17067 comment</font>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li>
+                                </li> -->
                             </ul>
                             <a href="#" class="show-more">
                                 <font>See more</font>

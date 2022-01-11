@@ -103,20 +103,6 @@
                                             </font>
                                         </p>
                                         <div class="body">
-                                            <!-- <div class="comment-url">
-                                                <div class="comment-url-head">
-                                                    <img src="https://up.gc-img.net/post_img_web/2021/12/2553b13b609ad8979eded0defd52b759_356.jpeg" width="80">
-                                                    <div class="comment-url-title">
-                                                        <a href="#">
-                                                            ISHIDA KAZUNARI "JUNICHI OVER" 3RD DIVORCE "ME AND MY FATHER ARE MISSING SOMETHING" NEWS POST SEVEN
-                                                        </a>
-                                                        <p>
-                                                            it has been revealed that kazunari ishida, 47, has divorced actress takako iimura, 23. "i wrote my divorce papers on december 7th of my birthday, and my wife told me to write this because i took it. it was like writing quickly while the child was playing in the back room. the submission is submitted by my wife the next day. this is my third divorce."
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <br> -->
                                             <font>
                                                 {{ $topic->content }}
                                             </font>
@@ -237,7 +223,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </div>
+                            <!-- </div> -->
                             @endforeach
                             <div class="pager-area">
                                 <ul class="pager pager-topic">
@@ -273,7 +259,7 @@
                                     @csrf
                                     <p class="title">Post a comment</p>
                                     <div class="textarea mb10">
-                                        <textarea id="textarea" name="text" placeholder="write a comment"></textarea>
+                                        <textarea id="textarea" name="text" placeholder="write a comment" class="form-control"></textarea>
                                         <p id="btnUrl" class="add-link">
                                             <span class="icon-link">
                                             <img src="https://img.icons8.com/material-outlined/20/000000/link--v1.png"/>
@@ -394,64 +380,65 @@
                             </div>
                         </div>
                     </div>
-                    <div class="sub">
-                        <div class="ob-widget ob-one-column-layout SB_1">
-                            <div class="ob-widget-section ob-first">
-                                <div class="ob-widget-header">
-                                    Featured topics
+                </div>
+                <div class="sub">
+                    <div class="ob-widget ob-one-column-layout SB_1">
+                        <div class="ob-widget-section ob-first">
+                            <div class="ob-widget-header">
+                                            Featured topics
+                                        </div>
+                                        <ul class="ob-widget-items-container">
+                                            <li class="ob-dynamic-rec-container ob-recIdx-0 ob-o">
+                                                <a class="ob-dynamic-rec-link" href="https://girlschannel.net/topics/3726182/?obOrigUrl=true">
+                                                </a>
+                                                <span class="ob-unit ob-rec-image-container">
+                                                    <div class="ob-image-ratio"></div>
+                                                    <img class="ob-rec-image ob-show" src="https://images.outbrainimg.com/transform/v3/eyJpdSI6IjhkYjA5NzJmZmJlOWY0NWM3MzlmNDIzNWM2MjRjOThkYTA0YWQ2M2U4MDUwYjRmMWY5Y2I4NzRmNjQxNTRhYzkiLCJ3Ijo2MCwiaCI6NjAsImQiOjEuNSwiY3MiOjAsImYiOjB9.jpg">
+                                                </span>
+                                                <span class="ob-unit ob-rec-text">
+                                                    kou shibasaki echoes the "short hair" of the cut "cool and wonderful" "beautiful person stands out"
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <ul class="ob-widget-items-container">
-                                    <li class="ob-dynamic-rec-container ob-recIdx-0 ob-o">
-                                        <a class="ob-dynamic-rec-link" href="https://girlschannel.net/topics/3726182/?obOrigUrl=true">
-                                        </a>
-                                        <span class="ob-unit ob-rec-image-container">
-                                            <div class="ob-image-ratio"></div>
-                                            <img class="ob-rec-image ob-show" src="https://images.outbrainimg.com/transform/v3/eyJpdSI6IjhkYjA5NzJmZmJlOWY0NWM3MzlmNDIzNWM2MjRjOThkYTA0YWQ2M2U4MDUwYjRmMWY5Y2I4NzRmNjQxNTRhYzkiLCJ3Ijo2MCwiaCI6NjAsImQiOjEuNSwiY3MiOjAsImYiOjB9.jpg">
-                                        </span>
-                                        <span class="ob-unit ob-rec-text">
-                                            kou shibasaki echoes the "short hair" of the cut "cool and wonderful" "beautiful person stands out"
-                                        </span>
-                                    </li>
-                                </ul>
+                                <div class="sub-part sub-keywords relate mb20">
+                                    <p class="head">Related keywords</p>
+                                    <ul class="flc">
+                                        <li>
+                                            <a href="#">
+                                                # ishida kazunari
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                # zero
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                # balance
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                # divorce
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                # deposits
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="sub-part sub-keywords relate mb20">
-                            <p class="head">Related keywords</p>
-                            <ul class="flc">
-                                <li>
-                                    <a href="#">
-                                        # ishida kazunari
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        # zero
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        # balance
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        # divorce
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        # deposits
-                                    </a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-
-    </section>
+</section>
 @endsection()
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
