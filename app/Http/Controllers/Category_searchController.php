@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\category;
 use App\Models\topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Category_searchController extends Controller
 {
@@ -56,7 +57,12 @@ class Category_searchController extends Controller
      */
     public function show($id)
     {
-        $topics_categories = Topic::where('category_id', $id)->get();
+        $topics_categories = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.id', 'topics.image', 'topics.title', 'topics.content', 'topics.created_at', 'topics.updated_at','comments.topic_id')
+                                    ->join('comments', 'topics.id','=','comments.topic_id')
+                                    ->groupBy('topics.id')
+                                    ->where('category_id', $id)
+                                    ->orderByRaw('topics.created_at DESC')->paginate(1);
+                                    // ->get();
         $categories = Category::all();
         $categories_name = Category::where('id', $id)->get();
         return view('category_search', [

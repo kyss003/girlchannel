@@ -57,7 +57,7 @@
                                                     <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                 </span>
                                                 <span>
-                                                    <!-- {{ $topic->comment_count }} -->
+                                                    {{ $topic->comment_count }}
                                                 </span>
                                                 <span class="datetime">
                                                     46 seconds ago
@@ -137,7 +137,7 @@
                             <ul>
                                 @foreach( $popular_topic_d as $topic_d )
                                 <li>
-                                    <a href="/topics">
+                                    <a href="/topics/{{$topic_w->id}}">
                                         <div class="img_w">
                                             <img src="{{ asset('public/image/'.$topic_d->image) }}" width="60" height="60">
                                         </div>

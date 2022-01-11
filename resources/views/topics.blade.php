@@ -52,7 +52,7 @@
                                     </span>
                                     <font>
                                         <span>3000 comment</span>
-                                        <span class="datetime">{{ $topic->updated_at }}</span>
+                                        <span class="datetime">{{ $topic->created_at }}</span>
                                     </font>
                                 </p>
                                 <div class="head-area-btns">

@@ -181,6 +181,7 @@ input {
     color: #ccc;
 }
 .topic-list {
+    width: 100%;
     position: relative;
     padding: 0;
 }
@@ -566,9 +567,12 @@ ul.pager {
     list-style: none;
     align-items: center;
     padding: 0;
+    border-bottom: 1px solid #e3e3e3;
 }
 .search-options li {
     margin-right: 10px;
+    min-height: 0;
+    border-bottom: 0;
 }
 .search-options li.number {
     margin-left: auto;

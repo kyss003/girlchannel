@@ -8,7 +8,7 @@ use App\Models\keyword;
 use App\Models\comment;
 use App\Models\LikeDislike;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 
@@ -25,19 +25,21 @@ class HomeController extends Controller
     public function index()
     {
         //,DB::raw('count(id) as comment_count')
-        $topics = Topic::orderByRaw('updated_at - created_at DESC')->paginate(2);
+        $topics = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.id', 'topics.image', 'topics.title', 'topics.content', 'topics.created_at', 'topics.updated_at','comments.topic_id')
+                        ->join('comments', 'topics.id','=','comments.topic_id')
+                        ->groupBy('topics.id')
+                        ->orderByRaw('topics.created_at DESC')->paginate(2);
         // $topics = Comment::selectRaw('count(id) as comment_count, topic_id')
         //                     ->groupBy('topic_id')
         //                     ->get();
         // dd($topics);
         
         $popular_topic_w = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.id', 'topics.image', 'topics.title', 'topics.content', 'comments.topic_id')
-                                // ->withCount('comments.topic_id')
                                 ->join('comments', 'topics.id','=','comments.topic_id')
                                 ->groupBy('topics.id')
+                                ->groupBy(DB::raw('WEEK(topics.created_at)'))
                                 ->orderByRaw('comment_count DESC')
                                 ->limit(5)
-                                // ->withCount('id')
                                 ->get();
                                 
                                 // ->groupBy(function($date) {
@@ -49,6 +51,7 @@ class HomeController extends Controller
                                 // ->withCount('comments.topic_id')
                                 ->join('comments', 'topics.id','=','comments.topic_id')
                                 ->groupBy('topics.id')
+                                ->groupBy(DB::raw('DAY(topics.created_at)'))
                                 ->orderByRaw('comment_count DESC')
                                 ->limit(5)
                                 // ->withCount('id')

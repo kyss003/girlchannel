@@ -46,7 +46,7 @@
                                 <p>{{ $category_name->title }}</p>
                             </div>
                             <form id="seachform">
-                                <ul class="search-options">
+                                <ul class="search-options topic-list">
                                     <li>
                                         <div class="search-options-select">
                                             <select>
@@ -129,7 +129,9 @@
                                     </a>
                                 </li> -->
                             </ul>
-                            
+                            <div class="d-flex justify-content-center">
+                                {{$topics_categories->appends(request()->all)->links()}}
+                            </div>
                         </div>
                     </div>
                     <div class="sub">
