@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
@@ -13,7 +15,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-        return view('search');
+        
     }
 
     /**
@@ -34,7 +36,14 @@ class SearchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(isset($_GET['query'])){
+            $search_text = $_GET['query'];
+            $countries = DB::table('topics')->where('title', 'LIKE', '%'.$search_text.'%')->paginate(2);
+            return view('layouts.layout',['countries'=>$countries]);
+        }else{
+            return view('layouts.layout');
+        }
+        
     }
 
     /**

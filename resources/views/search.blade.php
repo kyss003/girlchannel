@@ -50,7 +50,36 @@
                                 </ul>
                             </form>
                             <ul class="topic-list">
-                                <li>
+                                if(isset($countries))
+                                    if(count($countries) > 0)
+                                        @foreach($countries as $countrie)
+                                        <li>
+                                            <a href="/topics">
+                                                <img src="{{ asset('public/image/'.$countrie->image) }}" class="img">
+                                                <div class="info">
+                                                    <p class="comment">
+                                                        <span class="icon-comment">
+                                                            <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
+                                                        </span>
+                                                        <span>
+                                                            1000 comment
+                                                        </span>
+                                                        <span class="datetime">
+                                                            46 seconds ago
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                                <p class="title">
+                                                    {{ $countrie->title }}
+                                                </p>
+                                            </a>
+                                        </li>
+                                        @endforeach
+                                    @else
+                                        <P>No result found</p>
+                                    @endif
+                                @endif
+                                <!-- <li>
                                     <a href="/topics">
                                         <img src="https://up.gc-img.net/post_img_web/2021/12/Wyc2SH27qWydrqZ_21723_s.jpeg" class="img">
                                         <div class="info">
@@ -70,28 +99,7 @@
                                             insurance coverage for infertility treatment, women under 43 years old ministry of health, labour and welfare, fact marriage also to be targeted
                                         </p>
                                     </a>
-                                </li>
-                                <li>
-                                    <a href="/topics">
-                                        <img src="https://up.gc-img.net/post_img_web/2021/12/Wyc2SH27qWydrqZ_21723_s.jpeg" class="img">
-                                        <div class="info">
-                                            <p class="comment">
-                                                <span class="icon-comment">
-                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
-                                                </span>
-                                                <span>
-                                                    1000 comment
-                                                </span>
-                                                <span class="datetime">
-                                                    46 seconds ago
-                                                </span>
-                                            </p>
-                                        </div>
-                                        <p class="title">
-                                            insurance coverage for infertility treatment, women under 43 years old ministry of health, labour and welfare, fact marriage also to be targeted
-                                        </p>
-                                    </a>
-                                </li>
+                                </li> -->
                             </ul>
                             <ul class="pager">
                                 <li class="prev">

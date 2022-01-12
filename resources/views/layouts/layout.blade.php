@@ -19,9 +19,9 @@
     </header>
     <nav>
         <div class="header-nav">
-            <div class="catch" _msthash="489203" _msttexthash="7096544">chatting every day on girls' favorite topics ♪</div>
-            <form>
-                <input type="text" name="q" id="q" value placeholder="seach for topics">
+            <div class="catch">chatting every day on girls' favorite topics ♪</div>
+            <form action="{{ route('topics.search')}}" method="GET">
+                <input type="text" name="query" id="query" value placeholder="seach for topics">
                 <div class="search">
                     <div class="icon-search">
                         <img src="https://img.icons8.com/ios/20/000000/search--v1.png"/>

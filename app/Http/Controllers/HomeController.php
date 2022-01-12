@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         //,DB::raw('count(id) as comment_count')
-        $topics = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.id', 'topics.image', 'topics.title', 'topics.content', 'topics.created_at', 'topics.updated_at','comments.topic_id')
+        $topics = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
                         ->join('comments', 'topics.id','=','comments.topic_id')
                         ->groupBy('topics.id')
                         ->orderByRaw('topics.created_at DESC')->paginate(2);
@@ -34,10 +34,13 @@ class HomeController extends Controller
         //                     ->get();
         // dd($topics);
         
-        $popular_topic_w = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.id', 'topics.image', 'topics.title', 'topics.content', 'comments.topic_id')
+        $popular_topic_w = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*', 'comments.topic_id')
                                 ->join('comments', 'topics.id','=','comments.topic_id')
                                 ->groupBy('topics.id')
                                 ->groupBy(DB::raw('WEEK(topics.created_at)'))
+                                // ->groupBy(function($date) {
+                                //     return Carbon::parse($date->topics.created_at)->format('W');
+                                // })
                                 ->orderByRaw('comment_count DESC')
                                 ->limit(5)
                                 ->get();
@@ -47,7 +50,7 @@ class HomeController extends Controller
                                 // })->get();
                                 // ->oderBy(DB::raw('COUNT(comment.topic_id)'))->get();
                                 // dd($popular_topic_w);
-        $popular_topic_d = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.id', 'topics.image', 'topics.title', 'topics.content', 'comments.topic_id')
+        $popular_topic_d = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*', 'comments.topic_id')
                                 // ->withCount('comments.topic_id')
                                 ->join('comments', 'topics.id','=','comments.topic_id')
                                 ->groupBy('topics.id')
