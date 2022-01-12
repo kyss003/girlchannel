@@ -12,36 +12,40 @@
                     <div class="main">
                         <div class="topic-list-wrap">
                             <div class="list-head">
-                                <p class="title">results for "sayaka kanda"</p>
+                                <p class="title">results for "{{ $search_text }}"</p>
                                 <p class="number">1 - 9 out of 9</p>
                             </div>
                             <form id="seachform">
                                 <ul class="search-options">
                                     <li>
                                         <div class="search-options-select">
-                                            <select>
-                                                <option>
-                                                    most newest
-                                                </option>
-                                                <option>
-                                                    by comment number
-                                                </option>
+                                            <select id="sortselect" name="sort">
+                                                <a href="{{ URL::current() }}">
+                                                    <option value="" selected="selected">
+                                                        most newest
+                                                    </option>
+                                                </a>
+                                                <a href="{{ URL::current().'?sort=comment' }}">
+                                                    <option value="comment">
+                                                        by comment number
+                                                    </option>
+                                                </a>
                                             </select>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="search-options-select">
-                                            <select>
-                                                <option>
+                                            <select wire:model="date">
+                                                <option value="all" selected="selected">
                                                     all periods
                                                 </option>
-                                                <option>
+                                                <option value="y">
                                                     within 1 year
                                                 </option>
-                                                <option>
+                                                <option value="m">
                                                     within 1 month
                                                 </option>
-                                                <option>
+                                                <option value="w">
                                                     within a week
                                                 </option>
                                             </select>
@@ -49,12 +53,12 @@
                                     </li>
                                 </ul>
                             </form>
-                            <ul class="topic-list">
-                                if(isset($countries))
-                                    if(count($countries) > 0)
+                            <ul class="topic-list dp_ib">
+                                @if(isset($countries))
+                                    @if(count($countries) > 0)
                                         @foreach($countries as $countrie)
                                         <li>
-                                            <a href="/topics">
+                                            <a href="/topics/{{$countrie->id}}">
                                                 <img src="{{ asset('public/image/'.$countrie->image) }}" class="img">
                                                 <div class="info">
                                                     <p class="comment">
@@ -62,7 +66,7 @@
                                                             <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                         </span>
                                                         <span>
-                                                            1000 comment
+                                                            {{ $countrie->comment_count }}
                                                         </span>
                                                         <span class="datetime">
                                                             46 seconds ago
@@ -101,32 +105,9 @@
                                     </a>
                                 </li> -->
                             </ul>
-                            <ul class="pager">
-                                <li class="prev">
-                                    <span class="icon-arrow_l">
-                                        <img src="https://img.icons8.com/ios-glyphs/15/000000/back.png"/>
-                                    </span>
-                                </li>
-                                <li class="current">
-                                    1
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">4</a>
-                                </li>
-                                <li class="next">
-                                    <a href="#">
-                                        <span class="icon-arrow_r">
-                                            <img src="https://img.icons8.com/external-becris-lineal-becris/15/000000/external-next-mintab-for-ios-becris-lineal-becris.png"/>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="d-flex justify-content-center">
+                                {{$countries->appends(request()->all)->links()}}
+                            </div>
                         </div>
                     </div>
                     <div class="sub">
@@ -141,38 +122,24 @@
                                 <a href="/weekly">Popular topics of the week</a>
                             </p>
                             <ul>
-                                <li>
-                                    <a href="#">
-                                        <div class="img_w">
-                                            <img src="https://up.gc-img.net/post_img_web/2021/12/5cmqyJUFhQ16X1A_s.png" width="60" height="60">
-                                        </div>
-                                        <div class="info">
-                                            <p class="title">【Chat】Topi Part 8 to talk casually like a friend</p>
-                                            <p class="comment">
-                                                <span class="icon-comment">
-                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
-                                                </span>
-                                                <font>17067 comment</font>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img_w">
-                                            <img src="https://up.gc-img.net/post_img_web/2021/12/5cmqyJUFhQ16X1A_s.png" width="60" height="60">
-                                        </div>
-                                        <div class="info">
-                                            <p class="title">【Chat】Topi Part 8 to talk casually like a friend</p>
-                                            <p class="comment">
-                                                <span class="icon-comment">
-                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
-                                                </span>
-                                                <font>17067 comment</font>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li>
+                                @foreach( $popular_topic_w as $topic_w )
+                                    <li>
+                                        <a href="/topics/{{$topic_w->id}}">
+                                            <div class="img_w">
+                                                <img src=" {{ asset('public/image/'.$topic_w->image) }}" width="60" height="60">
+                                            </div>
+                                            <div class="info">
+                                                <p class="title">{{ $topic_w->title }}</p>
+                                                <p class="comment">
+                                                    <span class="icon-comment">
+                                                        <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
+                                                    </span>
+                                                    <font>{{$topic_w->comment_count}}</font>
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                             <a href="/weekly" class="show-more">
                                 <font>See more</font>
@@ -186,38 +153,24 @@
                                 <a href="#">Popular topics of the previous day</a>
                             </p>
                             <ul>
-                                <li>
-                                    <a href="#">
-                                        <div class="img_w">
-                                            <img src="https://up.gc-img.net/post_img_web/2021/12/5cmqyJUFhQ16X1A_s.png" width="60" height="60">
-                                        </div>
-                                        <div class="info">
-                                            <p class="title">【Chat】Topi Part 8 to talk casually like a friend</p>
-                                            <p class="comment">
-                                                <span class="icon-comment">
-                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
-                                                </span>
-                                                <font>17067 comment</font>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img_w">
-                                            <img src="https://up.gc-img.net/post_img_web/2021/12/5cmqyJUFhQ16X1A_s.png" width="60" height="60">
-                                        </div>
-                                        <div class="info">
-                                            <p class="title">【Chat】Topi Part 8 to talk casually like a friend</p>
-                                            <p class="comment">
-                                                <span class="icon-comment">
-                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
-                                                </span>
-                                                <font>17067 comment</font>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li>
+                                @foreach( $popular_topic_d as $topic_d )
+                                    <li>
+                                        <a href="/topics/{{$topic_w->id}}">
+                                            <div class="img_w">
+                                                <img src="{{ asset('public/image/'.$topic_d->image) }}" width="60" height="60">
+                                            </div>
+                                            <div class="info">
+                                                <p class="title">{{ $topic_d->title }}</p>
+                                                <p class="comment">
+                                                    <span class="icon-comment">
+                                                        <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
+                                                    </span>
+                                                    <font>{{$topic_d->comment_count}}</font>
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                             <a href="#" class="show-more">
                                 <font>See more</font>

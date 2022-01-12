@@ -567,7 +567,6 @@ ul.pager {
     list-style: none;
     align-items: center;
     padding: 0;
-    border-bottom: 1px solid #e3e3e3;
 }
 .search-options li {
     margin-right: 10px;
@@ -697,6 +696,9 @@ ul.pager {
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 10px;
+}
+.preserveLines {
+    white-space: pre-wrap;
 }
 .textarea textarea {
     height: 210px;

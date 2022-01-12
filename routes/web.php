@@ -62,7 +62,8 @@ Route::post('make_topic', [HomeController::class, 'store']);
 Route::post('save-likedislike',[HomeController::class, 'save_likedislike']);
 
 //search
-Route::get('/search', [SearchController::class, 'index'])->name('topics.search');
+Route::get('/search', [SearchController::class, 'store'])->name('topics.search');
+
 
 //topic_image
 Route::get('/topic_image', [Topic_imageController::class, 'index']);

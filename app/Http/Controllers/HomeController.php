@@ -24,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $comment_count = Comment::select(DB::raw('count(id) as comment_count'), 'topic_id')
+                                ->groupBy('topic_id')
+                                ->get();
+                                dd($comment_count);
         //,DB::raw('count(id) as comment_count')
         $topics = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
                         ->join('comments', 'topics.id','=','comments.topic_id')
@@ -31,7 +35,7 @@ class HomeController extends Controller
                         ->orderByRaw('topics.created_at DESC')->paginate(2);
         // $topics = Comment::selectRaw('count(id) as comment_count, topic_id')
         //                     ->groupBy('topic_id')
-        //                     ->get();
+                            // ->get();
         // dd($topics);
         
         $popular_topic_w = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*', 'comments.topic_id')
