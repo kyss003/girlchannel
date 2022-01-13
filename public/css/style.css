@@ -284,6 +284,9 @@ ul.pager {
 .mb10 {
     margin-bottom: 10px!important;
 }
+.mt10 {
+    margin-top: 10px!important;
+}
 .prev {
     left: 0;
 }
@@ -695,7 +698,6 @@ ul.pager {
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-bottom: 10px;
 }
 .preserveLines {
     white-space: pre-wrap;

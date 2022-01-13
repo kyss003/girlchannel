@@ -39,7 +39,7 @@
                                 <div class="form-head">
                                     <input id="title" type="text" name="title" placeholder="write a title" class="input-title" style="width: 100%" value="{{ old('name') }}">
                                     <div class="textarea">
-                                        <textarea class="preserveLines" id="textarea" name="text" placeholder="write the text" value="{{ old('name') }}"></textarea>
+                                        <textarea class="preserveLines" id="textarea" name="text" placeholder="write the text" value="{ nl2br(old('name') }) }"></textarea>
                                         <!-- <p id="btnUrl" class="add-link">
                                             <span class="icon-link">
                                             <img src="https://img.icons8.com/material-outlined/20/000000/link--v1.png"/>
@@ -48,6 +48,15 @@
                                                 quote articles and images
                                             </font>
                                         </p> -->
+                                    </div>
+                                    <div class="add-image mb10">
+                                        <div>
+                                            <span class="icon-camera">
+                                                <img src="https://img.icons8.com/material-outlined/15/000000/camera--v2.png"/>
+                                            </span>
+                                            <p>Select image</p>
+                                            <input type="file" name="image_content" id="image_content">
+                                        </div>
                                     </div>
                                     <select class="custom-select mb10" name="category">
                                         <option selected>---Category---</option>

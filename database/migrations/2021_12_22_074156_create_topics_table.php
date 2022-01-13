@@ -15,13 +15,12 @@ class CreateTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('image')->nullable();
-            $table->string('title')->nullable();
+            $table->string('image');
+            $table->string('image_content')->nullable();
+            $table->string('title');
             $table->string('link')->nullable();
             $table->string('content', 3000)->nullable();
             $table->timestamps();
-            $table->smallInteger('like_count')->nullable()->default(0);
-            $table->smallInteger('dislike_count')->nullable()->default(0);
             $table->bigInteger('keyword_id')->unsigned()->nullable();
             $table->bigInteger('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories');

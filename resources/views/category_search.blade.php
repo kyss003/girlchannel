@@ -167,7 +167,7 @@
                         </div>
                         <div class="sub-part sub-categories mb20">
                             <p class="head">
-                                <a href="/category">Category</a>
+                                <a href="/category">カテゴリー</a>
                             </p>
                             <ul>
                                 @foreach( $categories as $category )

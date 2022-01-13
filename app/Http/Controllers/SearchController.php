@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\topic;
 use App\Models\comment;
+use App\Models\category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-    
+
     }
 
     /**
@@ -39,11 +40,11 @@ class SearchController extends Controller
      */
     public function store(Request $request)
     {
+        
         if(isset($_GET['query'])){
-
             $this->sorting = "most-newest";
             $this->date = "all";
-
+            $categories = Category::all();
             $popular_topic_w = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*', 'comments.topic_id')
                         ->join('comments', 'topics.id','=','comments.topic_id')
                         ->groupBy('topics.id')
@@ -78,23 +79,35 @@ class SearchController extends Controller
             $search_text = $_GET['query'];
             $countries = DB::table('topics')
                             ->select(DB::raw('count(comments.id) as comment_count'),'topics.*', 'comments.topic_id')
-                            ->join('comments', 'topics.id','=','comments.topic_id')
+                            ->leftJoin('comments', 'topics.id','=','comments.topic_id')
                             ->groupBy('topics.id')
                             ->where('title', 'LIKE', '%'.$search_text.'%')->paginate(2);
+            // $countries_sortBy = $countries->sortByDesc('comment_count')->get();
             $countries->appends($request->all());
-            $countries_sortBy = $countries->sortByDesc('comment_count')
-                                        ->values('comment-number');
+            
+            
 
             
-            return view('search',[
-                'search_text'=>$search_text,
-                'countries'=>$countries,
-                'popular_topic_w' => $popular_topic_w,
-                'popular_topic_d' => $popular_topic_d,
-                'countries_sortBy' => $countries_sortBy
-            ]);
             
         }
+        // if(isset($_GET['sort_by'])){
+        //     $sort_by = $_GET['sort_by'];
+        //     if($sort_by=="c") {
+        //         $countries_sortBy = $countries->sortByDesc('comment_count')->get();
+        //         $countries_sortBy->appends($request->all());
+        //     } else {
+        //         $countries_sortBy = $countries->sortByDesc('created_at')->get();
+        //         $countries_sortBy->appends($request->all());
+        //     }
+        // }
+        return view('search',[
+            'search_text'=>$search_text,
+            'countries'=>$countries,
+            'popular_topic_w' => $popular_topic_w,
+            'popular_topic_d' => $popular_topic_d,
+            'categories' => $categories,
+            // 'countries_sortBy' => $countries_sortBy,
+        ]);
         
     }
 

@@ -51,7 +51,7 @@
                                         <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                     </span>
                                     <font>
-                                        <span>3000 comment</span>
+                                        <span>{{ $topic->comment_count }}</span>
                                         <span class="datetime">{{ $topic->created_at }}</span>
                                     </font>
                                 </p>
@@ -65,31 +65,8 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="pager-area">
-                                <ul class="pager pager-topic">
-                                    <li class="prev">
-                                        <span class="icon-arrow_l">
-                                            <img src="https://img.icons8.com/ios-glyphs/15/000000/back.png"/>
-                                        </span>
-                                    </li>
-                                    <li class="current">1</li>
-                                    <li>
-                                        <a href="#">2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">4</a>
-                                    </li>
-                                    <li class="next">
-                                        <a href="#">
-                                            <span class="icon-arrow_r">
-                                                <img src="https://img.icons8.com/external-becris-lineal-becris/15/000000/external-next-mintab-for-ios-becris-lineal-becris.png"/>
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
+                            <div class="d-flex justify-content-center">
+                                {{$comments->appends(request()->all)->links()}}
                             </div>
                             <div class="body-area">
                                 <ul class="topic-comment">
@@ -107,7 +84,7 @@
                                                 {{ $topic->content }}
                                             </font>
                                             <div class="comment-img">
-                                                <img src=" {{ asset('public/image/'.$topic->image) }} " width="400">
+                                                <img src=" {{ asset('public/image/'.$topic->image_content) }} " width="400">
                                             </div><br>
                                         </div>
                                         <div class="res-count">
@@ -225,33 +202,8 @@
                                 </ul>
                             <!-- </div> -->
                             @endforeach
-                            <div class="pager-area">
-                                <ul class="pager pager-topic">
-                                    <li class="prev">
-                                        <span class="icon-arrow_l">
-                                            <img src="https://img.icons8.com/ios-glyphs/15/000000/back.png"/>
-                                        </span>
-                                    </li>
-                                    <li class="current">
-                                        1
-                                    </li>
-                                    <li>
-                                        <a href="#">2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">4</a>
-                                    </li>
-                                    <li class="next">
-                                        <a href="#">
-                                            <span class="icon-arrow_r">
-                                                <img src="https://img.icons8.com/external-becris-lineal-becris/15/000000/external-next-mintab-for-ios-becris-lineal-becris.png"/>
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
+                            <div class="d-flex justify-content-center mt10">
+                                {{$comments->appends(request()->all)->links()}}
                             </div>
                             <div class="form-area">
                                 @foreach($topics as $topic)
@@ -260,14 +212,14 @@
                                     <p class="title">Post a comment</p>
                                     <div class="textarea mb10">
                                         <textarea id="textarea" name="text" placeholder="write a comment" class="form-control"></textarea>
-                                        <p id="btnUrl" class="add-link">
+                                        <!-- <p id="btnUrl" class="add-link">
                                             <span class="icon-link">
                                             <img src="https://img.icons8.com/material-outlined/20/000000/link--v1.png"/>
                                             </span>
                                             <font>
                                                 quote articles and images
                                             </font>
-                                        </p>
+                                        </p> -->
                                     </div>
                                     <div class="add-image">
                                         <div class="wrap">
@@ -277,7 +229,7 @@
                                             <p class="text normal">
                                                 select image
                                             </p>
-                                            <input id="addImage" type="file">
+                                            <input type="file" name="image" id="image">
                                         </div>
                                     </div>
                                     <div class="form-checks">
@@ -439,10 +391,8 @@
             </div>
         </div>
 </section>
-@endsection()
+@endsection
 @section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
     <script type="text/javascript">
         //topic
         $(document).on('click','#saveLikeDislike',function(){

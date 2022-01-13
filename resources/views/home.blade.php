@@ -44,14 +44,14 @@
                                     <a href="/topics/{{$topic->id}}">
                                         <img src=" {{ asset('public/image/'.$topic->image) }} " class="img">
                                         <div class="info">
-                                            <div class="tag-wrap rank3">
+                                            <!-- <div class="tag-wrap rank3">
                                                 <span class="icon-tag">
 
                                                 </span>
                                                 <p class="rank">
                                                     <span>1st</span>
                                                 </p>
-                                            </div>
+                                            </div> -->
                                             <p class="comment">
                                                 <span class="icon-comment">
                                                     <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
@@ -60,7 +60,7 @@
                                                     {{ $topic->comment_count }}
                                                 </span>
                                                 <span class="datetime">
-                                                    46 seconds ago
+                                                    {{ $topic->created_at }}
                                                 </span>
                                             </p>
                                         </div>
@@ -81,7 +81,7 @@
                             <span class="icon-plus">
                                 <img src="https://img.icons8.com/ios-glyphs/20/000000/plus-math.png"/>
                             </span>
-                            <font>Post a topic</font>
+                            <font>トピックを投稿する</font>
                         </a>
                         <div class="sub-part sub-topics mb20">
                             <p class="head">
@@ -233,7 +233,7 @@
                         <div class="sub-part sub-categories mb20">
                             
                             <p class="head">
-                                <a href="{{ url('category') }}">Category</a>
+                                <a href="{{ url('category') }}">カテゴリー</a>
                             </p>
                             <ul>
                                 @foreach( $categories as $category )

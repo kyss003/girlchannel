@@ -12,40 +12,37 @@
                     <div class="main">
                         <div class="topic-list-wrap">
                             <div class="list-head">
-                                <p class="title">results for "{{ $search_text }}"</p>
+                                <p class="title">"{{ $search_text }}"の検索結果</p>
                                 <p class="number">1 - 9 out of 9</p>
                             </div>
                             <form id="seachform">
+                                @csrf
                                 <ul class="search-options">
                                     <li>
                                         <div class="search-options-select">
-                                            <select id="sortselect" name="sort">
-                                                <a href="{{ URL::current() }}">
-                                                    <option value="" selected="selected">
-                                                        most newest
-                                                    </option>
-                                                </a>
-                                                <a href="{{ URL::current().'?sort=comment' }}">
-                                                    <option value="comment">
-                                                        by comment number
-                                                    </option>
-                                                </a>
+                                            <select id="sortselect" name="sortselect">
+                                                <option value="{{Request::url()}}?query={{ $search_text }}?sort_by=none">
+                                                    most newest
+                                                </option>
+                                                <option value="{{Request::url()}}?query={{ $search_text }}?sort_by=c">
+                                                    by comment number
+                                                </option>
                                             </select>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="search-options-select">
-                                            <select wire:model="date">
-                                                <option value="all" selected="selected">
+                                            <select id="dateselect" name="dateselect" wire:model="date">
+                                                <option value="{{Request::url()}}?query={{ $search_text }}?sort_by=none">
                                                     all periods
                                                 </option>
-                                                <option value="y">
+                                                <option value="{{Request::url()}}?query={{ $search_text }}?sort_by=y">
                                                     within 1 year
                                                 </option>
-                                                <option value="m">
+                                                <option value="{{Request::url()}}?query={{ $search_text }}?sort_by=m">
                                                     within 1 month
                                                 </option>
-                                                <option value="w">
+                                                <option value="{{Request::url()}}?query={{ $search_text }}?sort_by=w">
                                                     within a week
                                                 </option>
                                             </select>
@@ -69,7 +66,7 @@
                                                             {{ $countrie->comment_count }}
                                                         </span>
                                                         <span class="datetime">
-                                                            46 seconds ago
+                                                            {{ $countrie->created_at}}
                                                         </span>
                                                     </p>
                                                 </div>
@@ -233,82 +230,16 @@
                             </a>
                         </div>
                         <div class="sub-part sub-categories mb20">
+                            
                             <p class="head">
-                                <a href="/category">Category</a>
+                                <a href="{{ url('category') }}">カテゴリー</a>
                             </p>
                             <ul>
+                                @foreach( $categories as $category )
                                 <li>
-                                    <a href="#">Love and marriage</a>
+                                    <a href="topics/category/{{ $category->id }}">{{ $category->name }}</a>
                                 </li>
-                                <li>
-                                    <a href="#">Beauty & cosmetics</a>
-                                </li>
-                                <li>
-                                    <a href="#">Fashion</a>
-                                </li>
-                                <li>
-                                    <a href="#">hairdo</a>
-                                </li>
-                                <li>
-                                    <a href="#">adult</a>
-                                </li>
-                                <li>
-                                    <a href="#">performer</a>
-                                </li>
-                                <li>
-                                    <a href="#">food and food</a>
-                                </li>
-                                <li>
-                                    <a href="#">diet</a>
-                                </li>
-                                <li>
-                                    <a href="#">family and child rearing</a>
-                                </li>
-                                <li>
-                                    <a href="#">medical care and health</a>
-                                </li>
-                                <li>
-                                    <a href="#">life</a>
-                                </li>
-                                <li>
-                                    <a href="#">work</a>
-                                </li>
-                                <li>
-                                    <a href="#">real condition</a>
-                                </li>
-                                <li>
-                                    <a href="#">TV AND COMMERCIALS</a>
-                                </li>
-                                <li>
-                                    <a href="#">dramas &/ movies</a>
-                                </li>
-                                <li>
-                                    <a href="#">manga, anime and books</a>
-                                </li>
-                                <li>
-                                    <a href="#">music</a>
-                                </li>
-                                <li>
-                                    <a href="#">image</a>
-                                </li>
-                                <li>
-                                    <a href="#">news</a>
-                                </li>
-                                <li>
-                                    <a href="#">politics and economics</a>
-                                </li>
-                                <li>
-                                    <a href="#">sport</a>
-                                </li>
-                                <li>
-                                    <a href="#">IT AND THE INTERNET</a>
-                                </li>
-                                <li>
-                                    <a href="#">dogs, cats, animals</a>
-                                </li>
-                                <li>
-                                    <a href="#">questions and chats</a>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                         <a class="sub-part sub-service-intro mb20" href="#">
@@ -320,4 +251,7 @@
             </div>
         </div>
     </section>
-@stop()
+
+@endsection
+
+    
