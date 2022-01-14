@@ -49,11 +49,14 @@
                                 <ul class="search-options topic-list">
                                     <li>
                                         <div class="search-options-select">
-                                            <select>
+                                            <select id="sortselect" name="sortselect">
                                                 <option>
+                                                    ---Topic---
+                                                </option>
+                                                <option value="{{Request::url()}}&sort_by=n">
                                                     most newest
                                                 </option>
-                                                <option>
+                                                <option value="{{Request::url()}}&sort_by=c">
                                                     by comment number
                                                 </option>
                                             </select>
@@ -61,24 +64,24 @@
                                     </li>
                                     <li>
                                         <div class="search-options-select">
-                                            <select>
+                                            <select id="dateselect" name="dateselect" wire:model="date">
                                                 <option>
+                                                    ---Date---
+                                                </option>
+                                                <option value="{{Request::url()}}&date=a">
                                                     all periods
                                                 </option>
-                                                <option>
+                                                <option value="{{Request::url()}}&date=y">
                                                     within 1 year
                                                 </option>
-                                                <option>
+                                                <option value="{{Request::url()}}&date=m">
                                                     within 1 month
                                                 </option>
-                                                <option>
+                                                <option value="{{Request::url()}}&date=w">
                                                     within a week
                                                 </option>
                                             </select>
                                         </div>
-                                    </li>
-                                    <li class="number">
-                                        <p class="search-options-number">1 - 50 of 4754</p>
                                     </li>
                                 </ul>
                             </form>
@@ -93,10 +96,10 @@
                                                     <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                 </span>
                                                 <span>
-                                                    1000 comment
+                                                    {{ $topic->comment_count}} comment
                                                 </span>
                                                 <span class="datetime">
-                                                    46 seconds ago
+                                                    {{ $topic->created_at->diffForHumans($dt); }}
                                                 </span>
                                             </p>
                                         </div>

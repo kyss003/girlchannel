@@ -21,10 +21,13 @@
                                     <li>
                                         <div class="search-options-select">
                                             <select id="sortselect" name="sortselect">
-                                                <option value="{{Request::url()}}?query={{ $search_text }}?sort_by=none">
+                                                <option>
+                                                    ---Topic---
+                                                </option>
+                                                <option value="{{Request::url()}}?query={{ $search_text }}&sort_by=n">
                                                     most newest
                                                 </option>
-                                                <option value="{{Request::url()}}?query={{ $search_text }}?sort_by=c">
+                                                <option value="{{Request::url()}}?query={{ $search_text }}&sort_by=c">
                                                     by comment number
                                                 </option>
                                             </select>
@@ -33,16 +36,19 @@
                                     <li>
                                         <div class="search-options-select">
                                             <select id="dateselect" name="dateselect" wire:model="date">
-                                                <option value="{{Request::url()}}?query={{ $search_text }}?sort_by=none">
+                                                <option>
+                                                    ---Date---
+                                                </option>
+                                                <option value="{{Request::url()}}?query={{ $search_text }}&date=a">
                                                     all periods
                                                 </option>
-                                                <option value="{{Request::url()}}?query={{ $search_text }}?sort_by=y">
+                                                <option value="{{Request::url()}}?query={{ $search_text }}&date=y">
                                                     within 1 year
                                                 </option>
-                                                <option value="{{Request::url()}}?query={{ $search_text }}?sort_by=m">
+                                                <option value="{{Request::url()}}?query={{ $search_text }}&date=m">
                                                     within 1 month
                                                 </option>
-                                                <option value="{{Request::url()}}?query={{ $search_text }}?sort_by=w">
+                                                <option value="{{Request::url()}}?query={{ $search_text }}&date=w">
                                                     within a week
                                                 </option>
                                             </select>
@@ -66,7 +72,7 @@
                                                             {{ $countrie->comment_count }}
                                                         </span>
                                                         <span class="datetime">
-                                                            {{ $countrie->created_at}}
+                                                            {{ $countrie->created_at }}
                                                         </span>
                                                     </p>
                                                 </div>

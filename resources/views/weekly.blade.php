@@ -34,35 +34,29 @@
                                 </h2>
                             </div>
                             <ul class="topic-list">
+                            @foreach( $popular_topic_w as $topic_w )
                                 <li>
-                                    <a href="/topics">
-                                        <img src="https://up.gc-img.net/post_img_web/2021/12/Wyc2SH27qWydrqZ_21723_s.jpeg" class="img">
+                                    <a href="/topics/{{$topic_w->id}}">
+                                        <img src=" {{ asset('public/image/'.$topic_w->image) }} " class="img">
                                         <div class="info">
-                                            <div class="tag-wrap rank3">
-                                                <span class="icon-tag">
-
-                                                </span>
-                                                <p class="rank">
-                                                    <span>1st</span>
-                                                </p>
-                                            </div>
                                             <p class="comment">
                                                 <span class="icon-comment">
                                                     <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                 </span>
                                                 <span>
-                                                    1000 comment
+                                                    {{ $topic_w->comment_count }}
                                                 </span>
                                                 <span class="datetime">
-                                                    46 seconds ago
+                                                    {{ $topic_w->created_at->diffForHumans($dt); }}
                                                 </span>
                                             </p>
                                         </div>
                                         <p class="title">
-                                            insurance coverage for infertility treatment, women under 43 years old ministry of health, labour and welfare, fact marriage also to be targeted
+                                            {{ $topic_w->title }}
                                         </p>
                                     </a>
                                 </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

@@ -30,7 +30,7 @@
                                     <span class="icon-arrow_1"></span>
                                     <font>next day</font>
                                 </span>
-                                    <h2>{{ $dt }}</h2>
+                                    <h2>{{ $now }}</h2>
                                 <span class="next">
                                     <a href="#" rel="next">
                                         day
@@ -60,7 +60,7 @@
                                                     {{ $topic->comment_count }}
                                                 </span>
                                                 <span class="datetime">
-                                                    {{ $topic->created_at }}
+                                                    {{ $topic->created_at->diffForHumans($dt); }}
                                                 </span>
                                             </p>
                                         </div>
@@ -137,7 +137,7 @@
                             <ul>
                                 @foreach( $popular_topic_d as $topic_d )
                                 <li>
-                                    <a href="/topics/{{$topic_w->id}}">
+                                    <a href="/topics/{{$topic_d->id}}">
                                         <div class="img_w">
                                             <img src="{{ asset('public/image/'.$topic_d->image) }}" width="60" height="60">
                                         </div>

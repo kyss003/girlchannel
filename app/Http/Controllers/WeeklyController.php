@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\topic;
+use App\Models\category;
+use App\Models\keyword;
+use App\Models\comment;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class WeeklyController extends Controller
 {
@@ -13,7 +19,19 @@ class WeeklyController extends Controller
      */
     public function index()
     {
-        return view('weekly');
+        $dt = Carbon::now('Asia/Ho_Chi_Minh');
+        $popular_topic_w = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
+                                ->leftJoin('comments', 'topics.id','=','comments.topic_id')
+                                ->groupBy('topics.id')
+                                ->where('topics.created_at', '>', Carbon::today()->subDays(7))
+                                ->orderByRaw('comment_count DESC')
+                                ->paginate(3);
+        $categories = Category::all();
+        return view('weekly',[
+            'dt' => $dt,
+            'popular_topic_w' => $popular_topic_w,
+            'categories' => $categories,
+        ]);
     }
 
     /**

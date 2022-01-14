@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class comment extends Model
 {
@@ -19,4 +20,6 @@ class comment extends Model
     public function dislikes(){
         return $this->hasMany('App\Models\LikeDislike','comment_id')->sum('dislike');
     }
+
+
 }

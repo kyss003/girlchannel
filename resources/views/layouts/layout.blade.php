@@ -59,10 +59,23 @@
             $('#sortselect').on('change',function(){
                 var url_string = $(this).val();
                 var url = new URL(url_string);
-            if(url) {
-                window.location = url;
-            }
-            return false;
+                if(url) {
+                    window.location = url;
+                }
+                return false;
+            });
+            $('#dateselect').on('change',function(){
+                var url_string = $(this).val();
+                var url = new URL(url_string);
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+                today = yyyy + '/' + mm + '/' + dd
+                if(url) {
+                    window.location = url;
+                }
+                return false;
             });
         });
     </script> 
