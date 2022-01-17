@@ -51,14 +51,22 @@ class HomeController extends Controller
                                 ->orderByRaw('comment_count DESC')
                                 ->limit(5)
                                 ->get();
+        // $keywords = Keyword::all()->limit(10)
+        $keywords = Keyword::select(DB::raw('count(topics.keyword_id) as count_top_keyword'), 'keywords.*')
+                            ->leftJoin('topics', 'keywords.id', '=', 'topics.keyword_id')
+                            ->groupBy('keywords.id')
+                            ->orderByRaw('count_top_keyword DESC')
+                            ->limit(10)
+                            ->get();
+                            // dd($keywords);
         $categories = Category::all();
         
         return view('home', [
             'topics' => $topics,
             'categories' => $categories,
+            'keywords' => $keywords,
             'now' => $now,
             'dt' => $dt,
-            // ->toDateString(),
             'popular_topic_w' => $popular_topic_w,
             'popular_topic_d' => $popular_topic_d,
             // 'comment_count' => $comment_count,
@@ -133,10 +141,32 @@ class HomeController extends Controller
                         ->leftJoin('comments', 'topics.id','=','comments.topic_id')
                         ->groupBy('topics.id')
                         ->where('topics.id', $id)->get();
+        $keywords_name = Topic::select('keywords.*')
+                            ->join('keywords', 'topics.keyword_id', '=', 'keywords.id')
+                            ->where('topics.keyword_id', 'keywords.id')
+                            ->orwhere('topics.id', $id)
+                            ->get();
+        $related_topic = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
+                            ->leftJoin('comments', 'topics.id','=','comments.topic_id')
+                            ->join('keywords', 'topics.keyword_id', '=', 'keywords.id')
+                            ->groupBy('topics.id')
+                            ->where('topics.keyword_id', 'keywords.id')
+                            ->orderByRaw('comment_count DESC')
+                            ->limit(10)
+                            ->get();
+        $popular_topic_d = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
+                            ->leftJoin('comments', 'topics.id','=','comments.topic_id')
+                            ->groupBy('topics.id')
+                            ->whereDate('topics.created_at', Carbon::today())
+                            ->orderByRaw('comment_count DESC')
+                            ->limit(10)
+                            ->get();
         return view('topics', [
             'topics' => $topics,
             'comments' => $comments,
-            // 'related_topic' => $related_topic
+            'keywords_name' => $keywords_name,
+            'popular_topic_d' => $popular_topic_d,
+            'related_topic' => $related_topic
         ]);
     }
 

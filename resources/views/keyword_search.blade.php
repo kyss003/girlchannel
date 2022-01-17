@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    Girls Channel
+    Category search
 @endsection()
 
 @section('body')
@@ -11,56 +11,51 @@
                 <div class="wrap">
                     <div class="main">
                         <div class="topic-list-wrap">
-                            <div class="tab-wrap">
-                                <div class="tab tab-rank on">
+                            <ul class="breadcrumbs">
+                                
+                                <li class="breadcrumb">
+                                    <a href="/index">
+                                        <span class="icon-home">
+                                            <img src="https://img.icons8.com/material-rounded/15/000000/home.png"/>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb">
+                                    <span class="icon-arror_r">
+                                        <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
+                                    </span>
+                                </li>
+                                <li class="breadcrumb current">
                                     <a href="#">
-                                        <span class="icon-rank"><img src="https://img.icons8.com/material-outlined/24/000000/crown.png"/></span>
-                                        <span>Today's popular topics</span>
+                                        <span>Keyword list</span>
                                     </a>
-                                </div>
-                                <div class="tab tab-new">
-                                    <a href="#">
-                                        <span class="icon-new"><img src="https://img.icons8.com/material-outlined/24/000000/clock--v1.png"/></span>
-                                        <span>What's new topics</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="topic-list-header">
-                                <span class="prev">
-                                    <span class="icon-arrow_1"></span>
-                                    <font>next day</font>
+                                </li>
+                                <span class="icon-arror_r">
+                                    <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
                                 </span>
-                                    <h2>{{ $now }}</h2>
-                                <span class="next">
-                                    <a href="#" rel="next">
-                                        day
-                                        <span class="icon-arrow_r"></span>
+                                @foreach( $key_words as $key_word )
+                                <li class="breadcrumb current">
+                                    <a href="/category">
+                                        <span>{{ $key_word->name }}</span>
                                     </a>
-                                </span>
-                            </div>
-                            <ul class="topic-list">
-                                @foreach( $topics as $topic )
+                                </li>
+                                @endforeach
+                            </ul>
+                            <ul class="topic-list dp_ib">
+                                @foreach( $topic_keyword as $topic )
                                 <li>
                                     <a href="/topics/{{$topic->id}}">
-                                        <img src=" {{ asset('public/image/'.$topic->image) }} " class="img">
+                                        <img src="{{ asset('public/image/'.$topic->image) }}" class="img">
                                         <div class="info">
-                                            <!-- <div class="tag-wrap rank3">
-                                                <span class="icon-tag">
-
-                                                </span>
-                                                <p class="rank">
-                                                    <span>1st</span>
-                                                </p>
-                                            </div> -->
                                             <p class="comment">
                                                 <span class="icon-comment">
                                                     <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                 </span>
                                                 <span>
-                                                    {{ $topic->comment_count }}コメント
+                                                    {{ $topic->comment_count}} comment
                                                 </span>
                                                 <span class="datetime">
-                                                    {{ $topic->updated_at->diffForHumans($dt); }}
+                                                    {{ $topic->created_at->diffForHumans($dt); }}
                                                 </span>
                                             </p>
                                         </div>
@@ -70,9 +65,31 @@
                                     </a>
                                 </li>
                                 @endforeach
+                                
+                                <!-- <li>
+                                    <a href="/topics">
+                                        <img src="https://up.gc-img.net/post_img_web/2021/12/oxSAkiyGPMUA8Cb_s.jpeg" class="img">
+                                        <div class="info">
+                                            <p class="comment">
+                                                <span class="icon-comment">
+                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
+                                                </span>
+                                                <span>
+                                                    1000 comment
+                                                </span>
+                                                <span class="datetime">
+                                                    46 seconds ago
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <p class="title">
+                                            【実況・感想】真犯人フラグ #10
+                                        </p>
+                                    </a>
+                                </li> -->
                             </ul>
                             <div class="d-flex justify-content-center">
-                                {{$topics->appends(request()->all)->links()}}
+                                {{$topic_keyword->appends(request()->all)->links()}}
                             </div>
                         </div>
                     </div>
@@ -101,7 +118,7 @@
                                                     <span class="icon-comment">
                                                         <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                     </span>
-                                                    <font>{{$topic_w->comment_count}}コメント</font>
+                                                    <font>{{$topic_w->comment_count}}</font>
                                                 </p>
                                             </div>
                                         </a>
@@ -151,7 +168,7 @@
                                                 <span class="icon-comment">
                                                     <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                 </span>
-                                                <font>{{$topic_d->comment_count}}コメント</font>
+                                                <font>{{$topic_d->comment_count}}</font>
                                             </p>
                                         </div>
                                     </a>
@@ -167,17 +184,17 @@
                         </div>
                         <div class="sub-part sub-trends mb20" >
                             <p class="head">
-                                <a href="key_word">Search trends</a>
+                                <a href="/key_word">Search trends</a>
                             </p>
                             <ul>
                                 @foreach($keywords as $keyword)
                                 <li>
                                     <img src="https://static.gc-img.net/img/parts_pc/svg/trend_01.svg" width="32" height="20">
-                                    <a href="topics/keyword/{{ $keyword->id }}">{{ $keyword->name }}</a>
+                                    <a href="{{ $keyword->id }}">{{ $keyword->name }}</a>
                                 </li>
                                 @endforeach
                             </ul>
-                            <a class="show-more" href="key_word">
+                            <a class="show-more" href="/key_word">
                                 <font>List of keywords</font>
                                 <span class="icon-arrow_r">
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>

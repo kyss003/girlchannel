@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\topic;
+use App\Models\category;
 use App\Models\keyword;
+use App\Models\comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class Key_wordController extends Controller
 {
@@ -15,8 +20,9 @@ class Key_wordController extends Controller
     public function index()
     {
         $key_words = Keyword::all ();
+        
         return view('key_word', [
-            'key_words' => $key_words
+            'key_words' => $key_words,
         ]);
     }
 
@@ -49,7 +55,13 @@ class Key_wordController extends Controller
      */
     public function show($id)
     {
-        //
+        $keywords = keyword::where('name', $id)->get();
+        return view('keyword_search', [
+            'categories' => $categories,
+            'popular_topic_w' => $popular_topic_w,
+            'popular_topic_d' => $popular_topic_d,
+            'keywords' => $keywords
+        ]);
     }
 
     /**

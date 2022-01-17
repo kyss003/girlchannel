@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Key_wordController;
+use App\Http\Controllers\Key_word_searchController;
 use App\Http\Controllers\TopicsController;
 use App\Http\Controllers\Make_topicController;
 use App\Http\Controllers\WeeklyController;
@@ -72,8 +73,11 @@ Route::get('/topic_image', [Topic_imageController::class, 'index']);
 Route::get('/weekly', [WeeklyController::class, 'index']);
 
 //key_word
-Route::get('/key_word', [Key_wordController::class, 'index']);
+Route::get('key_word', [Key_wordController::class, 'index']);
+Route::get('topics/keyword/{id}', [Key_wordController::class, 'show']);
 
+//key_word_search
+Route::get('topics/keyword/{id}', [Key_word_searchController::class, 'show']);
 
 // Category
 Route::get('/category', [CategoryController::class, 'index']);

@@ -51,7 +51,7 @@
                                         <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                     </span>
                                     <font>
-                                        <span>{{ $topic->comment_count }}</span>
+                                        <span>{{ $topic->comment_count }}コメント</span>
                                         <span class="datetime">{{ $topic->created_at }}</span>
                                     </font>
                                 </p>
@@ -81,20 +81,24 @@
                                         </p>
                                         <div class="body">
                                             <font>
-                                                {{ $topic->content }}
+                                                <p>{!! nl2br(e($topic->content)) !!}</p>
                                             </font>
-                                            <div class="comment-img">
-                                                <img src=" {{ asset('public/image/'.$topic->image_content) }} " width="400">
-                                            </div><br>
+                                            @if($topic->image_content)
+                                                <div class="comment-img">
+                                                    <img src=" {{ asset('public/image/'.$topic->image_content) }} " width="400">
+                                                </div><br>
+                                            @else
+                                                <p></p>
+                                            @endif
                                         </div>
-                                        <div class="res-count">
+                                        <!-- <div class="res-count">
                                             <a href="#" class="res-count-btn">
                                                 <span class="icon-comment_fill">
                                                     <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                 </span>
                                                 <font>179 replies</font>
                                             </a>
-                                        </div>
+                                        </div> -->
                                         <div class="topic-rate">
                                             <div class="icon-rate-wrap icon-rate-wrap-plus">
                                                 <div class="counter">
@@ -148,17 +152,24 @@
                                         </p>
                                         <div class="body">
                                             <font>
-                                                {{ $comment->content }}
+                                                {!! nl2br($comment->content) !!}
                                             </font>
                                         </div>
-                                        <div class="res-count">
+                                        @if($comment->image)
+                                            <div class="comment-img">
+                                                <img src=" {{ asset('public/image_comment/'.$comment->image) }} " width="400">
+                                            </div><br>
+                                        @else
+                                            <p></p>
+                                        @endif
+                                        <!-- <div class="res-count">
                                             <a href="#" class="res-count-btn">
                                                 <span class="icon-comment_fill">
                                                     <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                 </span>
                                                 <font>179 replies</font>
                                             </a>
-                                        </div>
+                                        </div> -->
                                         <div class="topic-rate">
                                             <div class="icon-rate-wrap icon-rate-wrap-plus">
                                                 <div class="counter">
@@ -207,7 +218,7 @@
                             </div>
                             <div class="form-area">
                                 @foreach($topics as $topic)
-                                <form action="{{ $topic->id }}" method="POST" class="form-comment">
+                                <form action="{{ $topic->id }}" method="POST" class="form-comment" enctype="multipart/form-data">
                                     @csrf
                                     <p class="title">Post a comment</p>
                                     <div class="textarea mb10">
@@ -229,10 +240,10 @@
                                             <p class="text normal">
                                                 select image
                                             </p>
-                                            <input type="file" name="image" id="image">
+                                            <input type="file" name="addimage" id="addimage">
                                         </div>
                                     </div>
-                                    <div class="form-checks">
+                                    <!-- <div class="form-checks">
                                         <input id="anonymous" type="checkbox">
                                         <label for="anonymous" class="checkbox">
                                             Post anonymously
@@ -241,7 +252,7 @@
                                         <label for="showId" class="checkbox">
                                             View ID to prevent spoofing
                                         </label>
-                                    </div>
+                                    </div> -->
                                     <input id="submit" type="submit" value="Post a topic" class="btn btn-positive">
                                     <div id="modalUrl" class="modal-bk" show="off" style="height: 1480px">
                                         <div class="modal-wrap modal-url">
@@ -281,53 +292,57 @@
                                     Related topic
                                 </h2>
                                 <ul id="relatedTopic" class="topic-list">
+                                    @foreach( $related_topic as $related_topic )
                                     <li class="js-related">
                                         <a href="/topics">
-                                            <img src="https://up.gc-img.net/post_img_web/2021/12/Wyc2SH27qWydrqZ_21723_s.jpeg" class="img">
+                                            <img src="{{ asset('public/image/'.$related_topic->image) }}" class="img">
                                             <div class="info">
                                                 <p class="comment">
                                                     <span class="icon-comment">
                                                         <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                     </span>
                                                     <span>
-                                                        1000 comment
+                                                        {{$related_topic->comment_count}}コメント
                                                     </span>
                                                     <span class="datetime">
-                                                        sat 18 jul 2020 05:39
+                                                        {{ $related_topic->created_at->toDayDateTimeString() }}
                                                     </span>
                                                 </p>
                                             </div>
                                             <p class="title">
-                                                insurance coverage for infertility treatment, women under 43 years old ministry of health, labour and welfare, fact marriage also to be targeted
+                                                {{ $related_topic->title }}
                                             </p>
                                         </a>
                                     </li>
+                                    @endforeach
                                 </ul>
                                 <h2 class="rank">
                                     Popular topic
                                 </h2>
                                 <ul class="topic-list">
+                                @foreach( $popular_topic_d as $topic_d )
                                     <li>
-                                        <a href="/topics">
-                                            <img src="https://up.gc-img.net/post_img_web/2021/12/Wyc2SH27qWydrqZ_21723_s.jpeg" class="img">
+                                        <a href="/topics/{{$topic_d->id}}">
+                                            <img src="{{ asset('public/image/'.$topic_d->image) }}" class="img">
                                             <div class="info">
                                                 <p class="comment">
                                                     <span class="icon-comment">
                                                         <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                     </span>
                                                     <span>
-                                                        1000 comment
+                                                        {{$topic_d->comment_count}}コメント
                                                     </span>
                                                     <span class="datetime">
-                                                        sat 18 jul 2020 05:39
+                                                        {{ $topic_d->created_at->toDayDateTimeString() }}
                                                     </span>
                                                 </p>
                                             </div>
                                             <p class="title">
-                                                insurance coverage for infertility treatment, women under 43 years old ministry of health, labour and welfare, fact marriage also to be targeted
+                                                {{ $topic_d->title }}
                                             </p>
                                         </a>
                                     </li>
+                                @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -357,31 +372,13 @@
                                 <div class="sub-part sub-keywords relate mb20">
                                     <p class="head">Related keywords</p>
                                     <ul class="flc">
+                                        @foreach($keywords_name as $keyword_name)
                                         <li>
-                                            <a href="#">
-                                                # ishida kazunari
+                                            <a href="keyword/{{ $keyword_name->id }}">
+                                                #{{ $keyword_name->name }}
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="#">
-                                                # zero
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                # balance
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                # divorce
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                # deposits
-                                            </a>
-                                        </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>

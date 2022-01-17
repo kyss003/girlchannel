@@ -77,11 +77,11 @@ class CommentController extends Controller
         $topic_id = $id;
         $topic = topic::where('id', $id)->get();
         $comment = new Comment;
-        if($request->hasfile('image')) {
-            $file = $request->file('image');
+        if($request->hasfile('addimage')) {
+            $file = $request->file('addimage');
             $extension = $file->getClientOriginalExtension();
             $filename = time().'.'.$extension;
-            $file->move('public/image_content/', $filename);
+            $file->move('public/image_comment/', $filename);
             $comment->image = $filename;
         }
         $comment->topic_id = $topic_id;
