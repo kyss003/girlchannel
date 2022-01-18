@@ -170,10 +170,15 @@
                                 <a href="key_word">Search trends</a>
                             </p>
                             <ul>
-                                @foreach($keywords as $keyword)
+                                @foreach($keywords as $key => $keyword)
                                 <li>
-                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_01.svg" width="32" height="20">
+                                    @if($key < 9)
+                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_0{{ $key+1 }}.svg" width="32" height="20">
                                     <a href="topics/keyword/{{ $keyword->id }}">{{ $keyword->name }}</a>
+                                    @else
+                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_{{ $key+1 }}.svg" width="32" height="20">
+                                    <a href="topics/keyword/{{ $keyword->id }}">{{ $keyword->name }}</a>
+                                    @endif
                                 </li>
                                 @endforeach
                             </ul>
