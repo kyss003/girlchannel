@@ -1177,12 +1177,15 @@ ul.pager {
     padding: 20px 0;
     cursor: pointer;
     flex-wrap: wrap;
-    justify-content: space-between;
+
+    /* justify-content: space-between; */
     align-items: flex-start;
 }
 .body-area.body-area-img .topic-imgs-item {
     width: 120px;
+    height: 120px;
     margin-bottom: 8px;
+    margin-right: 8px;
     border-radius: 3px;
 }
 .body-area.body-area-img .btn {
@@ -1256,10 +1259,8 @@ ul.pager {
     background: #ff8e9a;
 }
 .topic-rate .icon-rate .btn-rate div:nth-child(2) {
-    top: 0;
-}
-.topic-rate .icon-rate .btn-rate div:nth-child(2) {
     left: 0;
+    top: 0;
     width: 30px;
     height: 28px;
     border-radius: 5px;
@@ -1269,8 +1270,6 @@ ul.pager {
     left: 8px;
     width: 14px;
     height: 2px;
-}
-.topic-rate .icon-rate .btn-rate div:nth-child(3) {
     background: #fff;
 }
 .topic-rate .icon-rate .btn-rate div:nth-child(4) {
@@ -1278,8 +1277,6 @@ ul.pager {
     left: 14px;
     width: 2px;
     height: 14px;
-}
-.topic-rate .icon-rate .btn-rate div:nth-child(4) {
     background: #fff;
 }
 .topic-rate .gage {

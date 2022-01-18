@@ -26,17 +26,17 @@
                                 </div>
                             </div>
                             <div class="topic-list-header">
-                                <span class="prev">
+                                <!-- <span class="prev">
                                     <span class="icon-arrow_1"></span>
                                     <font>next day</font>
-                                </span>
+                                </span> -->
                                     <h2>{{ $now }}</h2>
-                                <span class="next">
+                                <!-- <span class="next">
                                     <a href="#" rel="next">
                                         day
                                         <span class="icon-arrow_r"></span>
                                     </a>
-                                </span>
+                                </span> -->
                             </div>
                             <ul class="topic-list">
                                 @foreach( $topics as $topic )

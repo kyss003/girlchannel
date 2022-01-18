@@ -26,6 +26,7 @@ class WeeklyController extends Controller
                                 ->where('topics.created_at', '>', Carbon::today()->subDays(7))
                                 ->orderByRaw('comment_count DESC')
                                 ->paginate(3);
+                                
         $categories = Category::all();
         return view('weekly',[
             'dt' => $dt,

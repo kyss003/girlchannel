@@ -41,7 +41,7 @@ class SearchController extends Controller
      */
     public function store(Request $request)
     {
-        $dt = Carbon::now('Asia/Ho_Chi_Minh');
+        $dt = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
         if(isset($_GET['query'])){
             
             $this->sorting = "most-newest";
@@ -158,6 +158,7 @@ class SearchController extends Controller
         }
 
         return view('search',[
+            'dt' => $dt,
             'search_text'=>$search_text,
             'countries'=>$countries,
             'popular_topic_w' => $popular_topic_w,

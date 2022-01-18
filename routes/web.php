@@ -67,7 +67,7 @@ Route::get('/search', [SearchController::class, 'store'])->name('topics.search')
 
 
 //topic_image
-Route::get('/topic_image', [Topic_imageController::class, 'index']);
+Route::get('topics/topic_image/{id}', [Topic_imageController::class, 'show']);
 
 //weekly
 Route::get('/weekly', [WeeklyController::class, 'index']);

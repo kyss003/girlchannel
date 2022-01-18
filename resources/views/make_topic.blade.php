@@ -70,7 +70,7 @@
                                         <option value="{{ $keyword->id }}">{{ $keyword->name }}</option>
                                         @endforeach
                                     </select>
-                                    <div class="form-checks">
+                                    <!-- <div class="form-checks">
                                         <input id="anonymous" type="checkbox">
                                         <label for="anonymous" class="checkbox">
                                             Post anonymously
@@ -79,7 +79,7 @@
                                         <label for="showId" class="checkbox">
                                             View ID to prevent spoofing
                                         </label>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <input id="submit" type="submit" value="Post a topic" class="btn btn-positive">

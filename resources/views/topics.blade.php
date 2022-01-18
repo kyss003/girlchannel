@@ -27,7 +27,7 @@
                                 </li>
                                 <li class="breadcrumb current">
                                     <a href="#">
-                                        <span>Real condition</span>
+                                        <span>ニュース</span>
                                     </a>
                                 </li>
                                 <span class="icon-arror_r">
@@ -57,7 +57,7 @@
                                 </p>
                                 <div class="head-area-btns">
                                     <a href="#" class="btn btn-positive" id="btnComment">post a comment</a>
-                                    <a class="btn btn-moderate" href="/topic_image">
+                                    <a class="btn btn-moderate" href="topic_image/{{$topic->id}}">
                                         <span class="icon-image_mode">
                                             <img src="https://img.icons8.com/ios-filled/15/000000/windows-11.png"/>
                                         </span>
@@ -73,7 +73,7 @@
                                     <li class="comment-item" id="comment1">
                                         <p class="info">
                                             <font>
-                                                1.anonymous
+                                                匿名
                                                 <a href="#">
                                                     {{ $topic->created_at }}
                                                 </a>
@@ -144,7 +144,7 @@
                                     <li class="comment-item" id="comment1">
                                         <p class="info">
                                             <font>
-                                                2.anonymous
+                                                匿名
                                                 <a href="#">
                                                     {{ $comment->created_at }}
                                                 </a>
@@ -253,7 +253,7 @@
                                             View ID to prevent spoofing
                                         </label>
                                     </div> -->
-                                    <input id="submit" type="submit" value="Post a topic" class="btn btn-positive">
+                                    <input id="submit" type="submit" value="Post a topic" class="btn btn-positive post_comment">
                                     <div id="modalUrl" class="modal-bk" show="off" style="height: 1480px">
                                         <div class="modal-wrap modal-url">
                                             <p class="title">
@@ -370,7 +370,7 @@
                                     </div>
                                 </div>
                                 <div class="sub-part sub-keywords relate mb20">
-                                    <p class="head">Related keywords</p>
+                                    <p class="head">関連キーワード</p>
                                     <ul class="flc">
                                         @foreach($keywords_name as $keyword_name)
                                         <li>
@@ -448,6 +448,11 @@
                     }
                 }   
             });
+        });
+        $("#btnComment").click(function() {
+            $('html,body').animate({
+                scrollTop: $(".post_comment").offset().top},
+                'slow');
         });
     </script>
 @endsection

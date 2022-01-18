@@ -58,6 +58,9 @@
                                 </li>
                                 @endforeach
                             </ul>
+                            <div class="d-flex justify-content-center">
+                                {{$popular_topic_w->appends(request()->all)->links()}}
+                            </div>
                         </div>
                     </div>
                     <div class="sub">

@@ -136,6 +136,7 @@ class HomeController extends Controller
      */
     public function show($id)
     {
+        $topic_keyword_id = Topic::select('keyword_id')->where('id', $id)->get();
         $comments = Comment::where('topic_id', $id)->orderByRaw('created_at ASC')->paginate(2);
         $topics = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
                         ->leftJoin('comments', 'topics.id','=','comments.topic_id')
@@ -148,9 +149,9 @@ class HomeController extends Controller
                             ->get();
         $related_topic = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
                             ->leftJoin('comments', 'topics.id','=','comments.topic_id')
-                            ->join('keywords', 'topics.keyword_id', '=', 'keywords.id')
                             ->groupBy('topics.id')
-                            ->where('topics.keyword_id', 'keywords.id')
+                            ->where('topics.keyword_id', '=', $topic_keyword_id )
+                            ->orwhere('topics.id', $id)
                             ->orderByRaw('comment_count DESC')
                             ->limit(10)
                             ->get();
