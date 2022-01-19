@@ -1150,6 +1150,17 @@ ul.pager {
     line-height: 20px;
     color: grey;
 }
+
+.comment-item .btn-res {
+    font-size: 12px;
+    line-height: 14px;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    color: gray;
+}
+
+
 .res-count {
     margin-top: 16px;
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\Category_searchController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Comment_relyController;
 
 
 /*
@@ -96,3 +97,8 @@ Route::get('topics/category/{id}', [Category_searchController::class, 'show']);
 //comment
 Route::post('topics/{id}', [CommentController::class, 'update']);
 Route::post('save-likedislike-comment',[CommentController::class, 'save_likedislike_comment']);
+
+//comment rely
+Route::get('comment_rely/{id}/{comment_id}', [Comment_relyController::class, 'show']);
+Route::post('comment_rely/{id}/{comment_id}', [Comment_relyController::class, 'update']);
+Route::post('save-likedislike-comment-rely',[Comment_relyController::class, 'save_likedislike_comment_rely']);

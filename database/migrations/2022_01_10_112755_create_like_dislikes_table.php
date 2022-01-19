@@ -17,6 +17,7 @@ class CreateLikeDislikesTable extends Migration
             $table->id();
             $table->integer('topic_id')->unsigned()->nullable();
             $table->integer('comment_id')->unsigned()->nullable();
+            $table->integer('comment_rely_id')->unsigned()->nullable();
             $table->smallInteger('like')->default(0);
             $table->smallInteger('dislike')->default(0);
             $table->timestamps();

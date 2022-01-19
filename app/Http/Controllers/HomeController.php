@@ -6,6 +6,7 @@ use App\Models\topic;
 use App\Models\category;
 use App\Models\keyword;
 use App\Models\comment;
+use App\Models\comment_rely;
 use App\Models\LikeDislike;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -137,7 +138,13 @@ class HomeController extends Controller
     public function show($id)
     {
         $topic_keyword_id = Topic::select('keyword_id')->where('id', $id)->get();
-        $comments = Comment::where('topic_id', $id)->orderByRaw('created_at ASC')->paginate(2);
+        
+        $comments = Comment::select('comments.*')
+                            ->leftJoin('comment_relies','comments.id', '=', 'comment_relies.comment_id')
+                            ->where('topic_id', $id)
+                            ->orderByRaw('comments.created_at ASC')
+                            ->paginate(2);
+                            // dd($comments);
         $topics = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
                         ->leftJoin('comments', 'topics.id','=','comments.topic_id')
                         ->groupBy('topics.id')

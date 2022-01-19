@@ -40,7 +40,7 @@
                                 </li>
                             </ul>
                             <div class="head-area">
-                                <img src="{{ asset('public/image_content/'.$topic->image_content) }}" class="img">
+                                <img src="{{ asset('public/image/'.$topic->image) }}" class="img">
                                 <h1>
                                     <font>いしだ壱{{ $topic->title }}</font>
                                 </h1>
@@ -56,7 +56,9 @@
                             </div>
                             <div class="body-area body-area-img">
                                 <div class="topic-imgs">
+                                    @if($topic->image_content)
                                     <img class="topic-imgs-item" src="{{ asset('public/image_content/'.$topic->image_content) }}" width="60">
+                                    @endif
                                     @foreach($comments as $comment)
                                     <img class="topic-imgs-item" src="{{ asset('public/image_comment/'.$comment->image) }}" width="60">
                                     @endforeach
