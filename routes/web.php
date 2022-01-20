@@ -100,5 +100,6 @@ Route::post('save-likedislike-comment',[CommentController::class, 'save_likedisl
 
 //comment rely
 Route::get('comment_rely/{id}/{comment_id}', [Comment_relyController::class, 'show']);
+Route::get('comment_rely/{id}', [Comment_relyController::class, 'show_topic']);
 Route::post('comment_rely/{id}/{comment_id}', [Comment_relyController::class, 'update']);
 Route::post('save-likedislike-comment-rely',[Comment_relyController::class, 'save_likedislike_comment_rely']);

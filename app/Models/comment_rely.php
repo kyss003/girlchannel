@@ -18,4 +18,8 @@ class comment_rely extends Model
     public function dislikes(){
         return $this->hasMany('App\Models\LikeDislike','comment_rely_id')->sum('dislike');
     }
+
+    public function comment(){
+        return $this->belongsTo('App\Models\comment','comment_rely_id');
+    }
 }

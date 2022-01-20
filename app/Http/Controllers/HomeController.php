@@ -138,12 +138,22 @@ class HomeController extends Controller
     public function show($id)
     {
         $topic_keyword_id = Topic::select('keyword_id')->where('id', $id)->get();
-        
-        $comments = Comment::select('comments.*')
-                            ->leftJoin('comment_relies','comments.id', '=', 'comment_relies.comment_id')
+
+        $comment_id = Comment::select('id')
                             ->where('topic_id', $id)
-                            ->orderByRaw('comments.created_at ASC')
-                            ->paginate(2);
+                            ->get();
+
+        // $comments_rely_count = Comment_rely::select(DB::raw('count(id) as comment_rely_count'))
+        //                                     ->where('comment_id', '=', $comment_id)
+        //                                     ->get();
+                                            // dd($comments_rely_count);
+        //,'comment_relies.image as comment_relies_image','comment_relies.content as comment_relies_content','comment_relies.created_at as comment_relies_created_at','comment_relies.id as comment_relies_id'
+        $comments = Comment::select(DB::raw('count(comment_relies.id) as comment_rely_count'),'comments.*')
+                            ->leftJoin('comment_relies','comments.id', '=', 'comment_relies.comment_id')
+                            ->where('comments.topic_id', $id)
+                            ->orderByRaw('created_at ASC')
+                            // ->orderByRaw('comment_relies_created_at ASC')
+                            ->paginate(3);
                             // dd($comments);
         $topics = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
                         ->leftJoin('comments', 'topics.id','=','comments.topic_id')

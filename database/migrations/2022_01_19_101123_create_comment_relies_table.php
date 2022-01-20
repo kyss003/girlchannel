@@ -19,8 +19,10 @@ class CreateCommentReliesTable extends Migration
             $table->string('link')->nullable();
             $table->string('content', 3000)->nullable();
             $table->timestamps();
-            $table->bigInteger('comment_id')->unsigned();
+            $table->bigInteger('comment_id')->unsigned()->nullable();;
+            $table->bigInteger('topic_id')->unsigned()->nullable();;
             $table->foreign('comment_id')->references('id')->on('comments');
+            $table->foreign('topic_id')->references('id')->on('topics');
         });
     }
 

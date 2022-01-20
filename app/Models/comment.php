@@ -20,6 +20,8 @@ class comment extends Model
     public function dislikes(){
         return $this->hasMany('App\Models\LikeDislike','comment_id')->sum('dislike');
     }
-
+    public function comment_rely(){
+        return $this->hasMany('App\Models\comment_rely', 'comment_id');
+    }
 
 }

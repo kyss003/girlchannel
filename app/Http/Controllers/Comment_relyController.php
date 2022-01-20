@@ -73,6 +73,30 @@ class Comment_relyController extends Controller
             'keywords_name' => $keywords_name,
         ]);
     }
+    public function show_topic($id)
+    {
+        $topics = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
+                        ->leftJoin('comments', 'topics.id','=','comments.topic_id')
+                        ->groupBy('topics.id')
+                        ->where('topics.id', $id)
+                        ->get();
+        // $comments = Comment::where('id', $comment_id)->get();
+        $topic = Topic::where('id', $id)->get();
+        // dd($comments);
+        $comments_rely = Comment_rely::where('topic_id', $id)->get();
+        // dd($comment_rely);
+        $keywords_name = Topic::select('keywords.*')
+                            ->join('keywords', 'topics.keyword_id', '=', 'keywords.id')
+                            ->where('topics.keyword_id', 'keywords.id')
+                            ->orwhere('topics.id', $id)
+                            ->get();
+        return view('comment_rely',[
+            'topics' => $topics,
+            'comments_rely' => $comments_rely,
+            'topic' => $topic,
+            'keywords_name' => $keywords_name,
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -107,6 +131,22 @@ class Comment_relyController extends Controller
         $comment_rely->content = $request->input('text');
         $comment_rely->save();
         return redirect("comment_rely/{$id}/{$comment_id}");
+    }
+    public function update_topic(Request $request, $id)
+    {
+        $topic = $id;
+        $comment_rely = new Comment_rely;
+        if($request->hasfile('addimage')) {
+            $file = $request->file('addimage');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('public/image_comment/', $filename);
+            $comment_rely->image = $filename;
+        }
+        $comment_rely->topic = $topic;
+        $comment_rely->content = $request->input('text');
+        $comment_rely->save();
+        return redirect("comment_rely/{$id}");
     }
 
     /**

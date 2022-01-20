@@ -91,6 +91,12 @@
                                                 <p></p>
                                             @endif
                                         </div>
+                                        <!-- <a href="/comment_rely/{{ $topic->id }}" class="btn btn-res">
+                                            <span>
+                                                <img src="https://img.icons8.com/ios-filled/18/000000/reply-arrow.png"/>
+                                            </span>
+                                            <font>Reply</font>
+                                        </a> -->
                                         <div class="res-count">
                                             
                                             <a href="#" class="res-count-btn">
@@ -142,8 +148,8 @@
                                             </div>
                                         </div>
                                     </li>
-                                    @endforeach
-                                    @foreach( $comments as $comment )
+                                @endforeach
+                                @foreach( $comments as $comment )
                                     <li class="comment-item" id="comment1">
                                         <p class="info">
                                             <font>
@@ -171,14 +177,14 @@
                                             </span>
                                             <font>Reply</font>
                                         </a>
-                                        <!-- <div class="res-count">
-                                            <a href="#" class="res-count-btn">
+                                        <div class="res-count">
+                                            <a href="/comment_rely/{{ $topic->id }}/{{ $comment->id }}" class="res-count-btn">
                                                 <span class="icon-comment_fill">
                                                     <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                 </span>
-                                                <font>179 replies</font>
+                                                <font>{{ $comment->comment_rely_count }} replies</font>
                                             </a>
-                                        </div> -->
+                                        </div>
                                         <div class="topic-rate">
                                             <div class="icon-rate-wrap icon-rate-wrap-plus">
                                                 <div class="counter">
@@ -219,9 +225,10 @@
                                             </div>
                                         </div>
                                     </li>
+                                @endforeach
                                 </ul>
                             <!-- </div> -->
-                            @endforeach
+                            
                             <div class="d-flex justify-content-center mt10">
                                 {{$comments->appends(request()->all)->links()}}
                             </div>
@@ -458,6 +465,37 @@
                 }   
             });
         });
+
+        //comment_rely
+        $(document).on('click','#saveLikeDislikeComment_rely',function(){
+            var _post=$(this).data('post');
+            var _type=$(this).data('type');
+            var vm=$(this);
+            // Run Ajax
+            $.ajax({
+                url:"{{ url('save-likedislike-comment-rely') }}",
+                type:"post",
+                dataType:'json',
+                data:{
+                    post:_post,
+                    type:_type,
+                    _token:"{{ csrf_token() }}"
+                },
+                beforeSend:function(){
+                    vm.addClass('disabled');
+                },
+                success:function(res){
+                    if(res.bool==true){
+                        vm.removeClass('disabled').addClass('active');
+                        vm.removeAttr('id');
+                        var _prevCount=$("."+_type+"-count").text();
+                        _prevCount++;
+                        $("."+_type+"-count").text(_prevCount);
+                    }
+                }   
+            });
+        });
+
         $("#btnComment").click(function() {
             $('html,body').animate({
                 scrollTop: $(".post_comment").offset().top},
