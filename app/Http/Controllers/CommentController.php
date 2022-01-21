@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\comment;
 use App\Models\topic;
 use App\Models\LikeDislike;
+use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
@@ -74,6 +75,23 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = [
+            'text' => 'required',
+
+        ];
+
+        $messages = [
+
+            'required' => ':attribute không được để trống',
+        ];
+
+        $arttributes = [
+            'text' => 'Comment',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages, $arttributes);
+        $validator->validate();
+        
         $topic_id = $id;
         $topic = topic::where('id', $id)->get();
         $comment = new Comment;

@@ -150,6 +150,9 @@
                                             </font>
                                         </p> -->
                                     </div>
+                                    @error('text')
+                                        <p class="help text-danger">{{ $message }}</p>
+                                    @enderror
                                     <div class="add-image">
                                         <div class="wrap">
                                             <span class="icon-camera">

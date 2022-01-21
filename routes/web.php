@@ -11,6 +11,8 @@ use App\Http\Controllers\Topic_imageController;
 use App\Http\Controllers\Category_searchController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RankController;
+use App\Http\Controllers\NewController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Comment_relyController;
 
@@ -62,6 +64,12 @@ Route::get('make_topic', [HomeController::class, 'create']);
 Route::post('make_topic', [HomeController::class, 'store']);
 // Route::post('/make_topic', [HomeController::class, 'upload']);
 Route::post('save-likedislike',[HomeController::class, 'save_likedislike']);
+
+//rank
+Route::get('/rank', [RankController::class, 'index']);
+
+//new
+Route::get('/new', [NewController::class, 'index']);
 
 //search
 Route::get('/search', [SearchController::class, 'store'])->name('topics.search');

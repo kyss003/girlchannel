@@ -30,7 +30,7 @@
                                     <span class="icon-arrow_1"></span>
                                     <font>next day</font>
                                 </span> -->
-                                    <h2>{{ $now }}</h2>
+                                    <h2>Latest topics</h2>
                                 <!-- <span class="next">
                                     <a href="#" rel="next">
                                         day

@@ -32,12 +32,18 @@
                                             <p>Select image</p>
                                             <input type="file" name="image" id="image">
                                         </div>
+                                        @error('image')
+                                            <p class="help text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
                             <div class="other">
                                 <div class="form-head">
                                     <input id="title" type="text" name="title" placeholder="write a title" class="input-title" style="width: 100%" value="{{ old('name') }}">
+                                    @error('title')
+                                        <p class="help text-danger">{{ $message }}</p>
+                                    @enderror
                                     <div class="textarea">
                                         <textarea class="preserveLines" id="textarea" name="text" placeholder="write the text" value="{ nl2br(old('name') }) }"></textarea>
                                         <!-- <p id="btnUrl" class="add-link">
@@ -49,6 +55,9 @@
                                             </font>
                                         </p> -->
                                     </div>
+                                    @error('text')
+                                        <p class="help text-danger">{{ $message }}</p>
+                                    @enderror
                                     <div class="add-image mb10">
                                         <div>
                                             <span class="icon-camera">
@@ -59,17 +68,25 @@
                                         </div>
                                     </div>
                                     <select class="custom-select mb10" name="category">
-                                        <option selected>---Category---</option>
+                                        <option value="">---Category---</option>
                                         @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('category')
+                                        <p class="help text-danger">{{ $message }}</p>
+                                    @enderror
+                                    
                                     <select class="custom-select mb10" name="keyword">
-                                        <option selected>---Keyword---</option>
+                                        <option value = "">---Keyword---</option>
                                         @foreach( $keywords as $keyword )
                                         <option value="{{ $keyword->id }}">{{ $keyword->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('keyword')
+                                        <p class="help text-danger">{{ $message }}</p>
+                                    @enderror
+                                    
                                     <!-- <div class="form-checks">
                                         <input id="anonymous" type="checkbox">
                                         <label for="anonymous" class="checkbox">

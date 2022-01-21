@@ -9,6 +9,7 @@ use App\Models\comment;
 use App\Models\comment_rely;
 use App\Models\LikeDislike;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 
 class Comment_relyController extends Controller
@@ -120,6 +121,24 @@ class Comment_relyController extends Controller
     {
         $comment_id = $comment_id;
         $comment_rely = new Comment_rely;
+
+        $rules = [
+            'text' => 'required',
+
+        ];
+
+        $messages = [
+
+            'required' => ':attribute không được để trống',
+        ];
+
+        $arttributes = [
+            'text' => 'Comment',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages, $arttributes);
+        $validator->validate();
+
         if($request->hasfile('addimage')) {
             $file = $request->file('addimage');
             $extension = $file->getClientOriginalExtension();

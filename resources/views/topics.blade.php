@@ -97,7 +97,7 @@
                                             </span>
                                             <font>Reply</font>
                                         </a> -->
-                                        <div class="res-count">
+                                        <!-- <div class="res-count">
                                             
                                             <a href="#" class="res-count-btn">
                                             
@@ -107,7 +107,7 @@
                                                 <font>179 replies</font>
                                             </a>
                                             
-                                        </div>
+                                        </div> -->
                                         <div class="topic-rate">
                                             <div class="icon-rate-wrap icon-rate-wrap-plus">
                                                 <div class="counter">
@@ -248,6 +248,9 @@
                                             </font>
                                         </p> -->
                                     </div>
+                                    @error('text')
+                                        <p class="help text-danger">{{ $message }}</p>
+                                    @enderror
                                     <div class="add-image">
                                         <div class="wrap">
                                             <span class="icon-camera">
