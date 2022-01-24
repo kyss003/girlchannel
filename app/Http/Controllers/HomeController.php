@@ -6,7 +6,7 @@ use App\Models\topic;
 use App\Models\category;
 use App\Models\keyword;
 use App\Models\comment;
-use App\Models\comment_rely;
+
 use App\Models\LikeDislike;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,21 +37,19 @@ class HomeController extends Controller
         $topics = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
                         ->leftJoin('comments', 'topics.id','=','comments.topic_id')
                         ->groupBy('topics.id')
-                        ->where(function ($query){
-                            $query->select('comments.created_at')
-                                    ->from('comments')
-                                    ->whereColumn('comments.topic_id', 'topics.id')
-                                    ->orderBy('comments.created_at', 'ASC')
-                                    ->limit(1);
-                        })
+                        // ->where(function ($query){
+                        //     $query->select('comments.created_at')
+                        //             ->from('comments')
+                        //             ->whereColumn('comments.topic_id', 'topics.id')
+                        //             ->orderBy('comments.created_at', 'ASC')
+                        //             ->limit(1);
+                        // })
                         ->orderByRaw('comment_count DESC')->paginate(3);
         $topics_new = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
                         ->leftJoin('comments', 'topics.id','=','comments.topic_id')
                         ->groupBy('topics.id')
                         ->orderByRaw('created_at DESC')->paginate(3);
         // dd($topics);
-        
-        // $topic_yes = Topic::
 
         $popular_topic_w = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
                                 ->leftJoin('comments', 'topics.id','=','comments.topic_id')
@@ -202,55 +200,7 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        $topic_keyword_id = Topic::select('keyword_id')->where('id', $id)->get();
-
-        $comment_id = Comment::select('id')
-                            ->where('topic_id', $id)
-                            ->get();
-
-        // $comments_rely_count = Comment_rely::select(DB::raw('count(id) as comment_rely_count'))
-        //                                     ->where('comment_id', '=', $comment_id)
-        //                                     ->get();
-                                            // dd($comments_rely_count);
-        //,'comment_relies.image as comment_relies_image','comment_relies.content as comment_relies_content','comment_relies.created_at as comment_relies_created_at','comment_relies.id as comment_relies_id'
-        $comments = Comment::select(DB::raw('count(comment_relies.id) as comment_rely_count'),'comments.*')
-                            ->leftJoin('comment_relies','comments.id', '=', 'comment_relies.comment_id')
-                            ->where('comments.topic_id', $id)
-                            ->orderByRaw('created_at ASC')
-                            // ->orderByRaw('comment_relies_created_at ASC')
-                            ->paginate(3);
-                            // dd($comments);
-        $topics = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
-                        ->leftJoin('comments', 'topics.id','=','comments.topic_id')
-                        ->groupBy('topics.id')
-                        ->where('topics.id', $id)->get();
-        $keywords_name = Topic::select('keywords.*')
-                            ->join('keywords', 'topics.keyword_id', '=', 'keywords.id')
-                            ->where('topics.keyword_id', 'keywords.id')
-                            ->orwhere('topics.id', $id)
-                            ->get();
-        $related_topic = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
-                            ->leftJoin('comments', 'topics.id','=','comments.topic_id')
-                            ->groupBy('topics.id')
-                            ->where('topics.keyword_id', '=', $topic_keyword_id )
-                            ->orwhere('topics.id', $id)
-                            ->orderByRaw('comment_count DESC')
-                            ->limit(10)
-                            ->get();
-        $popular_topic_d = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
-                            ->leftJoin('comments', 'topics.id','=','comments.topic_id')
-                            ->groupBy('topics.id')
-                            ->whereDate('topics.created_at', Carbon::today())
-                            ->orderByRaw('comment_count DESC')
-                            ->limit(10)
-                            ->get();
-        return view('topics', [
-            'topics' => $topics,
-            'comments' => $comments,
-            'keywords_name' => $keywords_name,
-            'popular_topic_d' => $popular_topic_d,
-            'related_topic' => $related_topic
-        ]);
+        
     }
 
     /**
@@ -291,17 +241,5 @@ class HomeController extends Controller
     {
         
     }
-    public function save_likedislike(Request $request){
-        $data=new LikeDislike;
-        $data->topic_id=$request->post;
-        if($request->type=='like'){
-            $data->like=1;
-        }else{
-            $data->dislike=1;
-        }
-        $data->save();
-        return response()->json([
-            'bool'=>true
-        ]);
-    }
+    
 }

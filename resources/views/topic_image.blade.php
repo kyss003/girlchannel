@@ -34,7 +34,7 @@
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
                                 </span>
                                 <li class="breadcrumb current">
-                                    <a href="/category">
+                                    <a href="/topics/{{$topic->id}}">
                                         <span>{{ $topic->title }}</span>
                                     </a>
                                 </li>

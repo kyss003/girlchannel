@@ -182,7 +182,7 @@
                                                 <span class="icon-comment_fill">
                                                     <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                 </span>
-                                                <font>{{ $comment->comment_rely_count }} replies</font>
+                                                <font> replies</font>
                                             </a>
                                         </div>
                                         <div class="topic-rate">

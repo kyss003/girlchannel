@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Key_wordController;
 use App\Http\Controllers\Key_word_searchController;
-use App\Http\Controllers\TopicsController;
+use App\Http\Controllers\TopicController;
 use App\Http\Controllers\Make_topicController;
 use App\Http\Controllers\WeeklyController;
 use App\Http\Controllers\Topic_imageController;
@@ -59,11 +59,15 @@ use App\Http\Controllers\Comment_relyController;
 
 //home
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/topics/{id}', [HomeController::class, 'show']);
+
 Route::get('make_topic', [HomeController::class, 'create']);
 Route::post('make_topic', [HomeController::class, 'store']);
 // Route::post('/make_topic', [HomeController::class, 'upload']);
-Route::post('save-likedislike',[HomeController::class, 'save_likedislike']);
+
+
+//topic
+Route::get('/topics/{id}', [TopicController::class, 'show']);
+Route::post('save-likedislike',[TopicController::class, 'save_likedislike']);
 
 //rank
 Route::get('/rank', [RankController::class, 'index']);
@@ -103,6 +107,7 @@ Route::get('topics/category/{id}', [Category_searchController::class, 'index']);
 Route::get('topics/category/{id}', [Category_searchController::class, 'show']);
 
 //comment
+Route::get('comment_rely_count', [CommentController::class, 'show']);
 Route::post('topics/{id}', [CommentController::class, 'update']);
 Route::post('save-likedislike-comment',[CommentController::class, 'save_likedislike_comment']);
 

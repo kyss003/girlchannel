@@ -24,17 +24,19 @@ class RankController extends Controller
     {
         $dt = Carbon::now('Asia/Ho_Chi_Minh');
         $now = Carbon::now('Asia/Ho_Chi_Minh')->format('l, M D, Y');
+        
+        // dd($topics);
         $topics = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
                         ->leftJoin('comments', 'topics.id','=','comments.topic_id')
                         ->groupBy('topics.id')
-                        ->orderByRaw('created_at DESC')->paginate(3);
-
-        $topics_new = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
-                        ->leftJoin('comments', 'topics.id','=','comments.topic_id')
-                        ->groupBy('topics.id')
-                        ->orderByRaw('created_at DESC')->paginate(3);
-        // dd($topics);
-        
+                        ->where(function ($query){
+                            $query->select('comments.created_at')
+                                    ->from('comments')
+                                    ->whereColumn('comments.topic_id', 'topics.id')
+                                    ->orderBy('comments.created_at', 'ASC')
+                                    ->limit(1);
+                        })
+                        ->orderByRaw('comment_count DESC')->paginate(3);
         // $topic_yes = Topic::
 
         $popular_topic_w = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
