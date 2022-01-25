@@ -13,7 +13,6 @@
                         <div class="topic-list-wrap">
                             <div class="list-head">
                                 <p class="title">"{{ $search_text }}"の検索結果</p>
-                                <p class="number">1 - 9 out of 9</p>
                             </div>
                             <form id="seachform">
                                 @csrf
@@ -72,7 +71,7 @@
                                                             {{ $countrie->comment_count }}
                                                         </span>
                                                         <span class="datetime">
-                                                            {{ $countrie->created_at }}
+                                                            {{ \Carbon\Carbon::parse($countrie->updated_at)->diffForHumans($dt); }}
                                                         </span>
                                                     </p>
                                                 </div>
@@ -86,27 +85,6 @@
                                         <P>No result found</p>
                                     @endif
                                 @endif
-                                <!-- <li>
-                                    <a href="/topics">
-                                        <img src="https://up.gc-img.net/post_img_web/2021/12/Wyc2SH27qWydrqZ_21723_s.jpeg" class="img">
-                                        <div class="info">
-                                            <p class="comment">
-                                                <span class="icon-comment">
-                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
-                                                </span>
-                                                <span>
-                                                    1000 comment
-                                                </span>
-                                                <span class="datetime">
-                                                    46 seconds ago
-                                                </span>
-                                            </p>
-                                        </div>
-                                        <p class="title">
-                                            insurance coverage for infertility treatment, women under 43 years old ministry of health, labour and welfare, fact marriage also to be targeted
-                                        </p>
-                                    </a>
-                                </li> -->
                             </ul>
                             <div class="d-flex justify-content-center">
                                 {{$countries->appends(request()->all)->links()}}
@@ -187,46 +165,17 @@
                                 <a href="/key_word">Search trends</a>
                             </p>
                             <ul>
+                            @foreach($keywords as $key => $keyword)
                                 <li>
-                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_01.svg" width="32" height="20">
-                                    <a href="#">神田沙也加</a>
+                                    @if($key < 9)
+                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_0{{ $key+1 }}.svg" width="32" height="20">
+                                    <a href="topics/keyword/{{ $keyword->id }}">{{ $keyword->name }}</a>
+                                    @else
+                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_{{ $key+1 }}.svg" width="32" height="20">
+                                    <a href="topics/keyword/{{ $keyword->id }}">{{ $keyword->name }}</a>
+                                    @endif
                                 </li>
-                                <li>
-                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_02.svg" width="32" height="20">
-                                    <a href="#">神田</a>
-                                </li>
-                                <li>
-                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_03.svg" width="32" height="20">
-                                    <a href="#">大阪</a>
-                                </li>
-                                <li>
-                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_04.svg" width="32" height="20">
-                                    <a href="#">松田聖子</a>
-                                </li>
-                                <li>
-                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_05.svg" width="32" height="20">
-                                    <a href="#">離婚</a>
-                                </li>
-                                <li>
-                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_06.svg" width="32" height="20">
-                                    <a href="#">クリスマス</a>
-                                </li>
-                                <li>
-                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_07.svg" width="32" height="20">
-                                    <a href="#">前澤</a>
-                                </li>
-                                <li>
-                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_08.svg" width="32" height="20">
-                                    <a href="#">バッグ</a>
-                                </li>
-                                <li>
-                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_09.svg" width="32" height="20">
-                                    <a href="#">芸能関係者</a>
-                                </li>
-                                <li>
-                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_10.svg" width="32" height="20">
-                                    <a href="#">SixTONES</a>
-                                </li>
+                            @endforeach
                             </ul>
                             <a class="show-more" href="/key_word">
                                 <font>List of keywords</font>

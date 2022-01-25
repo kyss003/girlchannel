@@ -27,7 +27,7 @@
                                 </li>
                                 <li class="breadcrumb current">
                                     <a href="#">
-                                        <span>Category list</span>
+                                        <span>カテゴリー一覧</span>
                                     </a>
                                 </li>
                                 <span class="icon-arror_r">
@@ -109,28 +109,6 @@
                                     </a>
                                 </li>
                                 @endforeach
-                                
-                                <!-- <li>
-                                    <a href="/topics">
-                                        <img src="https://up.gc-img.net/post_img_web/2021/12/oxSAkiyGPMUA8Cb_s.jpeg" class="img">
-                                        <div class="info">
-                                            <p class="comment">
-                                                <span class="icon-comment">
-                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
-                                                </span>
-                                                <span>
-                                                    1000 comment
-                                                </span>
-                                                <span class="datetime">
-                                                    46 seconds ago
-                                                </span>
-                                            </p>
-                                        </div>
-                                        <p class="title">
-                                            【実況・感想】真犯人フラグ #10
-                                        </p>
-                                    </a>
-                                </li> -->
                             </ul>
                             <div class="d-flex justify-content-center">
                                 {{$topics_categories->appends(request()->all)->links()}}

@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    Category search
+    Keyword
 @endsection()
 
 @section('body')
@@ -65,28 +65,6 @@
                                     </a>
                                 </li>
                                 @endforeach
-                                
-                                <!-- <li>
-                                    <a href="/topics">
-                                        <img src="https://up.gc-img.net/post_img_web/2021/12/oxSAkiyGPMUA8Cb_s.jpeg" class="img">
-                                        <div class="info">
-                                            <p class="comment">
-                                                <span class="icon-comment">
-                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
-                                                </span>
-                                                <span>
-                                                    1000 comment
-                                                </span>
-                                                <span class="datetime">
-                                                    46 seconds ago
-                                                </span>
-                                            </p>
-                                        </div>
-                                        <p class="title">
-                                            【実況・感想】真犯人フラグ #10
-                                        </p>
-                                    </a>
-                                </li> -->
                             </ul>
                             <div class="d-flex justify-content-center">
                                 {{$topic_keyword->appends(request()->all)->links()}}
@@ -127,22 +105,6 @@
                                 @else
                                     <p></p>
                                 @endif
-                                <!-- <li>
-                                    <a href="/topics">
-                                        <div class="img_w">
-                                            <img src="https://up.gc-img.net/post_img_web/2021/12/5cmqyJUFhQ16X1A_s.png" width="60" height="60">
-                                        </div>
-                                        <div class="info">
-                                            <p class="title">【Chat】Topi Part 8 to talk casually like a friend</p>
-                                            <p class="comment">
-                                                <span class="icon-comment">
-                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
-                                                </span>
-                                                <font>17067 comment</font>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li> -->
                             </ul>
                             <a href="/weekly" class="show-more">
                                 <font>See more</font>
@@ -187,10 +149,15 @@
                                 <a href="/key_word">Search trends</a>
                             </p>
                             <ul>
-                                @foreach($keywords as $keyword)
+                            @foreach($keywords as $key => $keyword)
                                 <li>
-                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_01.svg" width="32" height="20">
-                                    <a href="{{ $keyword->id }}">{{ $keyword->name }}</a>
+                                    @if($key < 9)
+                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_0{{ $key+1 }}.svg" width="32" height="20">
+                                    <a href="topics/keyword/{{ $keyword->id }}">{{ $keyword->name }}</a>
+                                    @else
+                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_{{ $key+1 }}.svg" width="32" height="20">
+                                    <a href="topics/keyword/{{ $keyword->id }}">{{ $keyword->name }}</a>
+                                    @endif
                                 </li>
                                 @endforeach
                             </ul>

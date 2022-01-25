@@ -123,7 +123,7 @@ class HomeController extends Controller
 
         $topic = new topic;
         $rules = [
-            'title' => 'required|max:255',
+            'title' => 'required|max:120',
             'text' => 'required',
             'category' => 'required',
             'keyword' => 'required',
@@ -134,7 +134,7 @@ class HomeController extends Controller
 
             'required' => ':attribute không được để trống',
 
-            'max' => ':attribute không quá 255 ký tự',
+            'max' => ':attribute không quá 120 ký tự',
 
             'mimes' => ':attribute sai định dạng',
 

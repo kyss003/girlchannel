@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\comment;
 use App\Models\comment_rely;
 use App\Models\topic;
@@ -52,17 +53,7 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        // $comment_id = Comment::select('id')
-        //                     ->where('topic_id', $id)
-        //                     ->get();
-        //                     dd($comment_id);
-        // $comments_rely_count = Comment_rely::select(DB::raw('count(id) as comment_rely_count'))
-        //                                     ->where('comment_id', '=', $id)
-        //                                     ->get();
-        //                                     // dd($comments_rely_count);
-        // return view('topics', [
-        //     'comments_rely_count' => $comments_rely_count,
-        // ]);
+        
     }
 
     /**

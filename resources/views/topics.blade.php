@@ -91,23 +91,6 @@
                                                 <p></p>
                                             @endif
                                         </div>
-                                        <!-- <a href="/comment_rely/{{ $topic->id }}" class="btn btn-res">
-                                            <span>
-                                                <img src="https://img.icons8.com/ios-filled/18/000000/reply-arrow.png"/>
-                                            </span>
-                                            <font>Reply</font>
-                                        </a> -->
-                                        <!-- <div class="res-count">
-                                            
-                                            <a href="#" class="res-count-btn">
-                                            
-                                                <span class="icon-comment_fill">
-                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
-                                                </span>
-                                                <font>179 replies</font>
-                                            </a>
-                                            
-                                        </div> -->
                                         <div class="topic-rate">
                                             <div class="icon-rate-wrap icon-rate-wrap-plus">
                                                 <div class="counter">
@@ -124,13 +107,25 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div style="width: 321px;" class="gage">
-                                                <div style="width: 98.5%;" class="plus">
+                                            <div style="width: 300px;" class="gage">
+                                            @if($topic->likes())
+                                                <div style="width: {{ $topic->likes()/($topic->likes()+$topic->dislikes())*100 }}%;" class="plus">
 
                                                 </div>
-                                                <div style="width: 1.5%;" class="minus">
+                                            @else
+                                                <div style="width: 0%;" class="plus">
 
                                                 </div>
+                                            @endif
+                                            @if($topic->dislikes())
+                                                <div style="width: {{ $topic->dislikes()/($topic->likes()+$topic->dislikes())*100 }}%;" class="minus">
+
+                                                </div>
+                                            @else
+                                                <div style="width: 0%;" class="minus">
+
+                                                </div>
+                                            @endif
                                             </div>
                                             <div class="icon-rate-wrap icon-rate-wrap-minus">
                                                 <div class="counter">
@@ -182,7 +177,7 @@
                                                 <span class="icon-comment_fill">
                                                     <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
                                                 </span>
-                                                <font> replies</font>
+                                                <font>{{ $comment->comment_rely_count }} replies</font>
                                             </a>
                                         </div>
                                         <div class="topic-rate">
@@ -201,13 +196,25 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div style="width: 321px;" class="gage">
-                                                <div style="width: 98.5%;" class="plus">
+                                            <div style="width: 300px;" class="gage">
+                                            @if($comment->likes())
+                                                <div style="width: {{ $comment->likes()/($comment->likes()+$comment->dislikes())*100 }}%;" class="plus">
 
                                                 </div>
-                                                <div style="width: 1.5%;" class="minus">
+                                            @else
+                                                <div style="width: 0%;" class="plus">
 
                                                 </div>
+                                            @endif
+                                            @if($comment->dislikes())
+                                                <div style="width: {{ $comment->dislikes()/($comment->likes()+$comment->dislikes())*100 }}%;" class="minus">
+
+                                                </div>
+                                            @else
+                                                <div style="width: 0%;" class="minus">
+
+                                                </div>
+                                            @endif
                                             </div>
                                             <div class="icon-rate-wrap icon-rate-wrap-minus">
                                                 <div class="counter" >
@@ -239,14 +246,6 @@
                                     <p class="title">Post a comment</p>
                                     <div class="textarea mb10">
                                         <textarea id="textarea" name="text" placeholder="write a comment" class="form-control"></textarea>
-                                        <!-- <p id="btnUrl" class="add-link">
-                                            <span class="icon-link">
-                                            <img src="https://img.icons8.com/material-outlined/20/000000/link--v1.png"/>
-                                            </span>
-                                            <font>
-                                                quote articles and images
-                                            </font>
-                                        </p> -->
                                     </div>
                                     @error('text')
                                         <p class="help text-danger">{{ $message }}</p>
@@ -262,16 +261,6 @@
                                             <input type="file" name="addimage" id="addimage">
                                         </div>
                                     </div>
-                                    <!-- <div class="form-checks">
-                                        <input id="anonymous" type="checkbox">
-                                        <label for="anonymous" class="checkbox">
-                                            Post anonymously
-                                        </label>
-                                        <input id="showId" type="checkbox">
-                                        <label for="showId" class="checkbox">
-                                            View ID to prevent spoofing
-                                        </label>
-                                    </div> -->
                                     <input id="submit" type="submit" value="Post a topic" class="btn btn-positive post_comment">
                                     <div id="modalUrl" class="modal-bk" show="off" style="height: 1480px">
                                         <div class="modal-wrap modal-url">
@@ -370,36 +359,17 @@
                 <div class="sub">
                     <div class="ob-widget ob-one-column-layout SB_1">
                         <div class="ob-widget-section ob-first">
-                            <div class="ob-widget-header">
-                                            Featured topics
-                                        </div>
-                                        <ul class="ob-widget-items-container">
-                                            <li class="ob-dynamic-rec-container ob-recIdx-0 ob-o">
-                                                <a class="ob-dynamic-rec-link" href="https://girlschannel.net/topics/3726182/?obOrigUrl=true">
-                                                </a>
-                                                <span class="ob-unit ob-rec-image-container">
-                                                    <div class="ob-image-ratio"></div>
-                                                    <img class="ob-rec-image ob-show" src="https://images.outbrainimg.com/transform/v3/eyJpdSI6IjhkYjA5NzJmZmJlOWY0NWM3MzlmNDIzNWM2MjRjOThkYTA0YWQ2M2U4MDUwYjRmMWY5Y2I4NzRmNjQxNTRhYzkiLCJ3Ijo2MCwiaCI6NjAsImQiOjEuNSwiY3MiOjAsImYiOjB9.jpg">
-                                                </span>
-                                                <span class="ob-unit ob-rec-text">
-                                                    kou shibasaki echoes the "short hair" of the cut "cool and wonderful" "beautiful person stands out"
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="sub-part sub-keywords relate mb20">
-                                    <p class="head">関連キーワード</p>
-                                    <ul class="flc">
-                                        @foreach($keywords_name as $keyword_name)
-                                        <li>
-                                            <a href="keyword/{{ $keyword_name->id }}">
-                                                #{{ $keyword_name->name }}
-                                            </a>
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                            <div class="sub-part sub-keywords relate mb20">
+                                <p class="head">関連キーワード</p>
+                                <ul class="flc">
+                                    @foreach($keywords_name as $keyword_name)
+                                    <li>
+                                        <a href="keyword/{{ $keyword_name->id }}">
+                                            #{{ $keyword_name->name }}
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                     </div>

@@ -46,14 +46,6 @@
                                     @enderror
                                     <div class="textarea">
                                         <textarea class="preserveLines" id="textarea" name="text" placeholder="write the text" value="{ nl2br(old('name') }) }"></textarea>
-                                        <!-- <p id="btnUrl" class="add-link">
-                                            <span class="icon-link">
-                                            <img src="https://img.icons8.com/material-outlined/20/000000/link--v1.png"/>
-                                            </span>
-                                            <font>
-                                                quote articles and images
-                                            </font>
-                                        </p> -->
                                     </div>
                                     @error('text')
                                         <p class="help text-danger">{{ $message }}</p>

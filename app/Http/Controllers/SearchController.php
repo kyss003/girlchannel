@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\topic;
 use App\Models\comment;
 use App\Models\category;
+use App\Models\keyword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -20,7 +21,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-
+        
     }
 
     /**
@@ -41,12 +42,19 @@ class SearchController extends Controller
      */
     public function store(Request $request)
     {
-        $dt = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
+        
         if(isset($_GET['query'])){
             
             $this->sorting = "most-newest";
             $this->date = "all";
+            $dt = Carbon::now('Asia/Ho_Chi_Minh');
             $categories = Category::all();
+            $keywords = Keyword::select(DB::raw('count(topics.keyword_id) as count_top_keyword'), 'keywords.*')
+                            ->leftJoin('topics', 'keywords.id', '=', 'topics.keyword_id')
+                            ->groupBy('keywords.id')
+                            ->orderByRaw('count_top_keyword DESC')
+                            ->limit(10)
+                            ->get();
             $popular_topic_w = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
                                 ->leftJoin('comments', 'topics.id','=','comments.topic_id')
                                 ->groupBy('topics.id')
@@ -73,6 +81,13 @@ class SearchController extends Controller
         }
         if(isset($_GET['sort_by'])){
             $sort_by = $_GET['sort_by'];
+            $dt = Carbon::now('Asia/Ho_Chi_Minh');
+            $keywords = Keyword::select(DB::raw('count(topics.keyword_id) as count_top_keyword'), 'keywords.*')
+                            ->leftJoin('topics', 'keywords.id', '=', 'topics.keyword_id')
+                            ->groupBy('keywords.id')
+                            ->orderByRaw('count_top_keyword DESC')
+                            ->limit(10)
+                            ->get();
             if($sort_by=="c") {
                 $countries = DB::table('topics')
                                 ->select(DB::raw('count(comments.id) as comment_count'),'topics.*', 'comments.topic_id')
@@ -104,12 +119,20 @@ class SearchController extends Controller
                 'countries'=>$countries,
                 'popular_topic_w' => $popular_topic_w,
                 'popular_topic_d' => $popular_topic_d,
+                'keywords' => $keywords,
                 'categories' => $categories,
                 // 'countries_sortBy' => $countries_sortBy,
             ]);
         }
         if(isset($_GET['date'])){
             $date_by = $_GET['date'];
+            $dt = Carbon::now('Asia/Ho_Chi_Minh');
+            $keywords = Keyword::select(DB::raw('count(topics.keyword_id) as count_top_keyword'), 'keywords.*')
+                            ->leftJoin('topics', 'keywords.id', '=', 'topics.keyword_id')
+                            ->groupBy('keywords.id')
+                            ->orderByRaw('count_top_keyword DESC')
+                            ->limit(10)
+                            ->get();
             if($date_by=="a") {
                 $countries = DB::table('topics')
                                 ->select(DB::raw('count(comments.id) as comment_count'),'topics.*', 'comments.topic_id')
@@ -147,13 +170,14 @@ class SearchController extends Controller
                 $countries->appends($request->all());
             } 
             return view('search',[
-                
+                'keywords' => $keywords,
+                'categories' => $categories,
                 'date' =>$date_by,
                 'search_text'=>$search_text,
                 'countries'=>$countries,
                 'popular_topic_w' => $popular_topic_w,
                 'popular_topic_d' => $popular_topic_d,
-                'categories' => $categories,
+                'dt' => $dt,
             ]);
         }
 
@@ -163,6 +187,7 @@ class SearchController extends Controller
             'countries'=>$countries,
             'popular_topic_w' => $popular_topic_w,
             'popular_topic_d' => $popular_topic_d,
+            'keywords' => $keywords,
             'categories' => $categories,
             // 'countries_sortBy' => $countries_sortBy,
         ]);

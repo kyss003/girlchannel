@@ -106,13 +106,25 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div style="width: 321px;" class="gage">
-                                                <div style="width: 98.5%;" class="plus">
+                                            <div style="width: 300px;" class="gage">
+                                            @if($comment->likes())
+                                                <div style="width: {{ $comment->likes()/($comment->likes()+$comment->dislikes())*100 }}%;" class="plus">
 
                                                 </div>
-                                                <div style="width: 1.5%;" class="minus">
+                                            @else
+                                                <div style="width: 0%;" class="plus">
 
                                                 </div>
+                                            @endif
+                                            @if($comment->dislikes())
+                                                <div style="width: {{ $comment->dislikes()/($comment->likes()+$comment->dislikes())*100 }}%;" class="minus">
+
+                                                </div>
+                                            @else
+                                                <div style="width: 0%;" class="minus">
+
+                                                </div>
+                                            @endif
                                             </div>
                                             <div class="icon-rate-wrap icon-rate-wrap-minus">
                                                 <div class="counter" >
@@ -253,13 +265,25 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div style="width: 321px;" class="gage">
-                                                        <div style="width: 98.5%;" class="plus">
+                                                    <div style="width: 300px;" class="gage">
+                                                    @if($comment_rely->likes())
+                                                        <div style="width: {{ $comment_rely->likes()/($comment_rely->likes()+$comment_rely->dislikes())*100 }}%;" class="plus">
 
                                                         </div>
-                                                        <div style="width: 1.5%;" class="minus">
+                                                    @else
+                                                        <div style="width: 0%;" class="plus">
 
                                                         </div>
+                                                    @endif
+                                                    @if($comment_rely->dislikes())
+                                                        <div style="width: {{ $comment_rely->dislikes()/($comment_rely->likes()+$comment_rely->dislikes())*100 }}%;" class="minus">
+
+                                                        </div>
+                                                    @else
+                                                        <div style="width: 0%;" class="minus">
+
+                                                        </div>
+                                                    @endif
                                                     </div>
                                                     <div class="icon-rate-wrap icon-rate-wrap-minus">
                                                         <div class="counter" >

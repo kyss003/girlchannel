@@ -15,13 +15,13 @@
                                 <div class="tab tab-rank on">
                                     <a href="/rank">
                                         <span class="icon-rank"><img src="https://img.icons8.com/material-outlined/24/000000/crown.png"/></span>
-                                        <span>Today's popular topics</span>
+                                        <span>今日の人気トピック</span>
                                     </a>
                                 </div>
                                 <div class="tab tab-new">
                                     <a href="/new">
                                         <span class="icon-new"><img src="https://img.icons8.com/material-outlined/24/000000/clock--v1.png"/></span>
-                                        <span>What's new topics</span>
+                                        <span>新着トピック</span>
                                     </a>
                                 </div>
                             </div>
@@ -110,22 +110,6 @@
                                 @else
                                     <p></p>
                                 @endif
-                                <!-- <li>
-                                    <a href="/topics">
-                                        <div class="img_w">
-                                            <img src="https://up.gc-img.net/post_img_web/2021/12/5cmqyJUFhQ16X1A_s.png" width="60" height="60">
-                                        </div>
-                                        <div class="info">
-                                            <p class="title">【Chat】Topi Part 8 to talk casually like a friend</p>
-                                            <p class="comment">
-                                                <span class="icon-comment">
-                                                    <img src="https://img.icons8.com/ios-filled/15/000000/topic.png"/>
-                                                </span>
-                                                <font>17067 comment</font>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li> -->
                             </ul>
                             <a href="/weekly" class="show-more">
                                 <font>See more</font>

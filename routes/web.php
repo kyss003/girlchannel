@@ -79,6 +79,7 @@ Route::get('/new', [NewController::class, 'index']);
 Route::get('/search', [SearchController::class, 'store'])->name('topics.search');
 
 
+
 //topic_image
 Route::get('topics/topic_image/{id}', [Topic_imageController::class, 'show']);
 
