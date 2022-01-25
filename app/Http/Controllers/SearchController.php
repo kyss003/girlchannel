@@ -76,7 +76,6 @@ class SearchController extends Controller
                             ->groupBy('topics.id')
                             ->orderByRaw('topics.created_at DESC')
                             ->where('title', 'LIKE', '%'.$search_text.'%')->paginate(2);
-            // $countries_sortBy = $countries->sortByDesc('comment_count')->get();
             $countries->appends($request->all());
         }
         if(isset($_GET['sort_by'])){
@@ -96,12 +95,6 @@ class SearchController extends Controller
                                 ->orderByRaw('comment_count DESC')
                                 ->where('title', 'LIKE', '%'.$search_text.'%')->paginate(2);
                 $countries->appends($request->all());
-                // $countries_sortBy = DB::table('topics')
-                //                         ->select(DB::raw('count(comments.id) as comment_count'),'topics.*', 'comments.topic_id')
-                //                         ->leftJoin('comments', 'topics.id','=','comments.topic_id')
-                //                         ->groupBy('topics.id')
-                //                         ->sortBy('comment_count', 'DESC')->get();
-                
 
             } elseif($sort_by=="n") {
                 $countries = DB::table('topics')
@@ -121,7 +114,6 @@ class SearchController extends Controller
                 'popular_topic_d' => $popular_topic_d,
                 'keywords' => $keywords,
                 'categories' => $categories,
-                // 'countries_sortBy' => $countries_sortBy,
             ]);
         }
         if(isset($_GET['date'])){
@@ -189,7 +181,6 @@ class SearchController extends Controller
             'popular_topic_d' => $popular_topic_d,
             'keywords' => $keywords,
             'categories' => $categories,
-            // 'countries_sortBy' => $countries_sortBy,
         ]);
         
     }

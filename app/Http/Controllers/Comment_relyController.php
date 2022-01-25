@@ -59,9 +59,7 @@ class Comment_relyController extends Controller
                         ->where('topics.id', $id)
                         ->get();
         $comments = Comment::where('id', $comment_id)->get();
-        // dd($comments);
         $comments_rely = Comment_rely::where('comment_id', $comment_id)->get();
-        // dd($comment_rely);
         $keywords_name = Topic::select('keywords.*')
                             ->join('keywords', 'topics.keyword_id', '=', 'keywords.id')
                             ->where('topics.keyword_id', 'keywords.id')
@@ -81,11 +79,8 @@ class Comment_relyController extends Controller
                         ->groupBy('topics.id')
                         ->where('topics.id', $id)
                         ->get();
-        // $comments = Comment::where('id', $comment_id)->get();
         $topic = Topic::where('id', $id)->get();
-        // dd($comments);
         $comments_rely = Comment_rely::where('topic_id', $id)->get();
-        // dd($comment_rely);
         $keywords_name = Topic::select('keywords.*')
                             ->join('keywords', 'topics.keyword_id', '=', 'keywords.id')
                             ->where('topics.keyword_id', 'keywords.id')

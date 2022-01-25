@@ -112,7 +112,7 @@
                                 @endif
                             </ul>
                             <a href="/weekly" class="show-more">
-                                <font>See more</font>
+                                <font>続きを見る</font>
                                 <span class="icon-arrow_r">
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
                                 </span>
@@ -143,7 +143,7 @@
                             @endforeach
                             </ul>
                             <a href="#" class="show-more">
-                                <font>See more</font>
+                                <font>続きを見る</font>
                                 <span class="icon-arrow_r">
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
                                 </span>
@@ -167,7 +167,7 @@
                                 @endforeach
                             </ul>
                             <a class="show-more" href="key_word">
-                                <font>List of keywords</font>
+                                <font>キーワード一覧</font>
                                 <span class="icon-arrow_r">
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
                                 </span>

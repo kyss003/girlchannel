@@ -55,7 +55,6 @@ class Category_searchController extends Controller
                                     ->groupBy('topics.id')
                                     ->where('category_id', $id)
                                     ->orderByRaw('created_at DESC')->paginate(3);
-                                    // ->get();
         if(isset($_GET['sort_by'])){
             $sort_by = $_GET['sort_by'];
             if($sort_by=="c") {
@@ -83,7 +82,6 @@ class Category_searchController extends Controller
                 'popular_topic_w' => $popular_topic_w,
                 'popular_topic_d' => $popular_topic_d,
                 'categories' => $categories,
-                // 'countries_sortBy' => $countries_sortBy,
             ]);
         }
         if(isset($_GET['date'])){

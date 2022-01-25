@@ -91,7 +91,6 @@ class TopicController extends Controller
         return view('topics', [
             'topics' => $topics,
             'comments' => $comments,
-            // 'comments_rely_count' => $comments_rely_count,
             'keywords_name' => $keywords_name,
             'popular_topic_d' => $popular_topic_d,
             'related_topic' => $related_topic
