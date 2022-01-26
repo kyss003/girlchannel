@@ -120,7 +120,7 @@
                         </div>
                         <div class="sub-part sub-topics sub-topics-yesterday mb20">
                             <p class="head">
-                                <a href="#">前日の人気トピック</a>
+                                <a href="/rank">前日の人気トピック</a>
                             </p>
                             <ul>
                             @foreach( $popular_topic_d as $topic_d )
@@ -142,7 +142,7 @@
                                 </li>
                             @endforeach
                             </ul>
-                            <a href="#" class="show-more">
+                            <a href="/rank" class="show-more">
                                 <font>続きを見る</font>
                                 <span class="icon-arrow_r">
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
@@ -151,7 +151,7 @@
                         </div>
                         <div class="sub-part sub-trends mb20" >
                             <p class="head">
-                                <a href="key_word">検索トレンド</a>
+                                <a>検索トレンド</a>
                             </p>
                             <ul>
                                 @foreach($keywords as $key => $keyword)

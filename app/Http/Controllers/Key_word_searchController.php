@@ -70,12 +70,12 @@ class Key_word_searchController extends Controller
         $keywords = Keyword::select(DB::raw('count(topics.keyword_id) as count_top_keyword'), 'keywords.*')
                             ->leftJoin('topics', 'keywords.id', '=', 'topics.keyword_id')
                             ->groupBy('keywords.id')
-                            // ->orderByRaw('count_top_keyword DESC')
+                            ->orderByRaw('count_top_keyword DESC')
                             ->limit(10)
                             ->get();
         $categories = Category::all();
         $topic_keyword = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
-                                    ->join('comments', 'topics.id','=','comments.topic_id')
+                                    ->Leftjoin('comments', 'topics.id','=','comments.topic_id')
                                     ->groupBy('topics.id')
                                     ->where('topics.keyword_id', $id)
                                     ->orderByRaw('created_at DESC')->paginate(3);

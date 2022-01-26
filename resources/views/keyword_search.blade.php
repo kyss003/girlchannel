@@ -35,7 +35,7 @@
                                 </span>
                                 @foreach( $key_words as $key_word )
                                 <li class="breadcrumb current">
-                                    <a href="/category">
+                                    <a href="{{ $key_word->id }}">
                                         <span>{{ $key_word->name }}</span>
                                     </a>
                                 </li>
@@ -146,23 +146,23 @@
                         </div>
                         <div class="sub-part sub-trends mb20" >
                             <p class="head">
-                                <a href="/key_word">Search trends</a>
+                                <a href="key_word">検索トレンド</a>
                             </p>
                             <ul>
-                            @foreach($keywords as $key => $keyword)
+                                @foreach($keywords as $key => $keyword)
                                 <li>
                                     @if($key < 9)
                                     <img src="https://static.gc-img.net/img/parts_pc/svg/trend_0{{ $key+1 }}.svg" width="32" height="20">
-                                    <a href="topics/keyword/{{ $keyword->id }}">{{ $keyword->name }}</a>
+                                    <a href="{{ $keyword->id }}">{{ $keyword->name }}</a>
                                     @else
                                     <img src="https://static.gc-img.net/img/parts_pc/svg/trend_{{ $key+1 }}.svg" width="32" height="20">
-                                    <a href="topics/keyword/{{ $keyword->id }}">{{ $keyword->name }}</a>
+                                    <a href="{{ $keyword->id }}">{{ $keyword->name }}</a>
                                     @endif
                                 </li>
                                 @endforeach
                             </ul>
-                            <a class="show-more" href="/key_word">
-                                <font>List of keywords</font>
+                            <a class="show-more" href="key_word">
+                                <font>キーワード一覧</font>
                                 <span class="icon-arrow_r">
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
                                 </span>
@@ -176,7 +176,7 @@
                             <ul>
                                 @foreach( $categories as $category )
                                 <li>
-                                    <a href="topics/category/{{ $category->id }}">{{ $category->name }}</a>
+                                    <a href="/topics/category/{{ $category->id }}">{{ $category->name }}</a>
                                 </li>
                                 @endforeach
                             </ul>
