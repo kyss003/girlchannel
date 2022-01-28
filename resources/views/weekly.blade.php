@@ -72,10 +72,23 @@
                         </a>
                         <div class="sub-part sub-trends mb20" >
                             <p class="head">
-                                <a href="#">search trends</a>
+                                <a>検索トレンド</a>
                             </p>
-                            <a class="show-more" href="/key_word">
-                                <font>list of keywords</font>
+                            <ul>
+                                @foreach($keywords as $key => $keyword)
+                                <li>
+                                    @if($key < 9)
+                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_0{{ $key+1 }}.svg" width="32" height="20">
+                                    <a href="topics/keyword/{{ $keyword->id }}">{{ $keyword->name }}</a>
+                                    @else
+                                    <img src="https://static.gc-img.net/img/parts_pc/svg/trend_{{ $key+1 }}.svg" width="32" height="20">
+                                    <a href="topics/keyword/{{ $keyword->id }}">{{ $keyword->name }}</a>
+                                    @endif
+                                </li>
+                                @endforeach
+                            </ul>
+                            <a class="show-more" href="key_word">
+                                <font>キーワード一覧</font>
                                 <span class="icon-arrow_r">
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
                                 </span>

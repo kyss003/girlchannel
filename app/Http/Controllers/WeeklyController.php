@@ -20,6 +20,12 @@ class WeeklyController extends Controller
     public function index()
     {
         $dt = Carbon::now('Asia/Ho_Chi_Minh');
+        $keywords = Keyword::select(DB::raw('count(topics.keyword_id) as count_top_keyword'), 'keywords.*')
+                            ->leftJoin('topics', 'keywords.id', '=', 'topics.keyword_id')
+                            ->groupBy('keywords.id')
+                            ->orderByRaw('count_top_keyword DESC')
+                            ->limit(10)
+                            ->get();
         $popular_topic_w = Topic::select(DB::raw('count(comments.id) as comment_count'),'topics.*','comments.topic_id')
                                 ->leftJoin('comments', 'topics.id','=','comments.topic_id')
                                 ->groupBy('topics.id')
@@ -32,6 +38,7 @@ class WeeklyController extends Controller
             'dt' => $dt,
             'popular_topic_w' => $popular_topic_w,
             'categories' => $categories,
+            'keywords' => $keywords,
         ]);
     }
 
