@@ -22,7 +22,8 @@
                             <div class="image">
                                 <div class="form-image">
                                     <div id="topicThum">
-                                        <img src=" {{ URL::asset('Materials/noimg@2x.png'); }} " class="img">
+                                        <!-- <img src=" {{ URL::asset('Materials/noimg@2x.png'); }} " class="img" id="preview image"> -->
+                                        <img id="preview-image" src="{{ URL::asset('Materials/noimg@2x.png'); }}" alt="preview image"class="img">
                                     </div>
                                     <div class="add-image">
                                         <div>
@@ -190,3 +191,15 @@
         </div>
     </div>
 @stop()
+@section('scripts')
+    <script type="text/javascript">
+        $('#image').change(function(){
+            
+        let reader = new FileReader();
+        reader.onload = (e) => { 
+        $('#preview-image').attr('src', e.target.result); 
+        }
+        reader.readAsDataURL(this.files[0]); 
+        });
+    </script>
+@endsection

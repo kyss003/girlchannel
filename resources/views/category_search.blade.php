@@ -14,7 +14,7 @@
                             <ul class="breadcrumbs">
                                 
                                 <li class="breadcrumb">
-                                    <a href="/index">
+                                    <a href="/">
                                         <span class="icon-home">
                                             <img src="https://img.icons8.com/material-rounded/15/000000/home.png"/>
                                         </span>
@@ -26,7 +26,7 @@
                                     </span>
                                 </li>
                                 <li class="breadcrumb current">
-                                    <a href="#">
+                                    <a href="/category">
                                         <span>カテゴリー一覧</span>
                                     </a>
                                 </li>
@@ -35,7 +35,7 @@
                                 </span>
                                 @foreach( $categories_name as $category_name )
                                 <li class="breadcrumb current">
-                                    <a href="/category">
+                                    <a href="/topics/category/{{ $category_name->id }}">
                                         <span>{{ $category_name->name }}</span>
                                     </a>
                                 </li>

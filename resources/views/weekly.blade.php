@@ -14,7 +14,7 @@
                             <div class="topic-list-header mb20">
                                 <ul class="breadcrumbs">
                                     <li class="breadcrumb">
-                                        <a href="/index">
+                                        <a href="/">
                                             <span class="icon-home">
                                                 <img src="https://img.icons8.com/material-rounded/15/000000/home.png"/>
                                             </span>

@@ -14,7 +14,7 @@
                             <ul class="breadcrumbs">
                                 
                                 <li class="breadcrumb">
-                                    <a href="/index">
+                                    <a href="/">
                                         <span class="icon-home">
                                             <img src="https://img.icons8.com/material-rounded/15/000000/home.png"/>
                                         </span>
@@ -26,8 +26,8 @@
                                     </span>
                                 </li>
                                 <li class="breadcrumb current">
-                                    <a href="#">
-                                        <span>Keyword list</span>
+                                    <a href="/key_word">
+                                        <span>キーワード一覧</span>
                                     </a>
                                 </li>
                                 <span class="icon-arror_r">
@@ -80,7 +80,7 @@
                         </a>
                         <div class="sub-part sub-topics mb20">
                             <p class="head">
-                                <a href="/weekly">Popular topics of the week</a>
+                                <a href="/weekly">一週間の人気トピック</a>
                             </p>
                             <ul>
                                 @if( count($popular_topic_w) > 0 )
@@ -107,7 +107,7 @@
                                 @endif
                             </ul>
                             <a href="/weekly" class="show-more">
-                                <font>See more</font>
+                                <font>続きを見る</font>
                                 <span class="icon-arrow_r">
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
                                 </span>
@@ -115,7 +115,7 @@
                         </div>
                         <div class="sub-part sub-topics sub-topics-yesterday mb20">
                             <p class="head">
-                                <a href="#">Popular topics of the previous day</a>
+                                <a href="/rank">前日の人気トピック</a>
                             </p>
                             <ul>
                             @foreach( $popular_topic_d as $topic_d )
@@ -137,8 +137,8 @@
                                 </li>
                             @endforeach
                             </ul>
-                            <a href="#" class="show-more">
-                                <font>See more</font>
+                            <a href="/rank" class="show-more">
+                                <font>続きを見る</font>
                                 <span class="icon-arrow_r">
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>
                                 </span>
@@ -161,7 +161,7 @@
                                 </li>
                                 @endforeach
                             </ul>
-                            <a class="show-more" href="key_word">
+                            <a class="show-more" href="/key_word">
                                 <font>キーワード一覧</font>
                                 <span class="icon-arrow_r">
                                     <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/10/000000/external-right-arrow-arrows-dreamstale-lineal-dreamstale-2.png"/>

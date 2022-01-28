@@ -256,7 +256,7 @@
                                                         </div>
                                                         <div class="icon-rate icon-plus-btn">
                                                             <div class="btn-rate" >
-                                                                <span class="btn" title="Likes" id="saveLikeDislikeComment_rely" data-type="like" data-post="{{ $comment->id}}" >
+                                                                <span class="btn" title="Likes" id="saveLikeDislikeComment_rely" data-type="like" data-post="{{ $comment_rely->id}}" >
                                                                     <div></div>
                                                                     <div></div>
                                                                     <div></div>
@@ -291,7 +291,7 @@
                                                         </div>
                                                         <div class="icon-rate icon-minus-btn" state>
                                                             <div class="btn-rate">
-                                                                <span class="btn" title="Dislikes" id="saveLikeDislikeComment_rely" data-type="dislike" data-post="{{ $comment->id}}" >
+                                                                <span class="btn" title="Dislikes" id="saveLikeDislikeComment_rely" data-type="dislike" data-post="{{ $comment_rely->id}}" >
                                                                     <div></div>
                                                                     <div></div>
                                                                     <div></div>
